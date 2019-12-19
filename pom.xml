@@ -35,6 +35,8 @@
                 <version>3.8.0</version>
                 <configuration>
                     <release>13</release>
+                    <source>13.0.1</source>
+                    <target>13.0.1</target>
                     <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
