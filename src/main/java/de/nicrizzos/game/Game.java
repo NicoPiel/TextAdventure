@@ -6,10 +6,16 @@ public class Game {
       final static Player player = new Player("Nameless");
       
       public Game (String _name) {
-            player.createPlayer();
+            player.createPlayer(_name);
       }
-
-      public void InputHandler () {
+      
+      /**
+       * <p>
+       * Submit strings defined in each scene to control actions.
+       * Will then decide what to do.
+       * </p>
+       */
+      public void SubmitInput (String _input) {
       
       }
       

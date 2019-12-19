@@ -120,7 +120,7 @@ public class Player extends Entity {
       }
       
       /**
-       * Use this to fist set the player's stats. Cannot be called a second time.
+       * Use this to first set the player's stats. Cannot be called a second time.
        */
       public void createPlayer(String _name) {
             if (!created) {
@@ -359,6 +359,10 @@ public class Player extends Entity {
       
       public void setExperience(int _experience) {
             this.experience = _experience;
+      }
+      
+      public void addExperience(int _experience) {
+            this.experience += _experience;
       }
       
       

@@ -1,7 +1,7 @@
 package de.nicrizzos.game.entities;
 
 /**
- * An abstract class defining an 'entity', as in a 'living thing'
+ * An abstract class defining an 'entity', as in a 'thing'
  */
 public abstract class Entity {
       protected String identification;
