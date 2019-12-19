@@ -8,13 +8,18 @@ public abstract class Entity {
       protected String name;
       
       /**
-       * Will
+       * Will create a nameless entity, shouldn't use.
        */
       public Entity () {
             this.name = "<nameless entity>";
             this.identification = this.name;
+            System.err.println("You shouldn't use empty entities!");
       }
       
+      /**
+       *
+       * @param _name
+       */
       public Entity (String _name) {
             this.name = _name;
             this.identification = this.name;
@@ -33,5 +38,9 @@ public abstract class Entity {
       
       public String getID () {
             return this.identification;
+      }
+      
+      public boolean isPlayer() {
+            return false;
       }
 }

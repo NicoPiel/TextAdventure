@@ -1,11 +1,19 @@
 package de.nicrizzos.game;
 
-public class Game {
-      public Game () {
+import de.nicrizzos.game.entities.Player;
 
+public class Game {
+      final static Player player = new Player("Nameless");
+      
+      public Game () {
+            player.createPlayer();
       }
 
       public void InputHandler () {
-
+      
+      }
+      
+      public static Player getActivePlayer() {
+            return player;
       }
 }

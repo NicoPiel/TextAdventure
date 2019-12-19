@@ -27,7 +27,7 @@ public class Main {
       private void NewGame() {
             game = new Game();
       }
-
+      
       /**
        *
        */

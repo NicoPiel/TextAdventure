@@ -1,14 +1,53 @@
 package de.nicrizzos.game.entities;
 
+/**
+ * Represents the player object. It contains all the necessary fields and methods to create and maintain a player object.
+ * @see Entity
+ */
 public class Player extends Entity {
+      /**
+       * The player's level.
+       */
       private int level;
+      
+      /**
+       * The player's progress to the next level.
+       */
       private int experience;
+      
+      /**
+       * The experience required to reach the next level, as dictated by exp = 500 + (lvl - 1) * 500
+       */
       private int experienceRequiredForNextLevel;
+      
+      /**
+       * The player's hit points - how much damage they can take before dying.
+       */
       private int health;
+      
+      /**
+       * The player's mana - how many spells they can use.
+       */
       private int mana;
+      
+      /**
+       * The player's strength - influences their damage with melee weaponry.
+       */
       private int strength;
+      
+      /**
+       * The player's dexterity - influences their damage with ranged weapons.
+       */
       private int dexterity;
+      
+      /**
+       * The player's magical prowess - influences their damage with spells and increases mana.
+       */
       private int magic;
+      
+      /**
+       * The player's vitality - increases the player's hit points.
+       */
       private int vitality;
       private int defense;
       private int lightFooted;
@@ -18,39 +57,45 @@ public class Player extends Entity {
       private int knowledge;
       private int rhetoric;
       
-      private boolean isPlayer;
+      private boolean created;
+      private boolean canLevelUp;
       
-      public Player (String _name) {
+      public Player(String _name) {
             this.identification = "player";
             this.name = _name;
-            setHealth(100);
-            setMana(10);
-            setStrength(1);
-            setDexterity(1);
-            setMagic(1);
-            setVitality(0);
-            setDefense(0);
-            setLightFooted(0);
-            setSlightOfHand(0);
-            setPerception(0);
-            setSurvivalism(0);
-            setKnowledge(0);
-            setRhetoric(0);
+            this.created = false;
+      }
+      
+      public void createPlayer() {
+            if (!created) {
+                  setHealth(100);
+                  setMana(10);
+                  setStrength(1);
+                  setDexterity(1);
+                  setMagic(1);
+                  setVitality(0);
+                  setDefense(0);
+                  setLightFooted(0);
+                  setSlightOfHand(0);
+                  setPerception(0);
+                  setSurvivalism(0);
+                  setKnowledge(0);
+                  setRhetoric(0);
+                  this.created = true;
+            } else {
+                  System.err.println("Player already created.");
+            }
       }
       
       public void levelUp() {
             this.level++;
-            this.experienceRequiredForNextLevel = 500 + (level * 500);
+            setExperienceRequiredForNextLevel();
       }
       
       public void increaseStat(String stat) {
             switch (stat) {
-                  case "strength" -> {
-                        this.strength++;
-                  }
-                  case "dexterity" -> {
-                        this.dexterity++;
-                  }
+                  case "strength" -> this.strength++;
+                  case "dexterity" -> this.dexterity++;
                   case "magic" -> {
                         this.magic++;
                         this.mana = 10 + (this.magic * 10);
@@ -59,27 +104,13 @@ public class Player extends Entity {
                         this.vitality++;
                         this.health = 100 + (this.vitality * 20);
                   }
-                  case "defense" -> {
-                        this.defense++;
-                  }
-                  case "lightFooted" -> {
-                        this.lightFooted++;
-                  }
-                  case "slightOfHand" -> {
-                        this.slightOfHand++;
-                  }
-                  case "perception" -> {
-                        this.perception++;
-                  }
-                  case "survivalism" -> {
-                        this.survivalism++;
-                  }
-                  case "knowledge" -> {
-                        this.knowledge++;
-                  }
-                  case "rhetoric" -> {
-                        this.rhetoric++;
-                  }
+                  case "defense" -> this.defense++;
+                  case "lightFooted" -> this.lightFooted++;
+                  case "slightOfHand" -> this.slightOfHand++;
+                  case "perception" -> this.perception++;
+                  case "survivalism" -> this.survivalism++;
+                  case "knowledge" -> this.knowledge++;
+                  case "rhetoric" -> this.rhetoric++;
             }
       }
       
@@ -90,11 +121,11 @@ public class Player extends Entity {
       }
       
       public int getExperience() {
-            return experience;
+            return this.experience;
       }
       
       public int getExperienceRequiredForNextLevel() {
-            return experienceRequiredForNextLevel;
+            return this.experienceRequiredForNextLevel;
       }
       
       public int getMana() {
@@ -149,8 +180,13 @@ public class Player extends Entity {
             return this.rhetoric;
       }
       
+      @Override
       public boolean isPlayer() {
-            return isPlayer;
+            return true;
+      }
+      
+      public boolean canLevelUp() {
+            return this.canLevelUp;
       }
       
       // -------------------- SETTERS --------------------
@@ -231,7 +267,11 @@ public class Player extends Entity {
       }
       
       
-      public void setExperienceRequiredForNextLevel(int _experienceRequiredForNextLevel) {
-            this.experienceRequiredForNextLevel = _experienceRequiredForNextLevel;
+      public void setExperienceRequiredForNextLevel() {
+            this.experienceRequiredForNextLevel = 500 + ((this.level - 1) * 500);
+      }
+      
+      public void setCanLevelUp(boolean canLevelUp) {
+            this.canLevelUp = canLevelUp;
       }
 }
