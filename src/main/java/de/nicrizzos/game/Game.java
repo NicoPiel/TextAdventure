@@ -5,7 +5,7 @@ import de.nicrizzos.game.entities.Player;
 public class Game {
       final static Player player = new Player("Nameless");
       
-      public Game () {
+      public Game (String _name) {
             player.createPlayer();
       }
 

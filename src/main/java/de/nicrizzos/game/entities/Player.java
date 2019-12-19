@@ -2,71 +2,115 @@ package de.nicrizzos.game.entities;
 
 /**
  * Represents the player object. It contains all the necessary fields and methods to create and maintain a player object.
+ *
  * @see Entity
  */
 public class Player extends Entity {
-      /** The player's level. */
+      /**
+       * The player's level.
+       */
       private int level;
       
-      /** The player's progress to the next level. */
+      /**
+       * The player's progress to the next level.
+       */
       private int experience;
       
-      /** The experience required to reach the next level, as dictated by exp = 500 + (lvl - 1) * 500 */
+      /**
+       * The experience required to reach the next level, as dictated by exp = 500 + (lvl - 1) * 500
+       */
       private int experienceRequiredForNextLevel;
       
-      /** The player's hit points - how much damage they can take before dying. */
+      /**
+       * The player's hit points - how much damage they can take before dying.
+       */
       private int health;
-
+      
+      /**
+       * The player's current health
+       */
       private int currentHealth;
       
-      /** The player's mana - how many spells they can use. */
+      /**
+       * The player's mana - how many spells they can use.
+       */
       private int mana;
-
+      
+      /**
+       * The player's current mana
+       */
       private int currentMana;
       
-      /** The player's strength - influences their damage with melee weaponry. */
+      /**
+       * The player's strength - influences their damage with melee weaponry.
+       */
       private int strength;
       
-      /** The player's dexterity - influences their damage with ranged weaponry. */
+      /**
+       * The player's dexterity - influences their damage with ranged weaponry.
+       */
       private int dexterity;
       
-      /** The player's magical prowess - influences their damage with spells and increases mana. */
+      /**
+       * The player's magical prowess - influences their damage with spells and increases mana.
+       */
       private int magic;
       
-      /** The player's vitality - increases the player's hit points. */
+      /**
+       * The player's vitality - increases the player's hit points.
+       */
       private int vitality;
       
-      /** The player's defense - how much damage the player can absorb before it will affect their hit points. */
+      /**
+       * The player's defense - how much damage the player can absorb before it will affect their hit points.
+       */
       private int defense;
       
-      /** Influences rolls on stuff like sneaking. Unlocks certain dialogue options. */
+      /**
+       * Influences rolls on stuff like sneaking. Unlocks certain dialogue options.
+       */
       private int lightFooted;
       
-      /** Influences rolls on stuff like theft and lock-picking. Unlocks certain dialogue options. */
+      /**
+       * Influences rolls on stuff like theft and lock-picking. Unlocks certain dialogue options.
+       */
       private int slightOfHand;
       
-      /** Influences rolls on observing your environment. Unlocks certain dialogue options. */
+      /**
+       * Influences rolls on observing your environment. Unlocks certain dialogue options.
+       */
       private int perception;
       
-      /** Influences rolls on stuff related to surviving or nature. Unlocks certain dialogue options. */
+      /**
+       * Influences rolls on stuff related to surviving or nature. Unlocks certain dialogue options.
+       */
       private int survivalism;
       
-      /** Influences rolls on stuff like the arcane, books or general knowledge. Unlocks certain dialogue options.´*/
+      /**
+       * Influences rolls on stuff like the arcane, books or general knowledge. Unlocks certain dialogue options.´
+       */
       private int knowledge;
       
-      /** Influences the player's ability to persuade other people. Unlocks certain dialogue options.´*/
+      /**
+       * Influences the player's ability to persuade other people. Unlocks certain dialogue options.´
+       */
       private int rhetoric;
       
       
-      /** Whether the player had their initial values set. */
+      /**
+       * Whether the player had their initial values set.
+       */
       private boolean created;
       
-      /** Whether the requirements for a level-up are met. */
+      /**
+       * Whether the requirements for a level-up are met.
+       */
       private boolean canLevelUp;
       
       
       /**
        * Creates a new player object with the given name and the id "player".
+       *
        * @param _name The player's name to be used in various ways.
        */
       public Player(String _name) {
@@ -75,9 +119,12 @@ public class Player extends Entity {
             this.created = false;
       }
       
-      /** Use this to fist set the player's stats. Cannot be called a second time. */
-      public void createPlayer() {
+      /**
+       * Use this to fist set the player's stats. Cannot be called a second time.
+       */
+      public void createPlayer(String _name) {
             if (!created) {
+                  setPlayerName(_name);
                   setHealth(100);
                   setCurrentHealth(this.getHealth());
                   setMana(10);
@@ -99,7 +146,9 @@ public class Player extends Entity {
             }
       }
       
-      /** Use this function to level-up. */
+      /**
+       * Use this function to level-up.
+       */
       public void levelUp() {
             this.level++;
             setExperience(0);
@@ -108,6 +157,7 @@ public class Player extends Entity {
       
       /**
        * Use this to increase certain stats by 1
+       *
        * @param _stat Use stat in lowercase, e.g. "strength", "lightFooted", "slightOfHand"
        */
       public void increaseStat(String _stat) {
@@ -151,7 +201,7 @@ public class Player extends Entity {
       public int getMana() {
             return this.mana;
       }
-
+      
       public int getCurrentMana() {
             return this.currentMana;
       }
@@ -159,7 +209,7 @@ public class Player extends Entity {
       public int getHealth() {
             return this.health;
       }
-
+      
       public int getCurrentHealth() {
             return this.currentHealth;
       }
@@ -208,6 +258,14 @@ public class Player extends Entity {
             return this.rhetoric;
       }
       
+      public double getHealthPercentage () {
+            return ((double) this.getCurrentHealth()/this.getHealth());
+      }
+      
+      public double getManaPercentage () {
+            return ((double) this.getCurrentMana()/this.getMana());
+      }
+      
       @Override
       public boolean isPlayer() {
             return true;
@@ -219,6 +277,14 @@ public class Player extends Entity {
       
       // -------------------- SETTERS --------------------
       
+      public void setPlayerName (String _name) {
+            if (this.getName().equals("Nameless")) {
+                  this.name = _name;
+            }
+            else {
+                  System.err.println("You can't change the player's name.");
+            }
+      }
       
       public void setMana(int _mana) {
             this.mana = _mana;
@@ -227,11 +293,11 @@ public class Player extends Entity {
       public void setCurrentMana(int _mana) {
             this.currentMana = _mana;
       }
-
+      
       public void setHealth(int _health) {
             this.health = _health;
       }
-
+      
       public void setCurrentHealth(int _health) {
             this.currentHealth = _health;
       }
