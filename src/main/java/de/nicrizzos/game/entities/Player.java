@@ -124,6 +124,7 @@ public class Player extends Entity {
       public void createPlayer(String _name) {
             if (!created) {
                   setPlayerName(_name);
+                  setLevel(1);
                   setHealth(100);
                   setCurrentHealth(this.getHealth());
                   setMana(10);
@@ -290,6 +291,10 @@ public class Player extends Entity {
             else {
                   System.err.println("You can't change the player's name.");
             }
+      }
+      
+      public void setLevel (int _level) {
+            this.level = _level;
       }
       
       public void setMana(int _mana) {
