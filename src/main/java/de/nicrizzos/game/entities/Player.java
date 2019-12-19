@@ -150,6 +150,7 @@ public class Player extends Entity {
        */
       public void levelUp() {
             this.level++;
+            this.setCanLevelUp(true);
             setCanLevelUp(true);
             setExperience(0);
             setExperienceRequiredForNextLevel();
@@ -366,7 +367,7 @@ public class Player extends Entity {
       public void setExperience(int _experience) {
             this.experience = _experience;
       }
-      
+
       public void addExperience(int _experience) {
             this.experience += _experience;
             
@@ -374,7 +375,6 @@ public class Player extends Entity {
                   levelUp();
             }
       }
-      
       
       public void setExperienceRequiredForNextLevel() {
             this.experienceRequiredForNextLevel = 500 + ((this.level - 1) * 500);
