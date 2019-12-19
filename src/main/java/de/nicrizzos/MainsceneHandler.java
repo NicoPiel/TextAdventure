@@ -1,5 +1,6 @@
 package de.nicrizzos;
 
+import de.nicrizzos.game.Game;
 import de.nicrizzos.game.entities.Player;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -13,19 +14,36 @@ import java.io.File;
 public class MainsceneHandler {
       @FXML
       private TextArea ta_game;
-
       @FXML
       private ProgressBar pgb_life;
-
       @FXML
       private Label lbl_life;
-
       @FXML
       private Label lbl_mana;
-
       @FXML
       private ProgressBar pgb_mana;
-
+      @FXML
+      private Label lbl_vitality;
+      @FXML
+      private Label lbl_str;
+      @FXML
+      private Label lbl_dex;
+      @FXML
+      private Label lbl_magic;
+      @FXML
+      private Label lbl_def;
+      @FXML
+      private Label lbl_light;
+      @FXML
+      private Label lbl_handskill;
+      @FXML
+      private Label lbl_perception;
+      @FXML
+      private Label lbl_survival;
+      @FXML
+      private Label lbl_knowledge;
+      @FXML
+      private Label lbl_speech;
       @FXML
       private ImageView helmetslot;
       @FXML
@@ -65,22 +83,39 @@ public class MainsceneHandler {
       @FXML
       private ImageView p_rhetoric;
 
-      Player p;
+      private Game game;
+      private Player player;
 
       public void Init(String _name){
-            p = new Player(_name);
+            game = new Game(_name);
+            player = Game.getActivePlayer();
             constructCharInv();
-            p.createPlayer();
-            p.setCurrentMana(5);
             setPlayerInformation();
       }
 
-      public void setPlayerInformation() {
-            lbl_life.setText(p.getCurrentHealth() + " / " + p.getHealth());
-            pgb_life.setProgress((double) p.getCurrentHealth() / p.getHealth());
-            lbl_mana.setText(p.getCurrentMana() + " / " + p.getMana());
-            pgb_mana.setProgress((double) p.getCurrentMana() / p.getMana());
+      private void setPlayerInformation() {
+            lbl_life.setText(player.getCurrentHealth() + " / " + player.getHealth());
+            pgb_life.setProgress(player.getHealthPercentage());
+            lbl_mana.setText(player.getCurrentMana() + " / " + player.getMana());
+            pgb_mana.setProgress(player.getManaPercentage());
+            lbl_str.setText(Integer.toString(player.getStrength()));
+            lbl_dex.setText(Integer.toString(player.getDexterity()));
+            lbl_magic.setText(Integer.toString(player.getMagic()));
+            lbl_vitality.setText(Integer.toString(player.getVitality()));
+            lbl_def.setText(Integer.toString(player.getDefense()));
+            lbl_light.setText(Integer.toString(player.getLightFooted()));
+            lbl_perception.setText(Integer.toString(player.getPerception()));
+            lbl_handskill.setText(Integer.toString(player.getSlightOfHand()));
+            lbl_survival.setText(Integer.toString(player.getSurvivalism()));
+            lbl_knowledge.setText(Integer.toString(player.getKnowledge()));
+            lbl_speech.setText(Integer.toString(player.getRhetoric()));
       }
+      @FXML
+      private void increaseExp() {
+
+      }
+
+
 
 
 

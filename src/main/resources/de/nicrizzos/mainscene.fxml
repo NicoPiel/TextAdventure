@@ -69,7 +69,7 @@
             <Label fx:id="lbl_str" layoutX="148.0" layoutY="6.0" text="0" />
             <Label fx:id="lbl_dex" layoutX="148.0" layoutY="20.0" text="0" />
             <Label fx:id="lbl_magic" layoutX="148.0" layoutY="34.0" text="0" />
-            <Label fx:id="lbl_vital" layoutX="148.0" layoutY="55.0" text="0" />
+            <Label fx:id="lbl_vitality" layoutX="148.0" layoutY="55.0" text="0" />
             <Label fx:id="lbl_def" layoutX="148.0" layoutY="69.0" text="0" />
             <Label fx:id="lbl_light" layoutX="148.0" layoutY="90.0" text="0" />
             <Label fx:id="lbl_handskill" layoutX="148.0" layoutY="104.0" text="0" />
