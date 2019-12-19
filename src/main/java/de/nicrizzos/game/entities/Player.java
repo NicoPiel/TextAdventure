@@ -16,9 +16,13 @@ public class Player extends Entity {
       
       /** The player's hit points - how much damage they can take before dying. */
       private int health;
+
+      private int currentHealth;
       
       /** The player's mana - how many spells they can use. */
       private int mana;
+
+      private int currentMana;
       
       /** The player's strength - influences their damage with melee weaponry. */
       private int strength;
@@ -75,7 +79,9 @@ public class Player extends Entity {
       public void createPlayer() {
             if (!created) {
                   setHealth(100);
+                  setCurrentHealth(this.getHealth());
                   setMana(10);
+                  setCurrentMana(this.getMana());
                   setStrength(1);
                   setDexterity(1);
                   setMagic(1);
@@ -145,9 +151,17 @@ public class Player extends Entity {
       public int getMana() {
             return this.mana;
       }
+
+      public int getCurrentMana() {
+            return this.currentMana;
+      }
       
       public int getHealth() {
             return this.health;
+      }
+
+      public int getCurrentHealth() {
+            return this.currentHealth;
       }
       
       public int getStrength() {
@@ -210,11 +224,17 @@ public class Player extends Entity {
             this.mana = _mana;
       }
       
-      
+      public void setCurrentMana(int _mana) {
+            this.currentMana = _mana;
+      }
+
       public void setHealth(int _health) {
             this.health = _health;
       }
-      
+
+      public void setCurrentHealth(int _health) {
+            this.currentHealth = _health;
+      }
       
       public void setStrength(int _strength) {
             this.strength = _strength;

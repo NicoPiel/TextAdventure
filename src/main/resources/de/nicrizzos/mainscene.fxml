@@ -52,7 +52,7 @@
             <Button fx:id="btn_b" layoutX="155.0" layoutY="197.0" mnemonicParsing="false" text="Inventar" />
          </children>
       </Pane>
-      <ProgressBar layoutX="800.0" layoutY="580.0" prefWidth="200.0" progress="1.0" />
+      <ProgressBar fx:id="pgb_life" layoutX="800.0" layoutY="580.0" prefWidth="200.0" progress="1.0" />
       <Pane layoutX="800.0" layoutY="285.0" prefHeight="233.0" prefWidth="200.0">
          <children>
             <Label layoutX="14.0" layoutY="6.0" text="Stärke" />
@@ -101,14 +101,14 @@
             </ImageView>
          </children>
       </Pane>
-      <ProgressBar layoutX="800.0" layoutY="636.0" prefWidth="200.0" progress="1.0" />
+      <ProgressBar fx:id="pgb_mana" layoutX="800.0" layoutY="636.0" prefWidth="200.0" progress="1.0" />
       <Label layoutX="800.0" layoutY="557.0" text="Leben:" />
       <Label layoutX="800.0" layoutY="613.0" text="Mana:" />
-      <Label layoutX="948.0" layoutY="557.0" text="141 / 141" />
-      <Label layoutX="963.0" layoutY="613.0" text="99/99" />
+      <Label fx:id="lbl_life" layoutX="948.0" layoutY="557.0" text="141 / 141" />
+      <Label fx:id="lbl_mana" layoutX="963.0" layoutY="613.0" text="99/99" />
       <Button layoutX="14.0" layoutY="590.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Reden" />
       <Button layoutX="14.0" layoutY="630.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Gehen" />
-      <Button layoutX="14.0" layoutY="670.0" mnemonicParsing="false" text="Kämpfen" />
+      <Button layoutX="14.0" layoutY="670.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Kämpfen" />
       <Button layoutX="527.0" layoutY="590.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Dialog 1" />
       <Button layoutX="527.0" layoutY="630.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Dialog 2" />
       <Button layoutX="527.0" layoutY="710.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Dialog 4" />

@@ -2,6 +2,8 @@ package de.nicrizzos;
 
 import de.nicrizzos.game.entities.Player;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,6 +13,19 @@ import java.io.File;
 public class MainsceneHandler {
       @FXML
       private TextArea ta_game;
+
+      @FXML
+      private ProgressBar pgb_life;
+
+      @FXML
+      private Label lbl_life;
+
+      @FXML
+      private Label lbl_mana;
+
+      @FXML
+      private ProgressBar pgb_mana;
+
       @FXML
       private ImageView helmetslot;
       @FXML
@@ -50,13 +65,27 @@ public class MainsceneHandler {
       @FXML
       private ImageView p_rhetoric;
 
-      Player p = new Player("Pacolos");
+      Player p;
 
-      public void Init(){
+      public void Init(String _name){
+            p = new Player(_name);
             constructCharInv();
-
-
+            p.createPlayer();
+            p.setCurrentMana(5);
+            setPlayerInformation();
       }
+
+      public void setPlayerInformation() {
+            lbl_life.setText(p.getCurrentHealth() + " / " + p.getHealth());
+            pgb_life.setProgress((double) p.getCurrentHealth() / p.getHealth());
+            lbl_mana.setText(p.getCurrentMana() + " / " + p.getMana());
+            pgb_mana.setProgress((double) p.getCurrentMana() / p.getMana());
+      }
+
+
+
+
+
 
       private void constructCharInv() {
             File f = new File("src/images/helmet.png");
@@ -121,8 +150,4 @@ public class MainsceneHandler {
 
       }
 
-      @FXML
-      private void onMirEgalClick() {
-            ta_game.setText("neger");
-      }
 }

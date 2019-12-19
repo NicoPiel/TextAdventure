@@ -10,17 +10,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class StartsceneHandler {
-
+public class ChoosesaveHandler {
       @FXML
-      public void onGameStartButtonClick(ActionEvent e) throws IOException {
+      public void btn_save1(ActionEvent e) throws IOException {
+
 
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("choosesave.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("mainscene.fxml"));
             Parent switchscene = fxmlLoader.load();
             Scene sc = new Scene(switchscene);
-            Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)e.getSource()).getScene().getWindow();
+            MainsceneHandler maincontroller = fxmlLoader.getController();
+            maincontroller.Init("Pacolos");
+            Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stageTheEventSourceNodeBelongs.setScene(sc);
-
       }
 }
