@@ -140,6 +140,7 @@ public class Player extends Entity {
                   setSurvivalism(0);
                   setKnowledge(0);
                   setRhetoric(0);
+                  setExperienceRequiredForNextLevel();
                   this.created = true;
             } else {
                   System.err.println("Player already created.");

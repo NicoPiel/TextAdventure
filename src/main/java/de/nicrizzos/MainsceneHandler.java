@@ -17,6 +17,10 @@ public class MainsceneHandler {
       @FXML
       private ProgressBar pgb_life;
       @FXML
+      private ProgressBar pgb_exp;
+      @FXML
+      private Label lbl_exp;
+      @FXML
       private Label lbl_level;
       @FXML
       private Label lbl_playername;
@@ -102,6 +106,8 @@ public class MainsceneHandler {
             pgb_life.setProgress(player.getHealthPercentage());
             lbl_mana.setText(player.getCurrentMana() + " / " + player.getMana());
             pgb_mana.setProgress(player.getManaPercentage());
+            lbl_exp.setText(player.getExperience() + " / "+ player.getExperienceRequiredForNextLevel());
+            pgb_exp.setProgress(player.getExperiencePercentage());
 
             lbl_playername.setText(player.getName());
             lbl_level.setText(Integer.toString(player.getLevel()));
