@@ -114,8 +114,7 @@ public class Player extends Entity {
        * @param _name The player's name to be used in various ways.
        */
       public Player(String _name) {
-            this.identification = "player";
-            this.name = _name;
+            super(_name, "player");
             this.created = false;
       }
       
@@ -151,6 +150,7 @@ public class Player extends Entity {
        */
       public void levelUp() {
             this.level++;
+            setCanLevelUp(true);
             setExperience(0);
             setExperienceRequiredForNextLevel();
       }
@@ -180,6 +180,8 @@ public class Player extends Entity {
                   case "knowledge" -> this.knowledge++;
                   case "rhetoric" -> this.rhetoric++;
             }
+            
+            setCanLevelUp(false);
       }
       
       
@@ -264,6 +266,10 @@ public class Player extends Entity {
       
       public double getManaPercentage () {
             return ((double) this.getCurrentMana()/this.getMana());
+      }
+      
+      public double getExperiencePercentage() {
+            return (double) getExperience()/getExperienceRequiredForNextLevel();
       }
       
       @Override
@@ -363,6 +369,10 @@ public class Player extends Entity {
       
       public void addExperience(int _experience) {
             this.experience += _experience;
+            
+            if (this.experience >= this.experienceRequiredForNextLevel) {
+                  levelUp();
+            }
       }
       
       
