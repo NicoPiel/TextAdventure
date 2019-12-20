@@ -106,8 +106,7 @@ public class MainsceneHandler {
       private Player player;
 
       public void Init(String _name){
-            if(game != null)
-                  game = new Game(_name);
+            game = new Game(_name);
             player = Game.getActivePlayer();
             constructCharInv();
             this.refreshScene();
