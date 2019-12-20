@@ -1,5 +1,7 @@
 package de.nicrizzos.game.dialoguesystem;
 
-public class DialogueNode {
+import de.nicrizzos.game.*;
+
+public class DialogueNode extends GameObject {
 
 }

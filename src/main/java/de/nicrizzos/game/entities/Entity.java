@@ -1,46 +1,20 @@
 package de.nicrizzos.game.entities;
 
+import de.nicrizzos.game.GameObject;
+
 /**
  * An abstract class defining an 'entity', as in a 'thing'
  */
-public abstract class Entity {
-      protected String identification;
-      protected String name;
-      
-      /**
-       * Will create a nameless entity, shouldn't use.
-       */
+public abstract class Entity extends GameObject {
       public Entity () {
-            this.name = "<nameless entity>";
-            this.identification = this.name;
-            System.err.println("You shouldn't use empty entities!");
+            super();
       }
       
-      /**
-       *
-       * @param _name
-       */
       public Entity (String _name) {
-            this.name = _name;
-            this.identification = this.name;
+            super(_name);
       }
       
       public Entity (String _name, String _ID) {
-            this.name = _name;
-            this.identification = _ID;
-      }
-      
-      // GETTERS
-      
-      public String getName () {
-            return this.name;
-      }
-      
-      public String getID () {
-            return this.identification;
-      }
-      
-      public boolean isPlayer() {
-            return false;
+            super(_name, _ID);
       }
 }
