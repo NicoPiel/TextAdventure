@@ -111,7 +111,7 @@ public class SQLiteManager {
       public void savePlayer(Player _player) {
 
             String sql = "UPDATE player SET strength = "+_player.getStrength()+",dexterity = "+_player.getDexterity()+", magic = "+_player.getMagic()+", " +
-                    "vitality= "+_player.getVitality()+", defense="+_player.getDefense()+" ,lightFooted="+_player.getLightFooted()+" ,slightOfHand="+_player.getSlightOfHand()+", " +
+                    "vitality= "+_player.getVitality()+", defense="+_player.getDefensiveness()+" ,lightFooted="+_player.getLightFooted()+" ,slightOfHand="+_player.getSlightOfHand()+", " +
                     "perception="+_player.getPerception()+" , survivalism = "+_player.getSurvivalism()+", knowledge = "+_player.getKnowledge()+", rhetoric = "+_player.getRhetoric()+
                     ", level = "+_player.getLevel()+", exp = "+_player.getExperience()+", expnextlvl = "+_player.getExperienceRequiredForNextLevel()+", health = "+_player.getHealth()+"," +
                     "currenthealth= "+_player.getCurrentHealth()+", mana= "+_player.getMana()+", currentmana= "+_player.getCurrentMana()+", skillPoints ="+_player.getSkillPoints()+"," +

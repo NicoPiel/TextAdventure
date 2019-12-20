@@ -54,12 +54,12 @@ public class BattlescreenHandler {
 
       public void Init(Game _game, SQLiteManager sql){
             game =_game;
-            battle = new Battle (player, new Enemy[] {
-                    new Enemy ("Schleim", 100, 10, 1300),
-                    new Enemy("Goblin", 100, 10, 1300),
-                    new Enemy("Zigeuner", 1200, 10, 1)
-            });
             player = Game.getActivePlayer();
+            battle = new Battle (player, new Enemy[] {
+                    new Enemy ("Schleim", 60, 50, 5),
+                    new Enemy("Goblin", 100, 60, 30),
+                    new Enemy("Zigeuner", 150, 62, 22)
+            });
             refreshScreen();
       }
       
@@ -91,43 +91,34 @@ public class BattlescreenHandler {
       public void attackEnemy(ActionEvent e) {
             Button pressed = (Button) e.getSource();
             switch(pressed.getId()) {
-                  case "btn_enemy" ->  {
-                        battle.attack(battle.getEnemy(0), 1000);
+                  case "btn_enemy1" ->  {
+                        if (battle.getEnemy(0).isAlive())
+                              battle.attack(battle.getEnemy(0), player.getDamage());
+                        else System.out.println(battle.getEnemy(0).getName() + " is already dead.");
                   }
                   case "btn_enemy2" ->  {
-                        battle.attack(battle.getEnemy(1), 1000);
+                        if (battle.getEnemy(1).isAlive())
+                              battle.attack(battle.getEnemy(1), player.getDamage());
+                        else System.out.println(battle.getEnemy(1).getName() + " is already dead.");
                   }
                   case "btn_enemy3" -> {
-                        battle.attack(battle.getEnemy(2), 1000);
+                        if (battle.getEnemy(2).isAlive())
+                              battle.attack(battle.getEnemy(2), player.getDamage());
+                        else System.out.println(battle.getEnemy(2).getName() + " is already dead.");
                   }
             }
-            //else {
+            
+            if (battle.isAnyEnemyAlive()) {
+                  battle.enemyTurn();
+            }
+            else {
                   //TODO: Zusammenfassung, dann zurück in den Mainscreen
-            //}
+                  System.out.println("All enemies have been defeated.");
+            }
             
             refreshScreen();
-            enemyturn();
+            
       }
-      public void enemyturn() {
-            battle.enemyTurn();
-            /*switch(battle.getNumberOfEnemies()) {
-                  case 1 -> {
-                        //Enemy 1
-                  }
-                  case 2 -> {
-                        //Enemy 1
-                        //Enemy 2
-                  }
-                  case 3 -> {
-                        //Enemy 1
-                        //Enemy 2
-                        //Enemy 3
-                  }
-
-            }*/
-      }
-
-
 
       public void refreshScreen() {
             lbl_playername.setText(player.getName());

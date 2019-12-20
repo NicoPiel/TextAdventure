@@ -64,7 +64,7 @@ public class Player extends Entity {
       /**
        * The player's defense - how much damage the player can absorb before it will affect their hit points.
        */
-      private int defense;
+      private int defensiveness;
       
       /**
        * Influences rolls on stuff like sneaking. Unlocks certain dialogue options.
@@ -99,6 +99,16 @@ public class Player extends Entity {
       
       private int skillPoints;
       
+      // Prototype inventory
+      
+      private int weaponDamage;
+      private int shieldDef;
+      private int helmetDef;
+      private int chestDef;
+      private int pantsDef;
+      private int bootsDef;
+      private int gauntletsDef;
+      
       
       /**
        * Whether the player had their initial values set.
@@ -126,6 +136,16 @@ public class Player extends Entity {
        */
       public void createPlayer(String _name) {
             if (!created) {
+                  // Test equipment
+                  weaponDamage = 50;
+                  shieldDef = 10;
+                  helmetDef = 5;
+                  chestDef = 20;
+                  pantsDef = 10;
+                  bootsDef = 5;
+                  gauntletsDef = 5;
+                  
+                  // Player stats init
                   setPlayerName(_name);
                   setLevel(1);
                   setHealth(100);
@@ -136,7 +156,7 @@ public class Player extends Entity {
                   setDexterity(1);
                   setMagic(1);
                   setVitality(0);
-                  setDefense(0);
+                  setDefensiveness(0);
                   setLightFooted(0);
                   setSlightOfHand(0);
                   setPerception(0);
@@ -183,7 +203,7 @@ public class Player extends Entity {
                               this.health = 100 + (this.vitality * 20);
                               setCurrentHealth(getHealth());
                         }
-                        case "defense" -> this.defense++;
+                        case "defense" -> this.defensiveness++;
                         case "lightFooted" -> this.lightFooted++;
                         case "slightOfHand" -> this.slightOfHand++;
                         case "perception" -> this.perception++;
@@ -200,24 +220,12 @@ public class Player extends Entity {
       
       // -------------------- GAMEPLAY --------------------
       
-      public void doDamage (int _damage) {
-            int damageDone = _damage - this.getDefense();
+      public int getDamage () {
+            return (int) (weaponDamage * (1 + (0.07 * getStrength())));
+      }
       
-            if (damageDone > 0) {
-                  int newHP = getCurrentHealth() - damageDone;
-                  
-                  if (newHP <= 0) {
-                        setCurrentHealth(0);
-                        System.out.println(getName() + " died.");
-                  }
-                  else {
-                        setCurrentHealth(newHP);
-                        System.out.printf("%s received %d damage!%n", this.getName(), damageDone);
-                  }
-            }
-            else {
-                  System.out.println("That didn't do any damage!");
-            }
+      public int getDefense () {
+            return (int) ((shieldDef + helmetDef + chestDef + pantsDef + bootsDef + gauntletsDef) * (1 + (0.07 * getDefensiveness())));
       }
       
       
@@ -268,8 +276,8 @@ public class Player extends Entity {
             return this.vitality;
       }
       
-      public int getDefense() {
-            return this.defense;
+      public int getDefensiveness() {
+            return this.defensiveness;
       }
       
       public int getLightFooted() {
@@ -319,6 +327,10 @@ public class Player extends Entity {
       
       public boolean canLevelUp() {
             return this.canLevelUp;
+      }
+      
+      public boolean isAlive() {
+            return getCurrentHealth() > 0;
       }
       
       // -------------------- SETTERS --------------------
@@ -372,8 +384,8 @@ public class Player extends Entity {
       }
       
       
-      public void setDefense(int _defense) {
-            this.defense = _defense;
+      public void setDefensiveness(int _defensiveness) {
+            this.defensiveness = _defensiveness;
       }
       
       

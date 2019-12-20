@@ -1,12 +1,9 @@
 package de.nicrizzos;
 
 import de.nicrizzos.game.Game;
-import de.nicrizzos.game.entities.Enemy;
 import de.nicrizzos.game.entities.Player;
-import de.nicrizzos.game.scenesystem.Battle;
 import de.nicrizzos.game.utils.SQLiteManager;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -136,7 +133,7 @@ public class MainsceneHandler {
             player.setDexterity(sql.getStat("dexterity"));
             player.setMagic(sql.getStat("magic"));
             player.setVitality(sql.getStat("vitality"));
-            player.setDefense(sql.getStat("defense"));
+            player.setDefensiveness(sql.getStat("defense"));
             player.setLightFooted(sql.getStat("lightFooted"));
             player.setSlightOfHand(sql.getStat("slightOfHand"));
             player.setPerception(sql.getStat("perception"));
@@ -230,7 +227,7 @@ public class MainsceneHandler {
             lbl_dex.setText(Integer.toString(player.getDexterity()));
             lbl_magic.setText(Integer.toString(player.getMagic()));
             lbl_vitality.setText(Integer.toString(player.getVitality()));
-            lbl_def.setText(Integer.toString(player.getDefense()));
+            lbl_def.setText(Integer.toString(player.getDefensiveness()));
             lbl_light.setText(Integer.toString(player.getLightFooted()));
             lbl_perception.setText(Integer.toString(player.getPerception()));
             lbl_handskill.setText(Integer.toString(player.getSlightOfHand()));

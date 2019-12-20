@@ -16,7 +16,8 @@ public class Battle {
       
       public void enemyTurn() {
             for (Enemy e : enemies) {
-                  attack(player, e.getDamage());
+                  if (player.isAlive() && e.isAlive())
+                        attack(this.player, e.getDamage());
             }
       }
       
@@ -35,7 +36,7 @@ public class Battle {
       
       public boolean isAnyEnemyAlive () {
             for (Enemy e : enemies) {
-                  if (e.getHealth() > 0) {
+                  if (e.isAlive()) {
                         return true;
                   }
             }

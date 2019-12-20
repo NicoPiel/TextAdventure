@@ -16,32 +16,16 @@ public class Enemy extends Entity {
             setDefense(_defense);
       }
       
-      public void doDamage(int _damage) {
-            int damageDone = _damage - this.getDefense();
-      
-            if (damageDone > 0) {
-                  int newHP = getCurrentHealth() - damageDone;
-            
-                  if (newHP <= 0) {
-                        setCurrentHealth(0);
-                        System.out.println(getName() + " died.");
-                  }
-                  else {
-                        setCurrentHealth(newHP);
-                        System.out.printf("%s received %d damage!%n", this.getName(), damageDone);
-                  }
-            }
-            else {
-                  System.out.println("That didn't do any damage!");
-            }
-      }
-      
       public int getHealth() {
             return this.health;
       }
       
       public int getCurrentHealth() {
             return currentHealth;
+      }
+      
+      public boolean isAlive() {
+            return getCurrentHealth() > 0;
       }
       
       public double getHealthPercentage () {
