@@ -5,14 +5,20 @@ import de.nicrizzos.game.entities.Player;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 
 public class MainsceneHandler {
       @FXML
@@ -98,11 +104,17 @@ public class MainsceneHandler {
       private Player player;
 
       public void Init(String _name){
-            game = new Game(_name);
+            if(game != null)
+                  game = new Game(_name);
             player = Game.getActivePlayer();
             constructCharInv();
             this.refreshScene();
-
+      }
+      public void importGame(Game _game) {
+            game = _game;
+            player = Game.getActivePlayer();
+            constructCharInv();
+            this.refreshScene();
 
       }
       private void refreshScene() {
@@ -148,7 +160,7 @@ public class MainsceneHandler {
             pgb_exp.setProgress(player.getExperiencePercentage());
 
             lbl_playername.setText(player.getName());
-            lbl_level.setText(Integer.toString(player.getLevel()));
+            lbl_level.setText( "Stufe: "+ Integer.toString(player.getLevel()));
 
             lbl_str.setText(Integer.toString(player.getStrength()));
             lbl_dex.setText(Integer.toString(player.getDexterity()));
@@ -190,6 +202,17 @@ public class MainsceneHandler {
       private void increaseExp() {
             player.addExperience(500);
             refreshScene();
+      }
+      @FXML
+      private void fight(ActionEvent e) throws IOException {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("mainscene.fxml"));
+            Parent switchscene = fxmlLoader.load();
+            Scene sc = new Scene(switchscene);
+            BattlescreenHandler battlescreenHandler = fxmlLoader.getController();
+            battlescreenHandler.Init(game);
+            Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            stageTheEventSourceNodeBelongs.setScene(sc);
       }
 
 
