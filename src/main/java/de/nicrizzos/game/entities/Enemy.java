@@ -26,8 +26,10 @@ public class Enemy extends Entity {
                         setCurrentHealth(0);
                         System.out.println(getName() + " died.");
                   }
-            
-                  System.out.printf("%s received %d damage!%n", this.getName(), damageDone);
+                  else {
+                        setCurrentHealth(newHP);
+                        System.out.printf("%s received %d damage!%n", this.getName(), damageDone);
+                  }
             }
             else {
                   System.out.println("That didn't do any damage!");
