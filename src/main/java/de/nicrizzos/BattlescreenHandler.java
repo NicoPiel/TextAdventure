@@ -117,7 +117,13 @@ public class BattlescreenHandler {
             }
             
             refreshScreen();
-            
+      }
+      
+      @FXML
+      public void defend () {
+            player.startDefense();
+            battle.enemyTurn();
+            player.stopDefense();
       }
 
       public void refreshScreen() {

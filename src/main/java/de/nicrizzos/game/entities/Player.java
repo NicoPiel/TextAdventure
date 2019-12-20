@@ -220,12 +220,28 @@ public class Player extends Entity {
       
       // -------------------- GAMEPLAY --------------------
       
+      private boolean defensive;
+      
       public int getDamage () {
             return (int) (weaponDamage * (1 + (0.07 * getStrength())));
       }
       
       public int getDefense () {
-            return (int) ((shieldDef + helmetDef + chestDef + pantsDef + bootsDef + gauntletsDef) * (1 + (0.07 * getDefensiveness())));
+            if (defensive) {
+                  return (int) (1.5 * ((shieldDef + helmetDef + chestDef + pantsDef + bootsDef + gauntletsDef) * (1 + (0.07 * getDefensiveness()))));
+            }
+            else
+                  return (int) ((shieldDef + helmetDef + chestDef + pantsDef + bootsDef + gauntletsDef) * (1 + (0.07 * getDefensiveness())));
+      }
+      
+      public void startDefense() {
+            this.defensive = true;
+            System.out.println(getName() + " took a defensive stance.");
+      }
+      
+      public void stopDefense () {
+            this.defensive = false;
+            System.out.println(getName() + " stopped defending themselves.");
       }
       
       
