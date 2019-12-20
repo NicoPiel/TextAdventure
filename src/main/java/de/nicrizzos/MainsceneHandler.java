@@ -271,17 +271,16 @@ public class MainsceneHandler {
 
       @FXML
       private void fight(ActionEvent e) throws IOException {
-            /*
+
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("mainscene.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("battlescreen.fxml"));
             Parent switchscene = fxmlLoader.load();
             Scene sc = new Scene(switchscene);
             BattlescreenHandler battlescreenHandler = fxmlLoader.getController();
-
-           // battlescreenHandler.Init(game);
+            battlescreenHandler.Init(game, sql);
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stageTheEventSourceNodeBelongs.setScene(sc);
-            */
+
 
       }
 

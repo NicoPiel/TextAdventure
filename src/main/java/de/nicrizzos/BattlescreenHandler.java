@@ -2,8 +2,10 @@ package de.nicrizzos;
 
 
 import de.nicrizzos.game.Game;
+import de.nicrizzos.game.entities.Enemy;
 import de.nicrizzos.game.entities.Player;
 import de.nicrizzos.game.scenesystem.Battle;
+import de.nicrizzos.game.utils.SQLiteManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -50,9 +52,13 @@ public class BattlescreenHandler {
       @FXML
       private ProgressBar pgb_enemy3health;
 
-      public void Init(Game _game, Battle _battle){
+      public void Init(Game _game, SQLiteManager sql){
             game =_game;
-            battle = _battle;
+            battle = new Battle (player, new Enemy[] {
+                    new Enemy ("Schleim", 100, 10, 1300),
+                    new Enemy("Goblin", 100, 10, 1300),
+                    new Enemy("Zigeuner", 1200, 10, 1)
+            });
             player = Game.getActivePlayer();
             refreshScreen();
       }
@@ -61,19 +67,19 @@ public class BattlescreenHandler {
       public void attackClicked() {
             switch(battle.getNumberOfEnemies()) {
                   case 1 -> {
-                        btn_enemy1.setText(battle.getEnemy(1).getName());
+                        btn_enemy1.setText(battle.getEnemy(0).getName());
                         btn_enemy1.setVisible(true);
                   }
                   case 2 -> {
-                        btn_enemy1.setText(battle.getEnemy(1).getName());
-                        btn_enemy2.setText(battle.getEnemy(2).getName());
+                        btn_enemy1.setText(battle.getEnemy(0).getName());
+                        btn_enemy2.setText(battle.getEnemy(1).getName());
                         btn_enemy1.setVisible(true);
                         btn_enemy2.setVisible(true);
                   }
                   case 3 -> {
-                        btn_enemy1.setText(battle.getEnemy(1).getName());
-                        btn_enemy2.setText(battle.getEnemy(2).getName());
-                        btn_enemy3.setText(battle.getEnemy(3).getName());
+                        btn_enemy1.setText(battle.getEnemy(0).getName());
+                        btn_enemy2.setText(battle.getEnemy(1).getName());
+                        btn_enemy3.setText(battle.getEnemy(2).getName());
                         btn_enemy1.setVisible(true);
                         btn_enemy2.setVisible(true);
                         btn_enemy3.setVisible(true);
@@ -85,14 +91,14 @@ public class BattlescreenHandler {
       public void attackEnemy(ActionEvent e) {
             Button pressed = (Button) e.getSource();
             switch(pressed.getId()) {
-                  case "btn_enemy1" ->  {
-                        battle.attack(battle.getEnemy(1), 1000);
+                  case "btn_enemy" ->  {
+                        battle.attack(battle.getEnemy(0), 1000);
                   }
                   case "btn_enemy2" ->  {
-                        battle.attack(battle.getEnemy(2), 1000);
+                        battle.attack(battle.getEnemy(1), 1000);
                   }
                   case "btn_enemy3" -> {
-                        battle.attack(battle.getEnemy(3), 1000);
+                        battle.attack(battle.getEnemy(2), 1000);
                   }
             }
             //else {
@@ -103,7 +109,8 @@ public class BattlescreenHandler {
             enemyturn();
       }
       public void enemyturn() {
-            switch(battle.getNumberOfEnemies()) {
+            battle.enemyTurn();
+            /*switch(battle.getNumberOfEnemies()) {
                   case 1 -> {
                         //Enemy 1
                   }
@@ -117,7 +124,7 @@ public class BattlescreenHandler {
                         //Enemy 3
                   }
 
-            }
+            }*/
       }
 
 
@@ -143,9 +150,9 @@ public class BattlescreenHandler {
                         lbl_enemy2health.setVisible(false);
                         lbl_enemy3health.setVisible(false);
 
-                        lbl_enemy1name.setText(battle.getEnemy(1).getName());
-                        pgb_enemy1health.setProgress(battle.getEnemy(1).getHealthPercentage());
-                        lbl_enemy1health.setText(battle.getEnemy(1).getCurrentHealth() +" / " +battle.getEnemy(1).getHealth());
+                        lbl_enemy1name.setText(battle.getEnemy(0).getName());
+                        pgb_enemy1health.setProgress(battle.getEnemy(0).getHealthPercentage());
+                        lbl_enemy1health.setText(battle.getEnemy(0).getCurrentHealth() +" / " +battle.getEnemy(0).getHealth());
 
                   }
                   case 2 -> {
@@ -160,12 +167,12 @@ public class BattlescreenHandler {
                         lbl_enemy3health.setVisible(false);
 
 
-                        lbl_enemy1name.setText(battle.getEnemy(1).getName());
-                        lbl_enemy2name.setText(battle.getEnemy(2).getName());
-                        pgb_enemy1health.setProgress(battle.getEnemy(1).getHealthPercentage());
-                        pgb_enemy2health.setProgress(battle.getEnemy(2).getHealthPercentage());
-                        lbl_enemy1health.setText(battle.getEnemy(1).getCurrentHealth() +" / " +battle.getEnemy(1).getHealth());
-                        lbl_enemy2health.setText(battle.getEnemy(2).getCurrentHealth() +" / " +battle.getEnemy(2).getHealth());
+                        lbl_enemy1name.setText(battle.getEnemy(0).getName());
+                        lbl_enemy2name.setText(battle.getEnemy(1).getName());
+                        pgb_enemy1health.setProgress(battle.getEnemy(0).getHealthPercentage());
+                        pgb_enemy2health.setProgress(battle.getEnemy(1).getHealthPercentage());
+                        lbl_enemy1health.setText(battle.getEnemy(0).getCurrentHealth() +" / " +battle.getEnemy(0).getHealth());
+                        lbl_enemy2health.setText(battle.getEnemy(1).getCurrentHealth() +" / " +battle.getEnemy(1).getHealth());
                   }
                   case 3 -> {
                         pgb_enemy1health.setVisible(true);
@@ -178,12 +185,19 @@ public class BattlescreenHandler {
                         lbl_enemy2health.setVisible(true);
                         lbl_enemy3health.setVisible(true);
 
-                        lbl_enemy1name.setText(battle.getEnemy(1).getName());
-                        lbl_enemy2name.setText(battle.getEnemy(2).getName());
-                        lbl_enemy3name.setText(battle.getEnemy(3).getName());
-                        lbl_enemy1health.setText(battle.getEnemy(1).getCurrentHealth() +" / " +battle.getEnemy(1).getHealth());
-                        lbl_enemy2health.setText(battle.getEnemy(2).getCurrentHealth() +" / " +battle.getEnemy(2).getHealth());
-                        lbl_enemy3health.setText(battle.getEnemy(3).getCurrentHealth() +" / " +battle.getEnemy(3).getHealth());
+                        lbl_enemy1name.setText(battle.getEnemy(0).getName());
+                        lbl_enemy2name.setText(battle.getEnemy(1).getName());
+                        lbl_enemy3name.setText(battle.getEnemy(2).getName());
+                        pgb_enemy1health.setProgress(battle.getEnemy(0).getHealthPercentage());
+                        pgb_enemy2health.setProgress(battle.getEnemy(1).getHealthPercentage());
+                        pgb_enemy3health.setProgress(battle.getEnemy(2).getHealthPercentage());
+
+
+
+                        lbl_enemy1health.setText(battle.getEnemy(0).getCurrentHealth() +" / " +battle.getEnemy(0).getHealth());
+                        lbl_enemy2health.setText(battle.getEnemy(1).getCurrentHealth() +" / " +battle.getEnemy(1).getHealth());
+                        lbl_enemy3health.setText(battle.getEnemy(2).getCurrentHealth() +" / " +battle.getEnemy(2).getHealth());
+
                   }
             }
       }

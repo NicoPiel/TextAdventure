@@ -6,17 +6,16 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.nicrizzos.BattlescreenHandler">
    <children>
       <SplitPane dividerPositions="0.6892067620286085" orientation="VERTICAL" prefHeight="771.0" prefWidth="1031.0">
         <items>
-          <AnchorPane fx:id="lbl_playername" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
                   <Label fx:id="lbl_enemy3name" layoutX="809.0" layoutY="36.0" prefHeight="17.0" prefWidth="173.0" text="Label" />
                   <Label fx:id="lbl_enemy1name" layoutX="438.0" layoutY="61.0" prefHeight="17.0" prefWidth="173.0" text="Label" />
                   <Label fx:id="lbl_enemy2name" layoutX="84.0" layoutY="44.0" prefHeight="17.0" prefWidth="173.0" text="Label" />
-                  <Label layoutX="469.0" layoutY="380.0" text="Label" />
+                  <Label fx:id="lbl_playername" layoutX="469.0" layoutY="380.0" text="Label" />
                   <ProgressBar fx:id="pgb_enemy2health" layoutX="14.0" layoutY="86.0" prefWidth="200.0" progress="0.0" />
                   <ProgressBar fx:id="pgb_enemy1health" layoutX="363.0" layoutY="95.0" prefWidth="200.0" progress="0.0" />
                   <ProgressBar fx:id="pgb_enemy3health" layoutX="723.0" layoutY="69.0" prefWidth="200.0" progress="0.0" />
