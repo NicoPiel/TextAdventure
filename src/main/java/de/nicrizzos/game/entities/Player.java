@@ -42,27 +42,27 @@ public class Player extends Entity {
       private int currentMana;
       
       /**
-       * The player's strength - influences their damage with melee weaponry.
+       * The player's strength - influences their damage with melee weaponry. Currently 7% damage bonus per point.
        */
       private int strength;
       
       /**
-       * The player's dexterity - influences their damage with ranged weaponry.
+       * The player's dexterity - influences their damage with ranged weaponry. Currently 7% damage bonus per point.
        */
       private int dexterity;
       
       /**
-       * The player's magical prowess - influences their damage with spells and increases mana.
+       * The player's magical prowess - influences their damage with spells and increases mana. Currently 7% damage bonus and 10 extra mana per point.
        */
       private int magic;
       
       /**
-       * The player's vitality - increases the player's hit points.
+       * The player's vitality - increases the player's hit points. Currently 20 hit points per point.
        */
       private int vitality;
       
       /**
-       * The player's defense - how much damage the player can absorb before it will affect their hit points.
+       * The player's defense - how much damage the player can absorb before it will affect their hit points. Currently 7% defense bonus per point.
        */
       private int defensiveness;
       
@@ -228,10 +228,15 @@ public class Player extends Entity {
       
       public int getDefense () {
             if (defensive) {
-                  return (int) (1.5 * ((shieldDef + helmetDef + chestDef + pantsDef + bootsDef + gauntletsDef) * (1 + (0.07 * getDefensiveness()))));
+                  // Receive double defensiveness bonus
+                  return (int) (getDefensiveValues() * 2 * (1 + (0.07 * getDefensiveness())));
             }
             else
-                  return (int) ((shieldDef + helmetDef + chestDef + pantsDef + bootsDef + gauntletsDef) * (1 + (0.07 * getDefensiveness())));
+                  return (int) (getDefensiveValues() * (1 + (0.07 * getDefensiveness())));
+      }
+      
+      private int getDefensiveValues () {
+            return (shieldDef + helmetDef + chestDef + pantsDef + bootsDef + gauntletsDef);
       }
       
       public void startDefense() {
