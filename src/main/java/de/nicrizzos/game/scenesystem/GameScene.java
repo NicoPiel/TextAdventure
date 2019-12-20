@@ -19,4 +19,8 @@ public class GameScene {
             this.enemies = _enemies;
             this.dialogues = _dialogues;
       }
+      
+      public String startScene() {
+            return description;
+      }
 }

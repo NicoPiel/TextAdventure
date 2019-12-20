@@ -97,6 +97,9 @@ public class Player extends Entity {
       private int rhetoric;
       
       
+      private int skillPoints;
+      
+      
       /**
        * Whether the player had their initial values set.
        */
@@ -156,6 +159,8 @@ public class Player extends Entity {
             setCanLevelUp(true);
             setExperience(0);
             setExperienceRequiredForNextLevel();
+            
+            addSkillPoints(1);
       }
       
       /**
@@ -164,27 +169,33 @@ public class Player extends Entity {
        * @param _stat Use stat in lowercase, e.g. "strength", "lightFooted", "slightOfHand"
        */
       public void increaseStat(String _stat) {
-            switch (_stat) {
-                  case "strength" -> this.strength++;
-                  case "dexterity" -> this.dexterity++;
-                  case "magic" -> {
-                        this.magic++;
-                        this.mana = 10 + (this.magic * 10);
+            if (skillPoints > 0) {
+                  switch (_stat) {
+                        case "strength" -> this.strength++;
+                        case "dexterity" -> this.dexterity++;
+                        case "magic" -> {
+                              this.magic++;
+                              this.mana = 10 + (this.magic * 10);
+                              setCurrentMana(getMana());
+                        }
+                        case "vitality" -> {
+                              this.vitality++;
+                              this.health = 100 + (this.vitality * 20);
+                              setCurrentHealth(getHealth());
+                        }
+                        case "defense" -> this.defense++;
+                        case "lightFooted" -> this.lightFooted++;
+                        case "slightOfHand" -> this.slightOfHand++;
+                        case "perception" -> this.perception++;
+                        case "survivalism" -> this.survivalism++;
+                        case "knowledge" -> this.knowledge++;
+                        case "rhetoric" -> this.rhetoric++;
                   }
-                  case "vitality" -> {
-                        this.vitality++;
-                        this.health = 100 + (this.vitality * 20);
-                  }
-                  case "defense" -> this.defense++;
-                  case "lightFooted" -> this.lightFooted++;
-                  case "slightOfHand" -> this.slightOfHand++;
-                  case "perception" -> this.perception++;
-                  case "survivalism" -> this.survivalism++;
-                  case "knowledge" -> this.knowledge++;
-                  case "rhetoric" -> this.rhetoric++;
+                  
+                  skillPoints--;
             }
             
-            setCanLevelUp(false);
+            if (skillPoints == 0) setCanLevelUp(false);
       }
       
       
@@ -261,6 +272,10 @@ public class Player extends Entity {
       
       public int getRhetoric() {
             return this.rhetoric;
+      }
+      
+      public int getSkillPoints() {
+            return skillPoints;
       }
       
       public double getHealthPercentage () {
@@ -386,7 +401,16 @@ public class Player extends Entity {
             this.experienceRequiredForNextLevel = 500 + ((this.level - 1) * 500);
       }
       
-      public void setCanLevelUp(boolean canLevelUp) {
-            this.canLevelUp = canLevelUp;
+      public void setCanLevelUp(boolean _canLevelUp) {
+            this.canLevelUp = _canLevelUp;
+      }
+      
+      
+      public void setSkillPoints(int _skillPoints) {
+            this.skillPoints = _skillPoints;
+      }
+      
+      public void addSkillPoints(int _skillPoints) {
+            this.skillPoints += _skillPoints;
       }
 }
