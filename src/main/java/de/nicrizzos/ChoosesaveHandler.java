@@ -62,10 +62,15 @@ public class ChoosesaveHandler {
 
       }
       @FXML
-      public void 
+      public void btn_delete() {
+
+
+
+      }
 
       @FXML
       public void btn_save1 (ActionEvent e) throws IOException {
+                  save1 = new SQLiteManager(1);
                   FXMLLoader fxmlLoader = new FXMLLoader();
                   fxmlLoader.setLocation(getClass().getResource("mainscene.fxml"));
                   Parent switchscene = fxmlLoader.load();
@@ -75,9 +80,10 @@ public class ChoosesaveHandler {
                   if(!save1.checkSlot()) {
                         String name = askForName();
                         save1.setPlayer(name);
-                        maincontroller.Init(askForName());
+                        save1.stopSQL();
+                        maincontroller.Init(1, name, save1);
                   }else{
-                        maincontroller.Init(1,save1.getPlayerName());
+                        maincontroller.Init(1,save1.getPlayerName(),save1, true);
                   }
                   save1.stopSQL();
 
@@ -86,6 +92,7 @@ public class ChoosesaveHandler {
       }
       @FXML
       public void btn_save2 (ActionEvent e) throws IOException {
+            save2 = new SQLiteManager(2);
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("mainscene.fxml"));
             Parent switchscene = fxmlLoader.load();
@@ -95,9 +102,10 @@ public class ChoosesaveHandler {
             if(!save2.checkSlot()) {
                   String name = askForName();
                   save2.setPlayer(name);
-                  maincontroller.Init(askForName());
+                  save2.stopSQL();
+                  maincontroller.Init(2, name, save2);
             }else{
-                  maincontroller.Init(2,save2.getPlayerName());
+                  maincontroller.Init(2,save2.getPlayerName(), save2,true);
             }
             save2.stopSQL();
 
@@ -106,6 +114,7 @@ public class ChoosesaveHandler {
       }
       @FXML
       public void btn_save3 (ActionEvent e) throws IOException {
+            save3 = new SQLiteManager(3);
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("mainscene.fxml"));
             Parent switchscene = fxmlLoader.load();
@@ -115,9 +124,10 @@ public class ChoosesaveHandler {
             if(!save3.checkSlot()) {
                   String name = askForName();
                   save3.setPlayer(name);
-                  maincontroller.Init(name);
+                  save3.stopSQL();
+                  maincontroller.Init(3,name, save3);
             }else{
-                  maincontroller.Init(3,save3.getPlayerName());
+                  maincontroller.Init(3,save3.getPlayerName(), save3, true);
             }
             save3.stopSQL();
 

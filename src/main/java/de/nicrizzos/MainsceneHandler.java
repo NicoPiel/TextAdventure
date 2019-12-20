@@ -105,19 +105,64 @@ public class MainsceneHandler {
       
       private Game game;
       private Player player;
+      private SQLiteManager sql;
 
-      public void Init(String _name){
+      public void Init(int _slot, String _name, SQLiteManager _sql){
             game = new Game(_name);
             player = Game.getActivePlayer();
+            _sql.stopSQL();
+            sql = _sql;
+            sql.stopSQL();
             constructCharInv();
+            sql.savePlayer(player);
             this.refreshScene();
       }
-      public void Init(int slot, String _name){
+
+      public void Init(int _slot, String _name,SQLiteManager _sql, boolean exist){
+            constructCharInv();
+            _sql.stopSQL();
+            sql = _sql;
+            sql.stopSQL();
             game = new Game(_name);
             player = Game.getActivePlayer();
-            constructCharInv();
+            constructPlayer();
+
             this.refreshScene();
       }
+      private void constructPlayer() {
+
+            sql.startSQL();
+            player.setStrength(sql.getStat("strength"));
+            player.setDexterity(sql.getStat("dexterity"));
+            player.setMagic(sql.getStat("magic"));
+            player.setVitality(sql.getStat("vitality"));
+            player.setDefense(sql.getStat("defense"));
+            player.setLightFooted(sql.getStat("lightFooted"));
+            player.setSlightOfHand(sql.getStat("slightOfHand"));
+            player.setPerception(sql.getStat("perception"));
+            player.setSurvivalism(sql.getStat("survivalism"));
+            player.setKnowledge(sql.getStat("knowledge"));
+            player.setRhetoric(sql.getStat("rhetoric"));
+            player.setLevel(sql.getStat("Level"));
+            player.setExperience(sql.getStat("exp"));
+            player.setExperienceRequiredForNextLevel();
+            player.setHealth(sql.getStat("health"));
+            player.setCurrentHealth(sql.getStat("currenthealth"));
+            player.setMana(sql.getStat("mana"));
+            player.setCurrentMana(sql.getStat("currentmana"));
+            player.setSkillPoints(sql.getStat("skillPoints"));
+            if(player.getSkillPoints() > 0 ){
+                  player.setCanLevelUp(true);
+            }
+            sql.stopSQL();
+
+
+
+
+
+
+      }
+
       public void importGame(Game _game) {
             game = _game;
             player = Game.getActivePlayer();
@@ -125,10 +170,14 @@ public class MainsceneHandler {
             this.refreshScene();
             
       }
+
       @FXML
       private void refreshScene() {
             setPlayerInformation();
             checkLevelUpButtons();
+            sql.startSQL();
+            sql.savePlayer(player);
+            sql.stopSQL();
       }
       
       //TODO: Einen 'Continue' Button, der durch die Szenen führt.

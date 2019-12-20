@@ -95,9 +95,9 @@ public class BattlescreenHandler {
                         battle.attack(battle.getEnemy(3), 1000);
                   }
             }
-            else {
+            //else {
                   //TODO: Zusammenfassung, dann zurück in den Mainscreen
-            }
+            //}
             
             refreshScreen();
             enemyturn();
