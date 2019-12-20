@@ -1,7 +1,9 @@
 package de.nicrizzos;
 
 import de.nicrizzos.game.Game;
+import de.nicrizzos.game.entities.Enemy;
 import de.nicrizzos.game.entities.Player;
+import de.nicrizzos.game.scenesystem.Battle;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -210,7 +212,11 @@ public class MainsceneHandler {
             Parent switchscene = fxmlLoader.load();
             Scene sc = new Scene(switchscene);
             BattlescreenHandler battlescreenHandler = fxmlLoader.getController();
-            battlescreenHandler.Init(game);
+            battlescreenHandler.Init(game, new Battle(player, new Enemy[] {
+                    new Enemy ("Schleim", 100, 10, 1300),
+                    new Enemy ("Schleim", 100, 15, 1300),
+                    new Enemy ("Schleim", 100, 12, 1300),
+            }));
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stageTheEventSourceNodeBelongs.setScene(sc);
       }
