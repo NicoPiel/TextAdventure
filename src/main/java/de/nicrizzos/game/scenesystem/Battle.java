@@ -18,6 +18,14 @@ public class Battle {
             this.enemies = new ArrayList<>(enemyList) ;
       }
       
+      public Enemy getEnemy (int enemyPosition) throws IllegalArgumentException {
+            if (enemyPosition < getNumberOfEnemies()) {
+                  return enemies.get(enemyPosition);
+            }
+            
+            else throw new IllegalArgumentException("There are not that many enemies in this battle");
+      }
+      
       public int getNumberOfEnemies () {
             return this.enemies.size();
       }
