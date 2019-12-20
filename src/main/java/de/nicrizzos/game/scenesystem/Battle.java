@@ -1,7 +1,6 @@
 package de.nicrizzos.game.scenesystem;
 
-import de.nicrizzos.game.entities.Enemy;
-import de.nicrizzos.game.entities.Player;
+import de.nicrizzos.game.entities.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +12,29 @@ public class Battle {
       public Battle (Player _player, Enemy[] _enemies) {
             this.player = _player;
             this.enemies = new ArrayList<>(Arrays.asList(_enemies)) ;
+      }
+      
+      public void attack (Entity defendant, int _damage) {
+            if (defendant.isPlayer()) {
+                  player.doDamage(_damage);
+            }
+            else {
+                  if (defendant instanceof Enemy) {
+                        if (enemies.contains(defendant)) {
+                              ((Enemy) defendant).doDamage(_damage);
+                        }
+                  }
+            }
+      }
+      
+      public boolean isAnyEnemyAlive () {
+            for (Enemy e : enemies) {
+                  if (e.getHealth() > 0) {
+                        return true;
+                  }
+            }
+            
+            return false;
       }
       
       public Enemy getEnemy (int enemyPosition) throws IllegalArgumentException {

@@ -1,5 +1,7 @@
 package de.nicrizzos.game.entities;
 
+import java.util.Random;
+
 public class Enemy extends Entity {
       private int health;
       private int currentHealth;
@@ -7,7 +9,7 @@ public class Enemy extends Entity {
       private int defense;
       
       public Enemy(String _name, int _health, int _damage, int _defense) {
-            super(_name, "enemy_" + _name);
+            super(_name, "enemy_" + new Random().nextInt());
             setHealth(_health);
             setCurrentHealth(getHealth());
             setDamage(_damage);
@@ -54,7 +56,12 @@ public class Enemy extends Entity {
             this.defense = _defense;
       }
       
-      
-      
-      
+      @Override
+      public boolean equals(Object obj) {
+            if (obj.getClass().equals(this.getClass())) {
+                  return (this.identification.equals(((Enemy) obj).identification));
+            }
+            
+            return false;
+      }
 }
