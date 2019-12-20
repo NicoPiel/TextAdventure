@@ -101,29 +101,38 @@ public class MainsceneHandler {
       private ImageView p_knowledge;
       @FXML
       private ImageView p_rhetoric;
-
+      
       private Game game;
       private Player player;
-
-      public void Init(String _name){
+      
+      public void Init(String _name) {
             game = new Game(_name);
             player = Game.getActivePlayer();
             constructCharInv();
             this.refreshScene();
       }
+      
       public void importGame(Game _game) {
             game = _game;
             player = Game.getActivePlayer();
             constructCharInv();
             this.refreshScene();
-
+            
       }
+      
+      
       private void refreshScene() {
             setPlayerInformation();
             checkLevelUpButtons();
       }
+      
+      //TODO: Einen 'Continue' Button, der durch die Szenen führt.
+      // Dazu einfach GameScene.continueScene(), dann mit if-else durch die Objekte.
+      // Systeme dazu noch nicht vorhanden.
+      
+      
       private void checkLevelUpButtons() {
-            if(player.canLevelUp()) {
+            if (player.canLevelUp()) {
                   p_def.setVisible(true);
                   p_dex.setVisible(true);
                   p_handskill.setVisible(true);
@@ -135,7 +144,7 @@ public class MainsceneHandler {
                   p_rhetoric.setVisible(true);
                   p_str.setVisible(true);
                   p_surv.setVisible(true);
-            }else{
+            } else {
                   p_def.setVisible(false);
                   p_dex.setVisible(false);
                   p_handskill.setVisible(false);
@@ -147,22 +156,22 @@ public class MainsceneHandler {
                   p_rhetoric.setVisible(false);
                   p_str.setVisible(false);
                   p_surv.setVisible(false);
-
+                  
             }
-
+            
       }
-
+      
       private void setPlayerInformation() {
             lbl_life.setText(player.getCurrentHealth() + " / " + player.getHealth());
             pgb_life.setProgress(player.getHealthPercentage());
             lbl_mana.setText(player.getCurrentMana() + " / " + player.getMana());
             pgb_mana.setProgress(player.getManaPercentage());
-            lbl_exp.setText(player.getExperience() + " / "+ player.getExperienceRequiredForNextLevel());
+            lbl_exp.setText(player.getExperience() + " / " + player.getExperienceRequiredForNextLevel());
             pgb_exp.setProgress(player.getExperiencePercentage());
-
+            
             lbl_playername.setText(player.getName());
-            lbl_level.setText( "Stufe: "+ Integer.toString(player.getLevel()));
-
+            lbl_level.setText("Stufe: " + Integer.toString(player.getLevel()));
+            
             lbl_str.setText(Integer.toString(player.getStrength()));
             lbl_dex.setText(Integer.toString(player.getDexterity()));
             lbl_magic.setText(Integer.toString(player.getMagic()));
@@ -174,15 +183,16 @@ public class MainsceneHandler {
             lbl_survival.setText(Integer.toString(player.getSurvivalism()));
             lbl_knowledge.setText(Integer.toString(player.getKnowledge()));
             lbl_speech.setText(Integer.toString(player.getRhetoric()));
-
-
+            
+            
       }
+      
       @FXML
-      private void increaseStat(MouseEvent e){
-
+      private void increaseStat(MouseEvent e) {
+            
             ImageView image = (ImageView) e.getSource();
             System.out.println(image.getId());
-            switch(image.getId()) {
+            switch (image.getId()) {
                   case "p_str" -> player.increaseStat("strength");
                   case "p_dex" -> player.increaseStat("dexterity");
                   case "p_magic" -> player.increaseStat("magic");
@@ -196,14 +206,15 @@ public class MainsceneHandler {
                   case "p_rhetoric" -> player.increaseStat("rhetoric");
             }
             refreshScene();
-
+            
       }
-
+      
       @FXML
       private void increaseExp() {
             player.addExperience(500);
             refreshScene();
       }
+      
       @FXML
       private void fight(ActionEvent e) throws IOException {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -211,55 +222,49 @@ public class MainsceneHandler {
             Parent switchscene = fxmlLoader.load();
             Scene sc = new Scene(switchscene);
             BattlescreenHandler battlescreenHandler = fxmlLoader.getController();
-            battlescreenHandler.Init(game, new Battle(player, new Enemy[] {
-                    new Enemy ("Schleim", 100, 10, 1300),
-                    new Enemy ("Schleim", 100, 15, 1300),
-                    new Enemy ("Schleim", 100, 12, 1300),
+            battlescreenHandler.Init(game, new Battle(player, new Enemy[]{
+                    new Enemy("Schleim", 100, 10, 1300),
+                    new Enemy("Schleim", 100, 15, 1300),
+                    new Enemy("Schleim", 100, 12, 1300),
             }));
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stageTheEventSourceNodeBelongs.setScene(sc);
       }
-
-
-
-
-
-
-
-
+      
+      
       private void constructCharInv() {
             File f = new File("src/images/helmet.png");
             Image i = new Image(f.toURI().toString());
             helmetslot.setImage(i);
-
+            
             f = new File("src/images/chestplate.jpg");
             i = new Image(f.toURI().toString());
             chestplateslot.setImage(i);
-
+            
             f = new File("src/images/pants.png");
             i = new Image(f.toURI().toString());
             pantsslot.setImage(i);
-
+            
             f = new File("src/images/boots.png");
             i = new Image(f.toURI().toString());
             shoeslot.setImage(i);
-
+            
             f = new File("src/images/hands.png");
             i = new Image(f.toURI().toString());
             gloveslot.setImage(i);
-
+            
             f = new File("src/images/ring.png");
             i = new Image(f.toURI().toString());
             ringslot.setImage(i);
-
+            
             f = new File("src/images/shield.png");
             i = new Image(f.toURI().toString());
             shieldslot.setImage(i);
-
+            
             f = new File("src/images/sword.png");
             i = new Image(f.toURI().toString());
             swordslot.setImage(i);
-
+            
             f = new File("src/images/plus.png");
             i = new Image(f.toURI().toString());
             p_def.setImage(i);
@@ -273,7 +278,7 @@ public class MainsceneHandler {
             p_rhetoric.setImage(i);
             p_str.setImage(i);
             p_surv.setImage(i);
-
+            
             p_def.setVisible(false);
             p_dex.setVisible(false);
             p_handskill.setVisible(false);
@@ -285,9 +290,8 @@ public class MainsceneHandler {
             p_rhetoric.setVisible(false);
             p_str.setVisible(false);
             p_surv.setVisible(false);
-
-
-
+            
+            
       }
-
+      
 }

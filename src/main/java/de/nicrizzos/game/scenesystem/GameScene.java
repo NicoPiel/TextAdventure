@@ -24,9 +24,9 @@ public class GameScene {
             return description;
       }
       
-      public String Continue () {
+      public Object continueScene () {
             if (scriptPosition < sceneScript.size() - 1)
-                  return sceneScript.get(++scriptPosition).toString();
+                  return sceneScript.get(++scriptPosition);
             else return description;
       }
 }
