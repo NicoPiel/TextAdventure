@@ -14,6 +14,12 @@ public class Battle {
             this.enemies = new ArrayList<>(Arrays.asList(_enemies));
       }
       
+      public void enemyTurn() {
+            for (Enemy e : enemies) {
+                  attack(player, e.getDamage());
+            }
+      }
+      
       public void attack (Entity defendant, int _damage) {
             if (defendant.isPlayer()) {
                   player.doDamage(_damage);
