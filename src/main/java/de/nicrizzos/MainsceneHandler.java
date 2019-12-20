@@ -2,12 +2,15 @@ package de.nicrizzos;
 
 import de.nicrizzos.game.Game;
 import de.nicrizzos.game.entities.Player;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import java.io.File;
 
@@ -98,7 +101,42 @@ public class MainsceneHandler {
             game = new Game(_name);
             player = Game.getActivePlayer();
             constructCharInv();
+            this.refreshScene();
+
+
+      }
+      private void refreshScene() {
             setPlayerInformation();
+            checkLevelUpButtons();
+      }
+      private void checkLevelUpButtons() {
+            if(player.canLevelUp()) {
+                  p_def.setVisible(true);
+                  p_dex.setVisible(true);
+                  p_handskill.setVisible(true);
+                  p_knowledge.setVisible(true);
+                  p_lightFooted.setVisible(true);
+                  p_magic.setVisible(true);
+                  p_vita.setVisible(true);
+                  p_per.setVisible(true);
+                  p_rhetoric.setVisible(true);
+                  p_str.setVisible(true);
+                  p_surv.setVisible(true);
+            }else{
+                  p_def.setVisible(false);
+                  p_dex.setVisible(false);
+                  p_handskill.setVisible(false);
+                  p_knowledge.setVisible(false);
+                  p_lightFooted.setVisible(false);
+                  p_magic.setVisible(false);
+                  p_vita.setVisible(false);
+                  p_per.setVisible(false);
+                  p_rhetoric.setVisible(false);
+                  p_str.setVisible(false);
+                  p_surv.setVisible(false);
+
+            }
+
       }
 
       private void setPlayerInformation() {
@@ -123,11 +161,35 @@ public class MainsceneHandler {
             lbl_survival.setText(Integer.toString(player.getSurvivalism()));
             lbl_knowledge.setText(Integer.toString(player.getKnowledge()));
             lbl_speech.setText(Integer.toString(player.getRhetoric()));
+
+
+      }
+      @FXML
+      private void increaseStat(MouseEvent e){
+
+            ImageView image = (ImageView) e.getSource();
+            System.out.println(image.getId());
+            switch(image.getId()) {
+                  case "p_str" -> player.increaseStat("strength");
+                  case "p_dex" -> player.increaseStat("dexterity");
+                  case "p_magic" -> player.increaseStat("magic");
+                  case "p_vita" -> player.increaseStat("vitality");
+                  case "p_def" -> player.increaseStat("defense");
+                  case "p_lightFooted" -> player.increaseStat("lightFooted");
+                  case "p_handskill" -> player.increaseStat("slightOfHand");
+                  case "p_per" -> player.increaseStat("perception");
+                  case "p_surv" -> player.increaseStat("survivalism");
+                  case "p_knowledge" -> player.increaseStat("knowledge");
+                  case "p_rhetoric" -> player.increaseStat("rhetoric");
+            }
+            refreshScene();
+
       }
 
       @FXML
       private void increaseExp() {
             player.addExperience(500);
+            refreshScene();
       }
 
 
