@@ -5,8 +5,11 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.nicrizzos.ChoosesaveHandler">
    <children>
-      <Button fx:id="btn_sv2" layoutX="50.0" layoutY="150.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="500.0" text="New save" />
-      <Button fx:id="btn_sv3" layoutX="50.0" layoutY="230.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="499.0" text="New save" />
-      <Button fx:id="btn_sv1" layoutX="50.0" layoutY="70.0" mnemonicParsing="false" onAction="#btn_save1" prefHeight="68.0" prefWidth="499.0" text="New save" />
+      <Button fx:id="btn_slot2" layoutX="50.0" layoutY="150.0" mnemonicParsing="false" onAction="#btn_save2" prefHeight="70.0" prefWidth="460.0" text="New save" />
+      <Button fx:id="btn_slot3" layoutX="50.0" layoutY="230.0" mnemonicParsing="false" onAction="#btn_save3" prefHeight="68.0" prefWidth="460.0" text="New save" />
+      <Button fx:id="btn_slot1" layoutX="50.0" layoutY="70.0" mnemonicParsing="false" onAction="#btn_save1" prefHeight="68.0" prefWidth="460.0" text="New save" />
+      <Button fx:id="btn_delete1" layoutX="519.0" layoutY="70.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="70.0" text="Löschen" visible="false" />
+      <Button fx:id="btn_delete2" layoutX="519.0" layoutY="151.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="70.0" text="Löschen" visible="false" />
+      <Button fx:id="btn_delete3" layoutX="519.0" layoutY="230.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="70.0" text="Löschen" visible="false" />
    </children>
 </AnchorPane>

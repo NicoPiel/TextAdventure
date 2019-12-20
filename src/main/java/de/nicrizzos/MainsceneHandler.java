@@ -4,6 +4,7 @@ import de.nicrizzos.game.Game;
 import de.nicrizzos.game.entities.Enemy;
 import de.nicrizzos.game.entities.Player;
 import de.nicrizzos.game.scenesystem.Battle;
+import de.nicrizzos.game.utils.SQLiteManager;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -104,14 +105,19 @@ public class MainsceneHandler {
       
       private Game game;
       private Player player;
-      
-      public void Init(String _name) {
+
+      public void Init(String _name){
             game = new Game(_name);
             player = Game.getActivePlayer();
             constructCharInv();
             this.refreshScene();
       }
-      
+      public void Init(int slot, String _name){
+            game = new Game(_name);
+            player = Game.getActivePlayer();
+            constructCharInv();
+            this.refreshScene();
+      }
       public void importGame(Game _game) {
             game = _game;
             player = Game.getActivePlayer();
@@ -119,8 +125,7 @@ public class MainsceneHandler {
             this.refreshScene();
             
       }
-      
-      
+      @FXML
       private void refreshScene() {
             setPlayerInformation();
             checkLevelUpButtons();
@@ -214,24 +219,32 @@ public class MainsceneHandler {
             player.addExperience(500);
             refreshScene();
       }
-      
+
       @FXML
       private void fight(ActionEvent e) throws IOException {
+            /*
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("mainscene.fxml"));
             Parent switchscene = fxmlLoader.load();
             Scene sc = new Scene(switchscene);
             BattlescreenHandler battlescreenHandler = fxmlLoader.getController();
-            battlescreenHandler.Init(game, new Battle(player, new Enemy[]{
-                    new Enemy("Schleim", 100, 10, 1300),
-                    new Enemy("Schleim", 100, 15, 1300),
-                    new Enemy("Schleim", 100, 12, 1300),
-            }));
+
+           // battlescreenHandler.Init(game);
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stageTheEventSourceNodeBelongs.setScene(sc);
+            */
+
       }
-      
-      
+
+
+
+
+
+
+
+
+
+
       private void constructCharInv() {
             File f = new File("src/images/helmet.png");
             Image i = new Image(f.toURI().toString());

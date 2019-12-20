@@ -84,20 +84,15 @@ public class BattlescreenHandler {
       @FXML
       public void attackEnemy(ActionEvent e) {
             Button pressed = (Button) e.getSource();
-            if (battle.isAnyEnemyAlive()) {
-                  switch (pressed.getId()) {
-                        case "btn_enemy1" -> {
-                              battle.attack(battle.getEnemy(1), 1337);
-                              //TODO: Checken, ob Gegner am Leben ist
-                        }
-                        case "btn_enemy2" -> {
-                              battle.attack(battle.getEnemy(2), 1337);
-                              //TODO: Checken, ob Gegner am Leben ist
-                        }
-                        case "btn_enemy3" -> {
-                              battle.attack(battle.getEnemy(3), 1337);
-                              //TODO: Checken, ob Gegner am Leben ist
-                        }
+            switch(pressed.getId()) {
+                  case "btn_enemy1" ->  {
+                        battle.attack(battle.getEnemy(1), 1000);
+                  }
+                  case "btn_enemy2" ->  {
+                        battle.attack(battle.getEnemy(2), 1000);
+                  }
+                  case "btn_enemy3" -> {
+                        battle.attack(battle.getEnemy(3), 1000);
                   }
             }
             else {
@@ -105,8 +100,27 @@ public class BattlescreenHandler {
             }
             
             refreshScreen();
+            enemyturn();
       }
-      
+      public void enemyturn() {
+            switch(battle.getNumberOfEnemies()) {
+                  case 1 -> {
+                        //Enemy 1
+                  }
+                  case 2 -> {
+                        //Enemy 1
+                        //Enemy 2
+                  }
+                  case 3 -> {
+                        //Enemy 1
+                        //Enemy 2
+                        //Enemy 3
+                  }
+
+            }
+      }
+
+
 
       public void refreshScreen() {
             lbl_playername.setText(player.getName());

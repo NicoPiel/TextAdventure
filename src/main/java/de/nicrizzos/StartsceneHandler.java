@@ -19,6 +19,8 @@ public class StartsceneHandler {
             fxmlLoader.setLocation(getClass().getResource("choosesave.fxml"));
             Parent switchscene = fxmlLoader.load();
             Scene sc = new Scene(switchscene);
+            ChoosesaveHandler csh = fxmlLoader.getController();
+            csh.Init();
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)e.getSource()).getScene().getWindow();
             stageTheEventSourceNodeBelongs.setScene(sc);
 
