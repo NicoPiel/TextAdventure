@@ -55,8 +55,8 @@ public class BattlescreenHandler {
             battle = _battle;
             player = Game.getActivePlayer();
             refreshScreen();
-
       }
+      
       @FXML
       public void attackClicked() {
             switch(battle.getNumberOfEnemies()) {
@@ -80,24 +80,33 @@ public class BattlescreenHandler {
                   }
             }
       }
+      
       @FXML
       public void attackEnemy(ActionEvent e) {
             Button pressed = (Button) e.getSource();
-            switch(pressed.getId()) {
-                  case "btn_enemy1" ->  {
-                        battle.getEnemy(1).doDamage(1337);
-                  }
-                  case "btn_enemy2" ->  {
-                        battle.getEnemy(2).doDamage(1337);
-                  }
-                  case "btn_enemy3" -> {
-                        battle.getEnemy(3).doDamage(1337);
+            if (battle.isAnyEnemyAlive()) {
+                  switch (pressed.getId()) {
+                        case "btn_enemy1" -> {
+                              battle.attack(battle.getEnemy(1), 1337);
+                              //TODO: Checken, ob Gegner am Leben ist
+                        }
+                        case "btn_enemy2" -> {
+                              battle.attack(battle.getEnemy(2), 1337);
+                              //TODO: Checken, ob Gegner am Leben ist
+                        }
+                        case "btn_enemy3" -> {
+                              battle.attack(battle.getEnemy(3), 1337);
+                              //TODO: Checken, ob Gegner am Leben ist
+                        }
                   }
             }
+            else {
+                  //TODO: Zusammenfassung, dann zurück in den Mainscreen
+            }
+            
             refreshScreen();
       }
-
-
+      
 
       public void refreshScreen() {
             lbl_playername.setText(player.getName());

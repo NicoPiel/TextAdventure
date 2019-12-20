@@ -11,7 +11,7 @@ public class Battle {
       
       public Battle (Player _player, Enemy[] _enemies) {
             this.player = _player;
-            this.enemies = new ArrayList<>(Arrays.asList(_enemies)) ;
+            this.enemies = new ArrayList<>(Arrays.asList(_enemies));
       }
       
       public void attack (Entity defendant, int _damage) {
