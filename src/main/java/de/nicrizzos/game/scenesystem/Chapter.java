@@ -3,15 +3,16 @@ package de.nicrizzos.game.scenesystem;
 import de.nicrizzos.game.exceptions.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Chapter {
       private String name;
       
       ArrayList<GameScene> scenes;
       
-      public Chapter (String _name, ArrayList<GameScene> _scenes) {
+      public Chapter (String _name, GameScene[] _scenes) {
             this.name = _name;
-            this.scenes = _scenes;
+            this.scenes = new ArrayList<>(Arrays.asList(_scenes));
       }
       
       public String startChapter() throws GameException {

@@ -12,14 +12,5 @@ public class Chapters {
       
       public static void createChapters() {
             chapters = new ArrayList<>();
-            
-            ArrayList<GameScene> scenesChapterOne = new ArrayList<>(List.of(
-                  new GameScene (
-                          "1",
-                          "Test scene",
-                          new ArrayList<>()
-                  )
-            ));
-            chapters.add(new Chapter("Chapter One", scenesChapterOne));
       }
 }

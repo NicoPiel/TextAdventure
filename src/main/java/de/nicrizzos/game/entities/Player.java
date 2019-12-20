@@ -198,6 +198,12 @@ public class Player extends Entity {
             if (skillPoints == 0) setCanLevelUp(false);
       }
       
+      // -------------------- GAMEPLAY --------------------
+      
+      public void doDamage (int _damage) {
+            this.currentHealth -= _damage - this.defense;
+      }
+      
       
       // -------------------- GETTERS --------------------
       

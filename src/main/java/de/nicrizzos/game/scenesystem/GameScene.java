@@ -3,6 +3,7 @@ package de.nicrizzos.game.scenesystem;
 import de.nicrizzos.game.GameObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GameScene {
       protected String name;
@@ -12,10 +13,10 @@ public class GameScene {
       protected ArrayList<GameObject> sceneScript;
       
       
-      public GameScene (String _name, String _desc, ArrayList<GameObject> _sceneScript) {
+      public GameScene (String _name, String _desc, GameObject[] _sceneScript) {
             this.name = _name;
             this.description = _desc;
-            this.sceneScript = _sceneScript;
+            this.sceneScript = new ArrayList<>(Arrays.asList(_sceneScript));
             this.scriptPosition = 0;
       }
       

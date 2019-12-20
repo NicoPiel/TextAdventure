@@ -14,6 +14,10 @@ public class Enemy extends Entity {
             setDefense(_defense);
       }
       
+      public void doDamage(int _damage) {
+            this.currentHealth -= _damage - this.defense;
+      }
+      
       public int getHealth() {
             return this.health;
       }

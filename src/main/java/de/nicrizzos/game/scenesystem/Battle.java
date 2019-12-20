@@ -5,7 +5,6 @@ import de.nicrizzos.game.entities.Player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Battle {
       Player player;
@@ -13,9 +12,7 @@ public class Battle {
       
       public Battle (Player _player, Enemy[] _enemies) {
             this.player = _player;
-            
-            List<Enemy> enemyList = Arrays.asList(_enemies);
-            this.enemies = new ArrayList<>(enemyList) ;
+            this.enemies = new ArrayList<>(Arrays.asList(_enemies)) ;
       }
       
       public Enemy getEnemy (int enemyPosition) throws IllegalArgumentException {
