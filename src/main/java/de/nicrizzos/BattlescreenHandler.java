@@ -58,7 +58,7 @@ public class BattlescreenHandler {
             battle = new Battle (player, new Enemy[] {
                     new Enemy ("Schleim", 60, 50, 5),
                     new Enemy("Goblin", 100, 60, 30),
-                    new Enemy("Zigeuner", 150, 62, 22)
+                    new Enemy("Zigeuner", 140, 62, 22)
             });
             refreshScreen();
       }
