@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.nicrizzos.MainsceneHandler">
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.nicrizzos.MainSceneHandler">
    <children>
       <TextArea fx:id="ta_game" editable="false" layoutX="14.0" layoutY="14.0" onMouseClicked="#increaseStat" prefHeight="543.0" prefWidth="761.0">
          <cursor>
@@ -44,7 +44,7 @@
             <Label fx:id="lbl_vitality" layoutX="148.0" layoutY="55.0" text="0" />
             <Label fx:id="lbl_def" layoutX="148.0" layoutY="69.0" text="0" />
             <Label fx:id="lbl_light" layoutX="148.0" layoutY="90.0" text="0" />
-            <Label fx:id="lbl_handskill" layoutX="148.0" layoutY="104.0" text="0" />
+            <Label fx:id="lbl_slightOfHand" layoutX="148.0" layoutY="104.0" text="0" />
             <Label fx:id="lbl_perception" layoutX="148.0" layoutY="118.0" text="0" />
             <Label fx:id="lbl_survival" layoutX="148.0" layoutY="132.0" text="0" />
             <Label fx:id="lbl_knowledge" layoutX="148.0" layoutY="146.0" text="0" />
@@ -63,9 +63,9 @@
             </ImageView>
             <ImageView fx:id="p_per" fitHeight="14.0" fitWidth="14.0" layoutX="164.0" layoutY="120.0" onMouseClicked="#increaseStat" pickOnBounds="true" preserveRatio="true">
             </ImageView>
-            <ImageView fx:id="p_handskill" fitHeight="14.0" fitWidth="14.0" layoutX="164.0" layoutY="106.0" onMouseClicked="#increaseStat" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="p_slightOfHand" fitHeight="14.0" fitWidth="14.0" layoutX="164.0" layoutY="106.0" onMouseClicked="#increaseStat" pickOnBounds="true" preserveRatio="true">
             </ImageView>
-            <ImageView fx:id="p_surv" fitHeight="14.0" fitWidth="14.0" layoutX="164.0" layoutY="134.0" onMouseClicked="#increaseStat" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="p_survivalism" fitHeight="14.0" fitWidth="14.0" layoutX="164.0" layoutY="134.0" onMouseClicked="#increaseStat" pickOnBounds="true" preserveRatio="true">
             </ImageView>
             <ImageView fx:id="p_knowledge" fitHeight="14.0" fitWidth="14.0" layoutX="164.0" layoutY="148.0" onMouseClicked="#increaseStat" pickOnBounds="true" preserveRatio="true">
             </ImageView>
@@ -98,30 +98,30 @@
                         <Pane prefHeight="233.0" prefWidth="220.0">
                            <children>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="90.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-                              <ImageView fx:id="helmetslot" fitHeight="35.0" fitWidth="35.0" layoutX="93.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="helmetSlot" fitHeight="35.0" fitWidth="35.0" layoutX="93.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
             </ImageView>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="90.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-                              <ImageView fx:id="chestplateslot" fitHeight="35.0" fitWidth="35.0" layoutX="93.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="chestplateSlot" fitHeight="35.0" fitWidth="35.0" layoutX="93.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" />
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="90.0" layoutY="130.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-                              <ImageView fx:id="pantsslot" fitHeight="35.0" fitWidth="35.0" layoutX="93.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="pantsSlot" fitHeight="35.0" fitWidth="35.0" layoutX="93.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
             </ImageView>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="90.0" layoutY="175.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-                              <ImageView fx:id="shoeslot" fitHeight="35.0" fitWidth="35.0" layoutX="93.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="shoeSlot" fitHeight="35.0" fitWidth="35.0" layoutX="93.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
             </ImageView>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="135.0" layoutY="65.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-                              <ImageView fx:id="gloveslot" fitHeight="35.0" fitWidth="35.0" layoutX="138.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="gloveSlot" fitHeight="35.0" fitWidth="35.0" layoutX="138.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
             </ImageView>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="135.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-                              <ImageView fx:id="swordslot" fitHeight="35.0" fitWidth="35.0" layoutX="138.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="swordSlot" fitHeight="35.0" fitWidth="35.0" layoutX="138.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
             </ImageView>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="45.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-                              <ImageView fx:id="shieldslot" fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="shieldSlot" fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
             </ImageView>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="45.0" layoutY="65.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-                              <ImageView fx:id="ringslot" fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="ringSlot" fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
             </ImageView>
                               <Label fx:id="lbl_level" layoutX="90.0" layoutY="18.0" text="Level : " />
-                              <Label fx:id="lbl_playername" layoutX="94.0" text="Label" />
+                              <Label fx:id="lbl_playerName" layoutX="94.0" text="Label" />
                            </children>
                         </Pane>
                      </children>

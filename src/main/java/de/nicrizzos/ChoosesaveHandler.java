@@ -42,17 +42,17 @@ public class ChoosesaveHandler {
       }
       public void checkButtons() {
             save1.startSQL();
-            if(save1.checkSlot()) {
+            if(save1.checkIfPlayerExists()) {
                   btn_slot1.setText(save1.getPlayerName());
                   btn_delete1.setVisible(true);
             }
             save2.startSQL();
-            if(save2.checkSlot()) {
+            if(save2.checkIfPlayerExists()) {
                   btn_slot2.setText(save2.getPlayerName());
                   btn_delete2.setVisible(true);
             }
             save3.startSQL();
-            if(save3.checkSlot()) {
+            if(save3.checkIfPlayerExists()) {
                   btn_slot3.setText(save3.getPlayerName());
                   btn_delete3.setVisible(true);
             }
@@ -75,9 +75,9 @@ public class ChoosesaveHandler {
                   fxmlLoader.setLocation(getClass().getResource("mainscene.fxml"));
                   Parent switchscene = fxmlLoader.load();
                   Scene sc = new Scene(switchscene);
-                  MainsceneHandler maincontroller = fxmlLoader.getController();
+                  MainSceneHandler maincontroller = fxmlLoader.getController();
                   save1.startSQL();
-                  if(!save1.checkSlot()) {
+                  if(!save1.checkIfPlayerExists()) {
                         String name = askForName();
                         save1.setPlayer(name);
                         save1.stopSQL();
@@ -97,9 +97,9 @@ public class ChoosesaveHandler {
             fxmlLoader.setLocation(getClass().getResource("mainscene.fxml"));
             Parent switchscene = fxmlLoader.load();
             Scene sc = new Scene(switchscene);
-            MainsceneHandler maincontroller = fxmlLoader.getController();
+            MainSceneHandler maincontroller = fxmlLoader.getController();
             save2.startSQL();
-            if(!save2.checkSlot()) {
+            if(!save2.checkIfPlayerExists()) {
                   String name = askForName();
                   save2.setPlayer(name);
                   save2.stopSQL();
@@ -119,9 +119,9 @@ public class ChoosesaveHandler {
             fxmlLoader.setLocation(getClass().getResource("mainscene.fxml"));
             Parent switchscene = fxmlLoader.load();
             Scene sc = new Scene(switchscene);
-            MainsceneHandler maincontroller = fxmlLoader.getController();
+            MainSceneHandler maincontroller = fxmlLoader.getController();
             save3.startSQL();
-            if(!save3.checkSlot()) {
+            if(!save3.checkIfPlayerExists()) {
                   String name = askForName();
                   save3.setPlayer(name);
                   save3.stopSQL();
