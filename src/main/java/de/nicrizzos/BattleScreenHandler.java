@@ -128,25 +128,41 @@ public class BattleScreenHandler {
                   battle.enemyTurn();
             }
             else {
-                  //TODO: Zusammenfassung, dann zurück in den Mainscreen
                   System.out.println("All enemies have been defeated.");
+                  
                   battle.getReward(Game.getActivePlayer());
 
                   FXMLLoader fxmlLoader = new FXMLLoader();
                   fxmlLoader.setLocation(getClass().getResource("mainscene.fxml"));
-                  Parent switchscene = null;
+                  Parent switchScene = null;
                   try {
-                        switchscene= fxmlLoader.load();
-                  }catch (IOException ex){
+                        switchScene= fxmlLoader.load();
+                  } catch (IOException ex){
                         ex.printStackTrace();
                   }
-                  Scene sc = new Scene(switchscene);
+                  Scene sc = new Scene(switchScene);
                   MainSceneHandler main = fxmlLoader.getController();
-                  main.InitFromBattle(game, sql);
+                  main.InitFromBattle(game, sql, battle.getChapterIndex());
                   Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)e.getSource()).getScene().getWindow();
                   stageTheEventSourceNodeBelongs.setScene(sc);
-
-
+            }
+            
+            if (!player.isAlive()) {
+                  System.out.println("You died.");
+      
+                  FXMLLoader fxmlLoader = new FXMLLoader();
+                  fxmlLoader.setLocation(getClass().getResource("mainscene.fxml"));
+                  Parent switchScene = null;
+                  try {
+                        switchScene= fxmlLoader.load();
+                  } catch (IOException ex){
+                        ex.printStackTrace();
+                  }
+                  Scene sc = new Scene(switchScene);
+                  MainSceneHandler main = fxmlLoader.getController();
+                  main.InitFromBattle(game, sql, battle.getChapterIndex() - 2);
+                  Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)e.getSource()).getScene().getWindow();
+                  stageTheEventSourceNodeBelongs.setScene(sc);
             }
             
             refreshScreen();

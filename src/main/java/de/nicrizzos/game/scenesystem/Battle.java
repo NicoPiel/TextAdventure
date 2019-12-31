@@ -19,6 +19,8 @@ public class Battle extends SceneContent {
        */
       ArrayList<Enemy> enemies;
       
+      int chapterIndex;
+      
       /**
        * Creates a new battle with up to three enemies.
        * @param _player The player.
@@ -29,8 +31,9 @@ public class Battle extends SceneContent {
             this.enemies = new ArrayList<>(Arrays.asList(_enemies));
       }
       
-      public Battle (Enemy[] _enemies) {
+      public Battle (int _chapterIndex, Enemy[] _enemies) {
             this.enemies = new ArrayList<>(Arrays.asList(_enemies));
+            this.chapterIndex = _chapterIndex;
       }
       
       /**
@@ -109,5 +112,9 @@ public class Battle extends SceneContent {
       
       public void setPlayer (Player _player) {
             this.player = _player;
+      }
+      
+      public int getChapterIndex() {
+            return chapterIndex;
       }
 }

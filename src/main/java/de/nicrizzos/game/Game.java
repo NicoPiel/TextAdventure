@@ -1,14 +1,17 @@
 package de.nicrizzos.game;
 
+import de.nicrizzos.game.content.chapters.Chapters;
 import de.nicrizzos.game.entities.Player;
 import de.nicrizzos.game.scenesystem.Chapter;
 
 public class Game {
       final static Player player = new Player("Nameless");
       
-      private Chapter currentChapter;
+      static private Chapter currentChapter;
       
       public Game (String _name) {
+            Chapters.createChapters();
+            currentChapter = Chapters.getChapters().get(0);
             player.createPlayer(_name);
       }
       

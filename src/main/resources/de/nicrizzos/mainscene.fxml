@@ -135,5 +135,6 @@
           </Tab>
         </tabs>
       </TabPane>
+      <Button fx:id="btn_continue" layoutX="678.0" layoutY="502.0" mnemonicParsing="false" onAction="#continueThroughChapter" prefHeight="32.0" prefWidth="70.0" text="Weiter" />
    </children>
 </AnchorPane>

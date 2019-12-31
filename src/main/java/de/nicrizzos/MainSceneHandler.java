@@ -120,8 +120,6 @@ public class MainSceneHandler {
             constructCharInventory();
             sql.savePlayer(player);
 
-            Chapters.createChapters();
-
             currentChapter = Chapters.getChapters().get(0);
 
             try {
@@ -145,13 +143,24 @@ public class MainSceneHandler {
             
             this.refreshScene();
       }
-      public void InitFromBattle(Game _game, SQLiteManager _sql) {
+      public void InitFromBattle(Game _game, SQLiteManager _sql, int _chapterIndex) {
             constructCharInventory();
             _sql.stopSQL();
             sql = _sql;
             sql.stopSQL();
             game = _game;
             player = Game.getActivePlayer();
+      
+            //TODO: refactoring und immer das richtige kapitel holen
+            currentChapter = Chapters.getChapters().get(0);
+            if (_chapterIndex > 0) {
+                  currentChapter.setChapterIndex(_chapterIndex);
+            }
+            else {
+                  currentChapter.setChapterIndex(-1);
+            }
+            
+            continueThroughChapter(null);
 
             this.refreshScene();
       }
@@ -283,7 +292,7 @@ public class MainSceneHandler {
       
       @FXML
       private void increaseExp() {
-            player.addExperience(500);
+            player.addExperience(1000);
             refreshScene();
       }
       

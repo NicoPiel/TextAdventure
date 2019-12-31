@@ -45,6 +45,10 @@ public class Chapter {
             return this.name;
       }
       
+      public void setChapterIndex(int _chapterIndex) {
+            this.chapterIndex = _chapterIndex;
+      }
+      
       public int getChapterIndex() {
             return this.chapterIndex;
       }
