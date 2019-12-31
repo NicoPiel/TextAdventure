@@ -9,12 +9,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Optional;
 
-public class ChoosesaveHandler {
+public class ChooseSaveHandler {
       SQLiteManager save1;
       SQLiteManager save2;
       SQLiteManager save3;
@@ -38,34 +39,65 @@ public class ChoosesaveHandler {
 
 
 
-            checkButtons();
+            this.checkButtons();
       }
       public void checkButtons() {
             save1.startSQL();
             if(save1.checkIfPlayerExists()) {
                   btn_slot1.setText(save1.getPlayerName());
                   btn_delete1.setVisible(true);
+            }else{
+                  btn_slot1.setText("New save");
+                  btn_delete1.setVisible(false);
             }
+            save1.stopSQL();
             save2.startSQL();
             if(save2.checkIfPlayerExists()) {
                   btn_slot2.setText(save2.getPlayerName());
                   btn_delete2.setVisible(true);
+            }else{
+                  btn_slot2.setText("New save");
+                  btn_delete2.setVisible(false);
             }
+            save2.stopSQL();
             save3.startSQL();
             if(save3.checkIfPlayerExists()) {
                   btn_slot3.setText(save3.getPlayerName());
                   btn_delete3.setVisible(true);
+            }else{
+                  btn_slot3.setText("New save");
+                  btn_delete3.setVisible(false);
             }
-            save1.stopSQL();
-            save2.stopSQL();
             save3.stopSQL();
 
       }
       @FXML
       public void btn_delete(ActionEvent e) {
-            switch (e.getSource().getClass().getName()) {
+            Button button = (Button) e.getSource();
+            System.out.println(button.getId());
+            switch (button.getId()) {
+                  case "btn_delete1" -> {
+                        save1 = new SQLiteManager(1);
+                        save1.startSQL();
+                        save1.deleteSave();
+                        save1.stopSQL();
+                  }
+                  case "btn_delete2" -> {
+                        save2 = new SQLiteManager(2);
+                        save2.startSQL();
+                        save2.deleteSave();
+                        save2.stopSQL();
+                  }
+                  case "btn_delete3" -> {
+                        save3 = new SQLiteManager(3);
+                        save3.startSQL();
+                        save3.deleteSave();
+                        save3.stopSQL();
+                  }
+
 
             }
+            this.Init();
 
 
 

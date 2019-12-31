@@ -156,7 +156,8 @@ public class SQLiteManager {
        * Dummy method, will later delete saves.
        */
       public void deleteSave() {
-      
+            String sql = "DELETE FROM player WHERE true;";
+            this.executeUpdate(sql);
       }
       
       /**
