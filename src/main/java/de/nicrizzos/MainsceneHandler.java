@@ -201,7 +201,7 @@ public class MainSceneHandler {
             pgb_exp.setProgress(player.getExperiencePercentage());
             
             lbl_playerName.setText(player.getName());
-            lbl_level.setText("Stufe: " + Integer.toString(player.getLevel()));
+            lbl_level.setText("Stufe: " + player.getLevel());
             
             lbl_str.setText(Integer.toString(player.getStrength()));
             lbl_dex.setText(Integer.toString(player.getDexterity()));

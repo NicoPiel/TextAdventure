@@ -5,6 +5,9 @@ import de.nicrizzos.game.entities.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Represents a battle between the player and up to three enemies.
+ */
 public class Battle {
       Player player;
       ArrayList<Enemy> enemies;
@@ -28,7 +31,7 @@ public class Battle {
             else {
                   if (defendant instanceof Enemy) {
                         if (enemies.contains(defendant)) {
-                              ((Enemy) defendant).doDamage(_damage);
+                              defendant.doDamage(_damage);
                         }
                   }
             }
@@ -44,12 +47,23 @@ public class Battle {
             return false;
       }
       
-      public Enemy getEnemy (int enemyPosition) throws IllegalArgumentException {
-            if (enemyPosition < getNumberOfEnemies()) {
-                  return enemies.get(enemyPosition);
+      public void getReward() {
+            int xp = 0;
+            
+            for (Enemy e : enemies) {
+                  xp += e.getExperienceValue();
             }
             
-            else throw new IllegalArgumentException("There are not that many enemies in this battle");
+            System.out.printf("%s receives %d experience points.", player.getName(), xp);
+            
+            player.addExperience(xp);
+      }
+      
+      public Enemy getEnemy (int enemyPosition) throws IllegalArgumentException {
+            if (enemyPosition < getNumberOfEnemies() && enemyPosition >= 0) {
+                  return enemies.get(enemyPosition);
+            }
+            else throw new IllegalArgumentException("Wrong number of enemies.");
       }
       
       public int getNumberOfEnemies () {

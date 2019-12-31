@@ -56,6 +56,10 @@ public class Enemy extends Entity {
             this.defense = _defense;
       }
       
+      public int getExperienceValue() {
+            return (((getDamage() + getDefense() + getHealth()) + 5) / 10) * 10;
+      }
+      
       @Override
       public boolean equals(Object obj) {
             if (obj.getClass().equals(this.getClass())) {
