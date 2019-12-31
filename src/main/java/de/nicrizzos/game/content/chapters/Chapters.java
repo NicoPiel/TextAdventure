@@ -12,13 +12,16 @@ public class Chapters {
       public static void createChapters() {
             SceneContent[] chaptersArray = new SceneContent[] {
                   new GameScene("Scene One",
-                          "Du wachst auf. Du bist dumm.",
-                          null)
+                          "Du wachst auf. Du bist dumm.")
             };
             
             Chapter chapterZero = new Chapter("Kapitel 0", chaptersArray);
             
             chapters = new ArrayList<>();
             chapters.add(chapterZero);
+      }
+
+      public static ArrayList<Chapter> getChapters() {
+            return chapters;
       }
 }

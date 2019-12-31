@@ -62,7 +62,10 @@ public class ChoosesaveHandler {
 
       }
       @FXML
-      public void btn_delete() {
+      public void btn_delete(ActionEvent e) {
+            switch (e.getSource().getClass().getName()) {
+
+            }
 
 
 

@@ -1,7 +1,10 @@
 package de.nicrizzos;
 
 import de.nicrizzos.game.Game;
+import de.nicrizzos.game.content.chapters.Chapters;
 import de.nicrizzos.game.entities.Player;
+import de.nicrizzos.game.exceptions.GameException;
+import de.nicrizzos.game.scenesystem.Chapter;
 import de.nicrizzos.game.utils.SQLiteManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -103,6 +106,7 @@ public class MainSceneHandler {
       private Game game;
       private Player player;
       private SQLiteManager sql;
+      private Chapter currentChapter;
       
       public void Init(int _slot, String _name, SQLiteManager _sql) {
             game = new Game(_name);
@@ -112,6 +116,18 @@ public class MainSceneHandler {
             sql.stopSQL();
             constructCharInventory();
             sql.savePlayer(player);
+
+            Chapters.createChapters();
+
+            currentChapter = Chapters.getChapters().get(0);
+
+            try {
+                  ta_game.setText(currentChapter.startChapter());
+            }
+            catch (GameException e) {
+                  e.printStackTrace();
+            }
+
             this.refreshScene();
       }
       
@@ -133,7 +149,6 @@ public class MainSceneHandler {
             sql.stopSQL();
             game = _game;
             player = Game.getActivePlayer();
-            constructPlayer();
 
             this.refreshScene();
       }
