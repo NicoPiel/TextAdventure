@@ -126,6 +126,17 @@ public class MainSceneHandler {
             
             this.refreshScene();
       }
+      public void InitFromBattle(Game _game, SQLiteManager _sql) {
+            constructCharInventory();
+            _sql.stopSQL();
+            sql = _sql;
+            sql.stopSQL();
+            game = _game;
+            player = Game.getActivePlayer();
+            constructPlayer();
+
+            this.refreshScene();
+      }
       
       /**
        * Reads the database and writes stats onto the player.

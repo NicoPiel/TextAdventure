@@ -8,9 +8,16 @@ import de.nicrizzos.game.scenesystem.Battle;
 import de.nicrizzos.game.utils.SQLiteManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class BattlescreenHandler {
 
@@ -51,9 +58,11 @@ public class BattlescreenHandler {
       private ProgressBar pgb_enemy2health;
       @FXML
       private ProgressBar pgb_enemy3health;
+      private SQLiteManager sql;
 
-      public void Init(Game _game, SQLiteManager sql){
+      public void Init(Game _game, SQLiteManager _sql){
             game =_game;
+            sql = _sql;
             player = Game.getActivePlayer();
             battle = new Battle (player, new Enemy[] {
                     new Enemy ("Schleim", 60, 50, 5),
@@ -114,6 +123,23 @@ public class BattlescreenHandler {
             else {
                   //TODO: Zusammenfassung, dann zurück in den Mainscreen
                   System.out.println("All enemies have been defeated.");
+                  battle.getReward(Game.getActivePlayer());
+
+                  FXMLLoader fxmlLoader = new FXMLLoader();
+                  fxmlLoader.setLocation(getClass().getResource("mainscene.fxml"));
+                  Parent switchscene = null;
+                  try {
+                        switchscene= fxmlLoader.load();
+                  }catch (IOException ex){
+                        ex.printStackTrace();
+                  }
+                  Scene sc = new Scene(switchscene);
+                  MainSceneHandler main = fxmlLoader.getController();
+                  main.InitFromBattle(game, sql);
+                  Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)e.getSource()).getScene().getWindow();
+                  stageTheEventSourceNodeBelongs.setScene(sc);
+
+
             }
             
             refreshScreen();
