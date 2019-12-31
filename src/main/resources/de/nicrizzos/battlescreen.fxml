@@ -6,7 +6,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.nicrizzos.BattlescreenHandler">
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.nicrizzos.BattleScreenHandler">
    <children>
       <SplitPane dividerPositions="0.6892067620286085" orientation="VERTICAL" prefHeight="771.0" prefWidth="1031.0">
         <items>

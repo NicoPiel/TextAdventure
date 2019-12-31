@@ -1,6 +1,5 @@
 package de.nicrizzos;
 
-
 import de.nicrizzos.game.Game;
 import de.nicrizzos.game.entities.Enemy;
 import de.nicrizzos.game.entities.Player;
@@ -19,7 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class BattlescreenHandler {
+public class BattleScreenHandler {
 
       Game game;
       Player player;

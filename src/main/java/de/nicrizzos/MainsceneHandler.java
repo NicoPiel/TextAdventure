@@ -262,7 +262,7 @@ public class MainSceneHandler {
             fxmlLoader.setLocation(getClass().getResource("battlescreen.fxml"));
             Parent switchscene = fxmlLoader.load();
             Scene sc = new Scene(switchscene);
-            BattlescreenHandler battlescreenHandler = fxmlLoader.getController();
+            BattleScreenHandler battlescreenHandler = fxmlLoader.getController();
             battlescreenHandler.Init(game, sql);
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stageTheEventSourceNodeBelongs.setScene(sc);

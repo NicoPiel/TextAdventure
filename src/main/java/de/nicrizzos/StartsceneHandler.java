@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class StartsceneHandler {
+public class StartSceneHandler {
 
       @FXML
       public void onGameStartButtonClick(ActionEvent e) throws IOException {
