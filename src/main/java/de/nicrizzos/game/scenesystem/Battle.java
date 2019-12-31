@@ -9,14 +9,29 @@ import java.util.Arrays;
  * Represents a battle between the player and up to three enemies.
  */
 public class Battle {
+      /**
+       * The player.
+       */
       Player player;
+      
+      /**
+       * An array of enemies.
+       */
       ArrayList<Enemy> enemies;
       
+      /**
+       * Creates a new battle with up to three enemies.
+       * @param _player The player.
+       * @param _enemies An array of enemies. Create a new enemy object for each enemy you want to use.
+       */
       public Battle (Player _player, Enemy[] _enemies) {
             this.player = _player;
             this.enemies = new ArrayList<>(Arrays.asList(_enemies));
       }
       
+      /**
+       * Allows enemies to perform actions; currently only lets them attack.
+       */
       public void enemyTurn() {
             for (Enemy e : enemies) {
                   if (player.isAlive() && e.isAlive())
@@ -24,6 +39,11 @@ public class Battle {
             }
       }
       
+      /**
+       * Lets entities attack one another.
+       * @param defendant The entity being attacked.
+       * @param _damage The damage value to be dealt to the defendant.
+       */
       public void attack (Entity defendant, int _damage) {
             if (defendant.isPlayer()) {
                   player.doDamage(_damage);
@@ -37,6 +57,10 @@ public class Battle {
             }
       }
       
+      /**
+       * Checks if there is any enemy left alive in the battle.
+       * @return True, if there are enemies alive.
+       */
       public boolean isAnyEnemyAlive () {
             for (Enemy e : enemies) {
                   if (e.isAlive()) {
@@ -47,18 +71,31 @@ public class Battle {
             return false;
       }
       
-      public void getReward() {
+      /**
+       * Returns the rewards that should be passed onto the player. Currently, calculates XP values based on the enemies' stats.
+       */
+      public void getReward(Player _player) {
             int xp = 0;
             
             for (Enemy e : enemies) {
                   xp += e.getExperienceValue();
             }
             
-            System.out.printf("%s receives %d experience points.", player.getName(), xp);
+            System.out.println("XP before battle: " + player.getExperience());
+            System.out.printf("%s receives %d experience points.%n", _player.getName(), xp);
             
-            player.addExperience(xp);
+            _player.addExperience(xp);
+            System.out.println("XP after battle: " + player.getExperience());
+            
+            
       }
       
+      /**
+       * Gets the enemy at the given position in the battle.
+       * @param enemyPosition A value between 0 and 2 (inclusive).
+       * @return
+       * @throws IllegalArgumentException
+       */
       public Enemy getEnemy (int enemyPosition) throws IllegalArgumentException {
             if (enemyPosition < getNumberOfEnemies() && enemyPosition >= 0) {
                   return enemies.get(enemyPosition);
