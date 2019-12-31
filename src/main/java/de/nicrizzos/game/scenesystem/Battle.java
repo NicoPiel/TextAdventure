@@ -81,11 +81,13 @@ public class Battle {
                   xp += e.getExperienceValue();
             }
             
-            System.out.println("XP before battle: " + player.getExperience());
+            System.out.println("XP of function's player before battle: " + _player.getExperience());
+            System.out.println("XP of battle's player before battle: " + player.getExperience());
             System.out.printf("%s receives %d experience points.%n", _player.getName(), xp);
             
             _player.addExperience(xp);
-            System.out.println("XP after battle: " + player.getExperience());
+            System.out.println("XP of function's player after battle: " + _player.getExperience());
+            System.out.println("XP of battle's player after battle: " + player.getExperience());
             
             
       }
