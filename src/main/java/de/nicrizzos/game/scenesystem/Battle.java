@@ -29,6 +29,10 @@ public class Battle extends SceneContent {
             this.enemies = new ArrayList<>(Arrays.asList(_enemies));
       }
       
+      public Battle (Enemy[] _enemies) {
+            this.enemies = new ArrayList<>(Arrays.asList(_enemies));
+      }
+      
       /**
        * Allows enemies to perform actions; currently only lets them attack.
        */
@@ -101,5 +105,9 @@ public class Battle extends SceneContent {
       
       public int getNumberOfEnemies () {
             return this.enemies.size();
+      }
+      
+      public void setPlayer (Player _player) {
+            this.player = _player;
       }
 }

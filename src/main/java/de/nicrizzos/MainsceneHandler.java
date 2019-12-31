@@ -4,7 +4,10 @@ import de.nicrizzos.game.Game;
 import de.nicrizzos.game.content.chapters.Chapters;
 import de.nicrizzos.game.entities.Player;
 import de.nicrizzos.game.exceptions.GameException;
+import de.nicrizzos.game.scenesystem.Battle;
 import de.nicrizzos.game.scenesystem.Chapter;
+import de.nicrizzos.game.scenesystem.GameScene;
+import de.nicrizzos.game.scenesystem.SceneContent;
 import de.nicrizzos.game.utils.SQLiteManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -205,9 +208,23 @@ public class MainSceneHandler {
             sql.stopSQL();
       }
       
-      //TODO: Einen 'Continue' Button, der durch die Szenen führt.
-      // Dazu einfach GameScene.continueScene(), dann mit if-else durch die Objekte.
-      // Systeme dazu noch nicht vorhanden.
+      @FXML
+      private void continueThroughChapter(ActionEvent e) {
+            SceneContent newScene = currentChapter.continueChapter();
+      
+            if (newScene instanceof GameScene) {
+                  ta_game.setText(((GameScene) newScene).getDescription());
+            } else if (newScene instanceof Battle) {
+                  try {
+                        Battle battle = (Battle) newScene;
+                        battle.setPlayer(player);
+                        CreateNewBattle(e, battle);
+                  }
+                  catch (IOException ex) {
+                        ex.printStackTrace();
+                  }
+            }
+      }
       
       
       private void checkLevelUpButtons() {
@@ -271,14 +288,24 @@ public class MainSceneHandler {
       }
       
       @FXML
-      private void fight(ActionEvent e) throws IOException {
-            
+      private void CreateNewBattle(ActionEvent e) throws IOException {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("battlescreen.fxml"));
-            Parent switchscene = fxmlLoader.load();
-            Scene sc = new Scene(switchscene);
+            Parent switchScene = fxmlLoader.load();
+            Scene sc = new Scene(switchScene);
             BattleScreenHandler battlescreenHandler = fxmlLoader.getController();
             battlescreenHandler.Init(game, sql);
+            Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            stageTheEventSourceNodeBelongs.setScene(sc);
+      }
+      
+      private void CreateNewBattle(ActionEvent e, Battle _battle) throws IOException {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("battlescreen.fxml"));
+            Parent switchScene = fxmlLoader.load();
+            Scene sc = new Scene(switchScene);
+            BattleScreenHandler battlescreenHandler = fxmlLoader.getController();
+            battlescreenHandler.Init(game, sql, _battle);
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stageTheEventSourceNodeBelongs.setScene(sc);
       }

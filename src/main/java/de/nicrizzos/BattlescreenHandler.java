@@ -71,6 +71,14 @@ public class BattleScreenHandler {
             refreshScreen();
       }
       
+      public void Init(Game _game, SQLiteManager _sql, Battle _battle){
+            game =_game;
+            sql = _sql;
+            player = Game.getActivePlayer();
+            battle = _battle;
+            refreshScreen();
+      }
+      
       @FXML
       public void attackClicked() {
             switch(battle.getNumberOfEnemies()) {

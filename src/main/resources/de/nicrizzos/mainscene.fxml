@@ -80,7 +80,7 @@
       <Label fx:id="lbl_mana" layoutX="863.0" layoutY="613.0" text="99/99" />
       <Button layoutX="14.0" layoutY="590.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Reden" />
       <Button layoutX="14.0" layoutY="630.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Gehen" />
-      <Button fx:id="btn_fight" layoutX="14.0" layoutY="670.0" mnemonicParsing="false" onAction="#fight" prefHeight="32.0" prefWidth="70.0" text="Kämpfen" />
+      <Button fx:id="btn_fight" layoutX="14.0" layoutY="670.0" mnemonicParsing="false" onAction="#CreateNewBattle" prefHeight="32.0" prefWidth="70.0" text="Kämpfen" />
       <Button layoutX="527.0" layoutY="590.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Dialog 1" />
       <Button layoutX="527.0" layoutY="630.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Dialog 2" />
       <Button layoutX="527.0" layoutY="710.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Dialog 4" />

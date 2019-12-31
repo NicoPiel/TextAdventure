@@ -17,6 +17,13 @@ public class Chapter {
             chapterIndex = 0;
       }
       
+      public Chapter (String _name, int _chapterIndex, SceneContent[] _scenes) {
+            this.name = _name;
+            this.chapterIndex = _chapterIndex;
+            this.scenes = new ArrayList<>(Arrays.asList(_scenes));
+            chapterIndex = 0;
+      }
+      
       public String startChapter() throws GameException {
             if (!scenes.isEmpty() && (scenes.get(0) instanceof GameScene))
                   return ((GameScene) scenes.get(0)).startScene();
@@ -29,21 +36,16 @@ public class Chapter {
             
             if (chapterIndex < scenes.size()) {
                   return scenes.get(chapterIndex);
-                  
-                  /*if (newScene instanceof GameScene) {
-                        //TODO: print scene description
-                        ((GameScene) newScene).getDescription();
-                  }
-                  
-                  else if (newScene instanceof Battle) {
-                        //TODO: start battle
-                  }*/
             }
             
             else return null;
       }
       
       public String getName() {
-            return name;
+            return this.name;
+      }
+      
+      public int getChapterIndex() {
+            return this.chapterIndex;
       }
 }
