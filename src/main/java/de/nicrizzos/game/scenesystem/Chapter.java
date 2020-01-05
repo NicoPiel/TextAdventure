@@ -130,4 +130,8 @@ public class Chapter {
       public int getChapterIndex() {
             return this.chapterIndex;
       }
+      
+      public ArrayList<SceneContent> getScenes() {
+            return scenes;
+      }
 }

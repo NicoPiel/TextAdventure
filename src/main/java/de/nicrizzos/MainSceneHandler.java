@@ -29,80 +29,118 @@ import java.io.IOException;
 public class MainSceneHandler {
       @FXML
       private TextArea ta_game;
+      
       @FXML
       private ProgressBar pgb_life;
+      
       @FXML
       private ProgressBar pgb_exp;
+      
       @FXML
       private Label lbl_exp;
+      
       @FXML
       private Label lbl_level;
+      
       @FXML
       private Label lbl_playerName;
+      
       @FXML
       private Label lbl_life;
+      
       @FXML
       private Label lbl_mana;
+      
       @FXML
       private ProgressBar pgb_mana;
+      
       @FXML
       private Label lbl_vitality;
+      
       @FXML
       private Label lbl_str;
+      
       @FXML
       private Label lbl_dex;
+      
       @FXML
       private Label lbl_magic;
+      
       @FXML
       private Label lbl_def;
+      
       @FXML
       private Label lbl_light;
+      
       @FXML
       private Label lbl_slightOfHand;
+      
       @FXML
       private Label lbl_perception;
+      
       @FXML
       private Label lbl_survival;
+      
       @FXML
       private Label lbl_knowledge;
+      
       @FXML
       private Label lbl_speech;
+      
       @FXML
       private ImageView helmetSlot;
+      
       @FXML
       private ImageView chestplateSlot;
+      
       @FXML
       private ImageView pantsSlot;
+      
       @FXML
       private ImageView shoeSlot;
+      
       @FXML
       private ImageView gloveSlot;
+      
       @FXML
       private ImageView shieldSlot;
+      
       @FXML
       private ImageView swordSlot;
+      
       @FXML
       private ImageView ringSlot;
+      
       @FXML
       private ImageView p_str;
+      
       @FXML
       private ImageView p_dex;
+      
       @FXML
       private ImageView p_magic;
+      
       @FXML
       private ImageView p_vita;
+      
       @FXML
       private ImageView p_def;
+      
       @FXML
       private ImageView p_lightFooted;
+      
       @FXML
       private ImageView p_slightOfHand;
+      
       @FXML
       private ImageView p_per;
+      
       @FXML
       private ImageView p_survivalism;
+      
       @FXML
       private ImageView p_knowledge;
+      
       @FXML
       private ImageView p_rhetoric;
       
@@ -142,6 +180,7 @@ public class MainSceneHandler {
             
             this.refreshScene();
       }
+      
       public void InitFromBattle(Game _game, SQLiteManager _sql, int _chapterIndex) {
             constructCharInventory();
             
@@ -236,27 +275,6 @@ public class MainSceneHandler {
             }
       }
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
       private void checkLevelUpButtons() {
             if (player.canLevelUp()) {
                   setLevelUpButtonsVisible(true);
@@ -339,7 +357,6 @@ public class MainSceneHandler {
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stageTheEventSourceNodeBelongs.setScene(sc);
       }
-      
       
       private void constructCharInventory() {
             setImageForInventorySlot(helmetSlot, "src/images/helmet.png");
