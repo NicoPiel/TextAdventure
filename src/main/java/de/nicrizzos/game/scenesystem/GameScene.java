@@ -3,18 +3,17 @@ package de.nicrizzos.game.scenesystem;
 import de.nicrizzos.game.GameObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class GameScene extends SceneContent {
-      protected String name;
+      protected String id;
       protected String description;
       
       protected int scriptPosition;
       protected ArrayList<GameObject> sceneScript;
       
       
-      public GameScene (String _name, String _desc) {
-            this.name = _name;
+      public GameScene (String _id, String _desc) {
+            this.id = _id;
             this.description = _desc;
             this.scriptPosition = 0;
       }

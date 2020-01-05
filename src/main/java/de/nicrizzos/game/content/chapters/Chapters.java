@@ -1,10 +1,6 @@
 package de.nicrizzos.game.content.chapters;
 
-import de.nicrizzos.game.entities.Enemy;
-import de.nicrizzos.game.scenesystem.Battle;
 import de.nicrizzos.game.scenesystem.Chapter;
-import de.nicrizzos.game.scenesystem.GameScene;
-import de.nicrizzos.game.scenesystem.SceneContent;
 
 import java.util.ArrayList;
 
@@ -12,11 +8,12 @@ public class Chapters {
       
       static ArrayList<Chapter> chapters;
       
-      private static Chapter chapterZero;
-      
       public static void createChapters() {
+            System.out.println("Creating chapters..");
             chapters = new ArrayList<>();
-            chapters.add(chapterZero);
+            Chapter chapter = Chapter.constructChapterFromFile();
+            chapters.add(chapter);
+            System.out.println("Done creating chapters..");
       }
       
       public static ArrayList<Chapter> getChapters() {

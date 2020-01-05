@@ -15,7 +15,7 @@
 
 <AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.nicrizzos.MainSceneHandler">
    <children>
-      <TextArea fx:id="ta_game" editable="false" layoutX="14.0" layoutY="14.0" onMouseClicked="#increaseStat" prefHeight="543.0" prefWidth="761.0">
+      <TextArea fx:id="ta_game" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="543.0" prefWidth="761.0">
          <cursor>
             <Cursor fx:constant="CROSSHAIR" />
          </cursor>

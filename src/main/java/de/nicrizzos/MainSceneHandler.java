@@ -120,13 +120,16 @@ public class MainSceneHandler {
             sql.startSQL();
             sql.savePlayer(player);
             sql.stopSQL();
-            //currentChapter = Chapters.getChapters().get(0);
-            /*try {
+            
+            currentChapter = Chapters.getChapters().get(0);
+            
+            try {
                   ta_game.setText(currentChapter.startChapter());
             }
             catch (GameException e) {
                   e.printStackTrace();
-            }*/
+            }
+            
             this.refreshScene();
       }
       
