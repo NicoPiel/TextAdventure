@@ -84,23 +84,62 @@ public class BattleScreenHandler {
             switch(battle.getNumberOfEnemies()) {
                   case 1 -> {
                         btn_enemy1.setText(battle.getEnemy(0).getName());
-                        btn_enemy1.setVisible(true);
+                        setButtonVisibility(1);
                   }
                   case 2 -> {
                         btn_enemy1.setText(battle.getEnemy(0).getName());
                         btn_enemy2.setText(battle.getEnemy(1).getName());
-                        btn_enemy1.setVisible(true);
-                        btn_enemy2.setVisible(true);
+                        setButtonVisibility(2);
                   }
                   case 3 -> {
                         btn_enemy1.setText(battle.getEnemy(0).getName());
                         btn_enemy2.setText(battle.getEnemy(1).getName());
                         btn_enemy3.setText(battle.getEnemy(2).getName());
-                        btn_enemy1.setVisible(true);
-                        btn_enemy2.setVisible(true);
-                        btn_enemy3.setVisible(true);
+                        setButtonVisibility(3);
                   }
             }
+      }
+      public void setButtonVisibility(int _enemynumber) {
+            switch (_enemynumber){
+                  case 1 -> {
+                        if(battle.getEnemy(0).isAlive()) {
+                              btn_enemy1.setVisible(true);
+                        }else{
+                              btn_enemy1.setVisible(false);
+                        }
+                  }
+                  case 2 -> {
+                        if(battle.getEnemy(0).isAlive()) {
+                              btn_enemy1.setVisible(true);
+                        }else{
+                              btn_enemy1.setVisible(false);
+                        }
+                        if(battle.getEnemy(1).isAlive()) {
+                              btn_enemy2.setVisible(true);
+                        }else{
+                              btn_enemy2.setVisible(false);
+                        }
+                  }
+                  case 3 ->{
+                        if(battle.getEnemy(0).isAlive()) {
+                              btn_enemy1.setVisible(true);
+                        }else{
+                              btn_enemy1.setVisible(false);
+                        }
+                        if(battle.getEnemy(1).isAlive()) {
+                              btn_enemy2.setVisible(true);
+                        }else{
+                              btn_enemy2.setVisible(false);
+                        }
+                        if(battle.getEnemy(2).isAlive()) {
+                              btn_enemy3.setVisible(true);
+                        }else{
+                              btn_enemy3.setVisible(false);
+                        }
+                  
+                  }
+            }
+            
       }
       
       @FXML
@@ -143,6 +182,7 @@ public class BattleScreenHandler {
                   Scene sc = new Scene(switchScene);
                   MainSceneHandler main = fxmlLoader.getController();
                   main.InitFromBattle(game, sql, battle.getChapterIndex());
+                  sql.stopSQL();
                   Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)e.getSource()).getScene().getWindow();
                   stageTheEventSourceNodeBelongs.setScene(sc);
             }
@@ -175,6 +215,14 @@ public class BattleScreenHandler {
             player.stopDefense();
       }
 
+      
+      
+      
+      
+      
+      
+      
+      
       public void refreshScreen() {
             lbl_playername.setText(player.getName());
             pgb_playerhealth.setProgress(player.getHealthPercentage());

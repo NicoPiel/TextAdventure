@@ -114,29 +114,25 @@ public class MainSceneHandler {
       public void Init(int _slot, String _name, SQLiteManager _sql) {
             game = new Game(_name);
             player = Game.getActivePlayer();
-            _sql.stopSQL();
             sql = _sql;
-            sql.stopSQL();
             constructCharInventory();
+            
+            sql.startSQL();
             sql.savePlayer(player);
-
-            currentChapter = Chapters.getChapters().get(0);
-
-            try {
+            sql.stopSQL();
+            //currentChapter = Chapters.getChapters().get(0);
+            /*try {
                   ta_game.setText(currentChapter.startChapter());
             }
             catch (GameException e) {
                   e.printStackTrace();
-            }
-
+            }*/
             this.refreshScene();
       }
       
       public void Init(int _slot, String _name, SQLiteManager _sql, boolean exist) {
             constructCharInventory();
-            _sql.stopSQL();
             sql = _sql;
-            sql.stopSQL();
             game = new Game(_name);
             player = Game.getActivePlayer();
             constructPlayer();
@@ -145,9 +141,9 @@ public class MainSceneHandler {
       }
       public void InitFromBattle(Game _game, SQLiteManager _sql, int _chapterIndex) {
             constructCharInventory();
-            _sql.stopSQL();
+            
             sql = _sql;
-            sql.stopSQL();
+            
             game = _game;
             player = Game.getActivePlayer();
       
@@ -236,6 +232,26 @@ public class MainSceneHandler {
                   }
             }
       }
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       
       
       private void checkLevelUpButtons() {

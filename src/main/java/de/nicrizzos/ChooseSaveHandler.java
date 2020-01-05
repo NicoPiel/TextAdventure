@@ -16,9 +16,6 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class ChooseSaveHandler {
-      SQLiteManager save1;
-      SQLiteManager save2;
-      SQLiteManager save3;
       @FXML
       private Button btn_slot1;
       @FXML
@@ -31,154 +28,141 @@ public class ChooseSaveHandler {
       private Button btn_delete2;
       @FXML
       private Button btn_delete3;
-
+      
       public void Init() {
-            save1 = new SQLiteManager(1);
-            save2 = new SQLiteManager(2);
-            save3 = new SQLiteManager(3);
-
-
-
+            
+            
             this.checkButtons();
       }
+      
       public void checkButtons() {
+            SQLiteManager save1 = new SQLiteManager(1);
             save1.startSQL();
-            if(save1.checkIfPlayerExists()) {
+            if (save1.checkIfPlayerExists()) {
                   btn_slot1.setText(save1.getPlayerName());
                   btn_delete1.setVisible(true);
-            }else{
+            } else {
                   btn_slot1.setText("New save");
                   btn_delete1.setVisible(false);
             }
             save1.stopSQL();
+            
+            
+            SQLiteManager save2 = new SQLiteManager(2);
             save2.startSQL();
-            if(save2.checkIfPlayerExists()) {
+            if (save2.checkIfPlayerExists()) {
                   btn_slot2.setText(save2.getPlayerName());
                   btn_delete2.setVisible(true);
-            }else{
+            } else {
                   btn_slot2.setText("New save");
                   btn_delete2.setVisible(false);
             }
             save2.stopSQL();
+            SQLiteManager save3 = new SQLiteManager(3);
             save3.startSQL();
-            if(save3.checkIfPlayerExists()) {
+            if (save3.checkIfPlayerExists()) {
                   btn_slot3.setText(save3.getPlayerName());
                   btn_delete3.setVisible(true);
-            }else{
+            } else {
                   btn_slot3.setText("New save");
                   btn_delete3.setVisible(false);
             }
             save3.stopSQL();
-
+            
       }
+      
       @FXML
       public void btn_delete(ActionEvent e) {
             Button button = (Button) e.getSource();
             System.out.println(button.getId());
             switch (button.getId()) {
                   case "btn_delete1" -> {
-                        save1 = new SQLiteManager(1);
+                        SQLiteManager save1 = new SQLiteManager(1);
                         save1.startSQL();
                         save1.deleteSave();
                         save1.stopSQL();
                   }
                   case "btn_delete2" -> {
-                        save2 = new SQLiteManager(2);
+                        SQLiteManager save2 = new SQLiteManager(2);
                         save2.startSQL();
                         save2.deleteSave();
                         save2.stopSQL();
                   }
                   case "btn_delete3" -> {
-                        save3 = new SQLiteManager(3);
+                        SQLiteManager save3 = new SQLiteManager(3);
                         save3.startSQL();
                         save3.deleteSave();
                         save3.stopSQL();
                   }
-
-
+                  
+                  
             }
             this.Init();
-
-
-
+            
+            
       }
-
       @FXML
-      public void btn_save1 (ActionEvent e) throws IOException {
-                  save1 = new SQLiteManager(1);
-                  FXMLLoader fxmlLoader = new FXMLLoader();
-                  fxmlLoader.setLocation(getClass().getResource("mainscene.fxml"));
-                  Parent switchscene = fxmlLoader.load();
-                  Scene sc = new Scene(switchscene);
-                  MainSceneHandler maincontroller = fxmlLoader.getController();
-                  save1.startSQL();
-                  if(!save1.checkIfPlayerExists()) {
-                        String name = askForName();
-                        save1.setPlayer(name);
-                        save1.stopSQL();
-                        maincontroller.Init(1, name, save1);
-                  }else{
-                        maincontroller.Init(1,save1.getPlayerName(),save1, true);
+      void btn_save(ActionEvent e) throws IOException {
+            Button button = (Button) e.getSource();
+            SQLiteManager save = null;
+            int slot = 0;
+            
+            switch (button.getId()) {
+                  case "btn_slot1" -> {
+                        System.out.println("Neger");
+                        slot = 1;
+                        save = new SQLiteManager(slot);
+                        
+                  
                   }
-                  save1.stopSQL();
-
-                  Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) e.getSource()).getScene().getWindow();
-                  stageTheEventSourceNodeBelongs.setScene(sc);
-      }
-      @FXML
-      public void btn_save2 (ActionEvent e) throws IOException {
-            save2 = new SQLiteManager(2);
+                  case "btn_slot2" -> {
+                        System.out.println("Neger1");
+                        slot = 2;
+                        save = new SQLiteManager(slot);
+                        
+            
+                  }
+                  case "btn_slot3" -> {
+                        System.out.println("Neger2");
+                        slot = 3;
+                        save = new SQLiteManager(slot);
+                        
+            
+                  }
+            }
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("mainscene.fxml"));
             Parent switchscene = fxmlLoader.load();
             Scene sc = new Scene(switchscene);
             MainSceneHandler maincontroller = fxmlLoader.getController();
-            save2.startSQL();
-            if(!save2.checkIfPlayerExists()) {
-                  String name = askForName();
-                  save2.setPlayer(name);
-                  save2.stopSQL();
-                  maincontroller.Init(2, name, save2);
-            }else{
-                  maincontroller.Init(2,save2.getPlayerName(), save2,true);
+            if (save != null) {
+                  save.startSQL();
+                  if (!save.checkIfPlayerExists()) {
+                        String name = askForName();
+                        save.setPlayer(name);
+                        save.stopSQL();
+                        maincontroller.Init(slot, name, save);
+                  } else {
+                        maincontroller.Init(slot, save.getPlayerName(), save, true);
+                        save.stopSQL();
+                  }
             }
-            save2.stopSQL();
-
+            else System.out.println("Save stimmt nicht.");
+            
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stageTheEventSourceNodeBelongs.setScene(sc);
+            
       }
-      @FXML
-      public void btn_save3 (ActionEvent e) throws IOException {
-            save3 = new SQLiteManager(3);
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("mainscene.fxml"));
-            Parent switchscene = fxmlLoader.load();
-            Scene sc = new Scene(switchscene);
-            MainSceneHandler maincontroller = fxmlLoader.getController();
-            save3.startSQL();
-            if(!save3.checkIfPlayerExists()) {
-                  String name = askForName();
-                  save3.setPlayer(name);
-                  save3.stopSQL();
-                  maincontroller.Init(3,name, save3);
-            }else{
-                  maincontroller.Init(3,save3.getPlayerName(), save3, true);
-            }
-            save3.stopSQL();
-
-            Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            stageTheEventSourceNodeBelongs.setScene(sc);
-      }
-
+      
       public String askForName() {
             TextInputDialog dialog = new TextInputDialog("");
             dialog.setHeaderText("Nenne uns deinen Namen");
             dialog.setContentText("Name:");
             Optional<String> result = dialog.showAndWait();
-            if (result.isPresent()){
+            if (result.isPresent()) {
                   return result.get();
             }
             return null;
-
+            
       }
 }
