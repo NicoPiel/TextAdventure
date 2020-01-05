@@ -1,6 +1,7 @@
 package de.nicrizzos;
 
 import de.nicrizzos.game.Game;
+import de.nicrizzos.game.GameObject;
 import de.nicrizzos.game.content.chapters.Chapters;
 import de.nicrizzos.game.entities.Player;
 import de.nicrizzos.game.exceptions.GameException;
@@ -25,8 +26,10 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainSceneHandler {
+      //region Variables
       @FXML
       private TextArea ta_game;
       
@@ -148,6 +151,7 @@ public class MainSceneHandler {
       private Player player;
       private SQLiteManager sql;
       private Chapter currentChapter;
+      //endregion
       
       public void Init(int _slot, String _name, SQLiteManager _sql) {
             game = new Game(_name);
@@ -163,6 +167,8 @@ public class MainSceneHandler {
             
             try {
                   ta_game.setText(currentChapter.startChapter());
+                  
+                  
             }
             catch (GameException e) {
                   e.printStackTrace();
@@ -203,6 +209,32 @@ public class MainSceneHandler {
             continueThroughChapter(null);
 
             this.refreshScene();
+      }
+      
+      public void refreshActionButtons() {
+            GameScene scene = (GameScene) currentChapter.getScenes().get(0);
+            ArrayList<GameObject> objects = scene.getSceneScript();
+            int x = 14;
+            int y = 590;
+            for (GameObject obj : objects) {
+                  
+                  
+                  
+                  obj.getName();
+                  
+                  
+            }
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       }
       
       /**
@@ -247,6 +279,8 @@ public class MainSceneHandler {
             constructCharInventory();
             this.refreshScene();
       }
+      
+      
       
       @FXML
       private void refreshScene() {

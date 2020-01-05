@@ -39,4 +39,8 @@ public class GameScene extends SceneContent {
       public String getDescription() {
             return this.description;
       }
+      
+      public ArrayList<GameObject> getSceneScript() {
+            return sceneScript;
+      }
 }
