@@ -18,6 +18,20 @@ public class GameScene extends SceneContent {
             this.scriptPosition = 0;
       }
       
+      public void addObject(GameObject object) {
+            sceneScript.add(object);
+      }
+      
+      public GameObject getSceneObjectByName (String _name) throws NullPointerException {
+            GameObject object = new GameObject(_name);
+            
+            if (sceneScript.contains(object)) {
+                  return sceneScript.get(sceneScript.indexOf(object));
+            }
+            
+            else throw new NullPointerException("The scene doesn't contain an element with that name.");
+      }
+      
       public String startScene() {
             return description;
       }

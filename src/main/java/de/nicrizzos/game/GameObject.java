@@ -2,7 +2,7 @@ package de.nicrizzos.game;
 
 import de.nicrizzos.game.entities.Entity;
 
-public abstract class GameObject {
+public class GameObject {
       protected String identification;
       protected String name;
       
@@ -38,5 +38,12 @@ public abstract class GameObject {
       
       public boolean isPlayer() {
             return false;
+      }
+      
+      @Override
+      public boolean equals(Object obj) {
+            if (obj instanceof GameObject)
+                  return (this.name.equals(((GameObject) obj).getName())) && this.identification.equals(((GameObject) obj).getID());
+            else return false;
       }
 }

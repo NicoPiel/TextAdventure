@@ -1,6 +1,7 @@
 package de.nicrizzos.game.scenesystem;
 
 import de.nicrizzos.game.Game;
+import de.nicrizzos.game.GameObject;
 import de.nicrizzos.game.exceptions.*;
 import org.jdom2.*;
 import org.jdom2.input.SAXBuilder;
@@ -69,15 +70,15 @@ public class Chapter {
             try {
                   doc = new SAXBuilder().build(filename);
                   
-                  Element newScene = doc.getRootElement()
+                  Element newSceneElement = doc.getRootElement()
                           .getChild("Chapter")
                           .getChild("Scenes")
                           .getChild("Scene");
                   
                   
-                  String newSceneName = newScene.getAttributeValue("id");
+                  String newSceneName = newSceneElement.getAttributeValue("id");
                   
-                  List<Element> descriptionElementList = newScene
+                  List<Element> descriptionElementList = newSceneElement
                                   .getChild("Head")
                                   .getChild("Texts")
                                   .getChildren();
@@ -89,7 +90,18 @@ public class Chapter {
                         description.append("\n");
                   }
                   
-                  output.addScene(new GameScene(newSceneName, description.toString()));
+                  GameScene newScene = new GameScene(newSceneName, description.toString());
+                  
+                  List<Element> actionList = newSceneElement
+                          .getChild("Head")
+                          .getChild("Actions")
+                          .getChildren();
+                  
+                  for (Element e : actionList) {
+                        newScene.addObject(new GameObject(e.getAttributeValue("name")));
+                  }
+                  
+                  output.addScene(newScene);
             }
             catch (IOException e) {
                   System.err.println("There was a problem opening the file '" + filename + "'.");
