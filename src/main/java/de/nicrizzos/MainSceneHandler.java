@@ -155,6 +155,8 @@ public class MainSceneHandler {
             currentChapter = Chapters.getChapters().get(0);
             if (_chapterIndex > 0) {
                   currentChapter.setChapterIndex(_chapterIndex);
+                  player.setCurrentHealth(player.getHealth());
+                  player.setCurrentMana(player.getMana());
             }
             else {
                   currentChapter.setChapterIndex(-1);
