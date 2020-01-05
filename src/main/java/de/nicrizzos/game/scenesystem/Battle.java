@@ -1,7 +1,6 @@
 package de.nicrizzos.game.scenesystem;
 
 import de.nicrizzos.game.entities.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 

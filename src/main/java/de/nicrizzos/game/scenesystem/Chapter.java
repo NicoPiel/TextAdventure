@@ -1,7 +1,7 @@
 package de.nicrizzos.game.scenesystem;
 
 import de.nicrizzos.game.exceptions.*;
-
+import org.jdom2.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -39,6 +39,12 @@ public class Chapter {
             }
             
             else return null;
+      }
+      
+      public Chapter constructChapterFromFile(String chapterID) {
+            String filename = "scenes.xml";
+            
+            return null;
       }
       
       public String getName() {

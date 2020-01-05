@@ -16,7 +16,6 @@ public class GameScene extends SceneContent {
       public GameScene (String _name, String _desc) {
             this.name = _name;
             this.description = _desc;
-            //this.sceneScript = new ArrayList<>(Arrays.asList(_sceneScript));
             this.scriptPosition = 0;
       }
       
