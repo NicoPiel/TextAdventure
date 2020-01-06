@@ -108,9 +108,9 @@
                         </SubScenes>
                   </Scene>
                   <Battle>
-                        <Enemy name="Schmutziger Schleim" hitPoints="60" damage="50" defense="5"/>
-                        <Enemy name="Grober Goblin" hitPoints="100" damage="60" defense="30"/>
-                        <Enemy name="Zickiger Zigeuner" hitPoints="140" damage="62" defense="22"/>
+                        <Enemy name="Schmutziger Schleim" hitPoints="30" damage="50" defense="5"/>
+                        <Enemy name="Grober Goblin" hitPoints="60" damage="60" defense="30"/>
+                        <Enemy name="Zickiger Zigeuner" hitPoints="70" damage="60" defense="22"/>
                   </Battle>
                   <Scene id="2">
                         <Head>

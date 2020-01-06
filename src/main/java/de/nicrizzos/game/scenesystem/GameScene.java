@@ -65,7 +65,7 @@ public class GameScene extends SceneContent {
       }
       
       public ArrayList<SceneContent> getSubScenes() {
-            return subScenes;
+            return this.subScenes;
       }
       
       @Override
