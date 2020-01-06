@@ -76,20 +76,25 @@ public class Chapter {
                   
                   System.out.println("Retrieved chapter list..");
                   
+                  List<Element> sceneList = null;
                   
-                  
-                  List<Element> sceneList = doc
-                          .getRootElement()
-                          .getChild("Chapter")
-                          .getChildren();
-                  
-                  for (Element scene : sceneList) {
-                        System.out.println("Scene list isn't empty.");
+                  if (chapters != null && !chapters.isEmpty()) {
+                        for (Element e : chapters) {
+                              if (Integer.parseInt(e.getAttributeValue("id")) == _chapterID) {
+                                    sceneList = e.getChildren();
+                              }
+                        }
                         
-                        if (scene.getName().equals("Scene")) {
-                              output.addScene(constructScene(scene));
-                        } else if (scene.getName().equals("Battle")) {
-                              output.addScene(constructBattle(scene, output.getScenes().size()));
+                        if (sceneList != null && !sceneList.isEmpty()) {
+                              for (Element scene : sceneList) {
+                                    System.out.println("Scene list isn't empty.");
+            
+                                    if (scene.getName().equals("Scene")) {
+                                          output.addScene(constructScene(scene));
+                                    } else if (scene.getName().equals("Battle")) {
+                                          output.addScene(constructBattle(scene, output.getScenes().size()));
+                                    }
+                              }
                         }
                   }
             } catch (IOException e) {

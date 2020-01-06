@@ -13,7 +13,7 @@ public class Chapters {
             System.out.println("Creating chapters..");
             chapters = new ArrayList<>();
             try {
-                  Chapter chapter = Chapter.constructChapterFromFile();
+                  Chapter chapter = Chapter.constructChapterFromFile(1);
                   chapters.add(chapter);
             }
             catch (GameException e) {
