@@ -119,17 +119,19 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Map">
+          <Tab text="Debug">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="btn_lvlup" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#increaseExp" prefHeight="32.0" prefWidth="84.0" text="Level Up" />
+                        <Button fx:id="btn_fightme" layoutX="14.0" layoutY="56.0" mnemonicParsing="false" onAction="#CreateNewBattle" prefHeight="32.0" prefWidth="84.0" text="Battle Test" />
+                     </children></AnchorPane>
             </content>
           </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="btn_continue" layoutX="678.0" layoutY="502.0" mnemonicParsing="false" onAction="#continueThroughChapter" prefHeight="32.0" prefWidth="70.0" text="Weiter" />
       <AnchorPane fx:id="ap_action" layoutX="14.0" layoutY="557.0" prefHeight="200.0" prefWidth="750.0">
          <children>
-            <Button layoutX="14.0" layoutY="32.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Reden" />
             <Label layoutX="20.0" prefHeight="32.0" prefWidth="76.0" text="Aktionen" />
          </children>
       </AnchorPane>

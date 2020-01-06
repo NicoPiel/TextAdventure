@@ -214,7 +214,7 @@ public class MainSceneHandler {
                   currentChapter.setChapterIndex(-1);
             }
             
-            continueThroughChapter(null);
+            //continueThroughChapter(null);
 
             this.refreshScene();
       }
@@ -222,23 +222,32 @@ public class MainSceneHandler {
       public void refreshActionButtons() {
             GameScene scene = (GameScene) currentChapter.getScenes().get(0);
             ArrayList<GameObject> objects = scene.getSceneObjects();
-            int x = 14;
+            int x = 20;
             int y = 32;
             for (GameObject obj : objects) {
                   Button btn = new Button();
                   btn.setLayoutX(x);
                   btn.setLayoutY(y);
                   btn.setText(obj.getName());
-                  btn.setOnAction(event -> ScriptHandler(event));
+                  btn.setPrefHeight(32);
+                  btn.setPrefWidth(107);
+                  System.out.println(obj.getID());
+                  btn.setId(obj.getID());
+                  btn.setOnAction(this::ScriptHandler);
+                  ap_action.getChildren().add(btn);
                   
-                  
-                  x += 82;
+                  x += 116;
             }
       }
       @FXML
       public void ScriptHandler(ActionEvent e) { //Minimum 10000 Zeilen lockra EZ
             Button button = (Button) e.getSource();
-            System.out.println(button.getText());
+            System.out.println(button.getId());
+            switch (button.getId()) {
+                  case "1.1.0.lookAround"-> {
+                        System.out.println(button.getText());
+                  }
+            }
       
       
       
@@ -297,7 +306,7 @@ public class MainSceneHandler {
             sql.stopSQL();
       }
       
-      @FXML
+      /*@FXML
       private void continueThroughChapter(ActionEvent e) {
             SceneContent newScene = currentChapter.continueChapter();
       
@@ -313,7 +322,7 @@ public class MainSceneHandler {
                         ex.printStackTrace();
                   }
             }
-      }
+      }*/
       
       private void checkLevelUpButtons() {
             if (player.canLevelUp()) {

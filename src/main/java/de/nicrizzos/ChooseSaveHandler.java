@@ -109,21 +109,21 @@ public class ChooseSaveHandler {
             
             switch (button.getId()) {
                   case "btn_slot1" -> {
-                        System.out.println("Neger");
+                        System.out.println("Slot 1 selected..");
                         slot = 1;
                         save = new SQLiteManager(slot);
                         
                   
                   }
                   case "btn_slot2" -> {
-                        System.out.println("Neger1");
+                        System.out.println("Slot 2 selected..");
                         slot = 2;
                         save = new SQLiteManager(slot);
                         
             
                   }
                   case "btn_slot3" -> {
-                        System.out.println("Neger2");
+                        System.out.println("Slot 3 selected..");
                         slot = 3;
                         save = new SQLiteManager(slot);
                         
