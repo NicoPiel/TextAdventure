@@ -87,7 +87,7 @@ public class Chapter {
                         
                         if (sceneList != null && !sceneList.isEmpty()) {
                               for (Element scene : sceneList) {
-                                    System.out.println("Scene list isn't empty.");
+                                    System.out.println("Constructing scenes for chapter " + _chapterID);
             
                                     if (scene.getName().equals("Scene")) {
                                           output.addScene(constructScene(scene));
@@ -96,7 +96,9 @@ public class Chapter {
                                     }
                               }
                         }
+                        else System.err.println("Scene list empty.");
                   }
+                  else System.err.println("Chapter list empty.");
             } catch (IOException e) {
                   System.err.println("There was a problem opening the file '" + filename + "'.");
                   e.printStackTrace();
@@ -119,16 +121,12 @@ public class Chapter {
                     .getChild("Texts")
                     .getChildren();
       
-            System.out.println("Acquired description list for scene " + sceneID);
-      
             StringBuilder description = new StringBuilder();
       
             for (Element e : descriptionElementList) {
                   description.append(e.getText());
                   description.append("\n");
             }
-      
-            System.out.println("Built description for scene " + sceneID);
       
             GameScene newScene = new GameScene(newSceneName, description.toString());
       
@@ -137,11 +135,7 @@ public class Chapter {
                     .getChild("Actions")
                     .getChildren();
       
-            System.out.println("Acquired action list for scene " + sceneID);
-      
             for (Element e : actionList) {
-                  System.out.println("Adding objects to scene " + sceneID);
-            
                   if (e != null) {
                         newScene.addObject(
                                 new GameObject(
@@ -157,10 +151,19 @@ public class Chapter {
       
             System.out.println("Building sub-scenes for scene " + sceneID);
       
-            List<Element> subScenes = scene.getChildren("SubScene");
-      
-            for (Element e : subScenes) {
-                  newScene.addSubScene(constructScene(e));
+            Element subScenesElement = scene.getChild("SubScenes");
+            
+            if (subScenesElement != null) {
+                  List<Element> subScenes = subScenesElement.getChildren();
+                  
+                  if (subScenes != null && !subScenes.isEmpty()) {
+                        for (Element e : subScenes) {
+                              newScene.addSubScene(constructScene(e));
+                        }
+                  }
+                  else {
+                        System.err.println("Sub-scenes empty.");
+                  }
             }
       
             System.out.println("Done.");

@@ -2,7 +2,7 @@
 
 <Chapters>
     <Chapter id="1" name="Prolog">
-        <Scene id="1">
+        <Scene id="1.1">
             <Head>
                 <Texts>
                     <Text id="1">Du wachst eines schönen Morgens auf.</Text>
@@ -16,31 +16,33 @@
                     <Action name="Fenster" id="1.1.0.window"/>
                     <Action name="Tür" id="1.1.0.door"/>
                     <Action name="Weiterschlafen" id="1.1.0.keepSleeping"/>
-                    <Action name="Schrank" id="1.1.0.cabinet" specialAction="TrUe"/>
+                    <Action name="Schrank" id="1.1.0.cabinet" specialAction="true"/>
                 </Actions>
             </Head>
-            <SubScene id="1" name="Umschauen">
-                <Head>
-                    <Texts>
-                        <Text id="1">Du siehst ein paar Dinge am Boden liegen.</Text>
-                        <Text id="2">Darunter auch ein paar Socken, ein Holzschwert.</Text>
-                        <Text id="3">und ein Schlüssel für deine Truhe im Schrank.</Text>
-                        <Text id="4">Was möchtest du tun?</Text>
-                    </Texts>
-                    <Actions>
-                        <Action name="Socken" id="1.1.1.socken"/>
-                        <Action name="Holzschwert" id="1.1.1.woodenSword"/>
-                        <Action name="Schlüssel" id="1.1.1.key"/>
-                        <Action name="Zurück" id="1.1.1.back"/>
-                    </Actions>
-                </Head>
-            </SubScene>
+            <SubScenes>
+                <SubScene id="1.1.1" name="Umschauen">
+                    <Head>
+                        <Texts>
+                            <Text id="1">Du siehst ein paar Dinge am Boden liegen.</Text>
+                            <Text id="2">Darunter auch ein Paar Socken, ein Holzschwert.</Text>
+                            <Text id="3">und ein Schlüssel für deine Truhe im Schrank.</Text>
+                            <Text id="4">Was möchtest du tun?</Text>
+                        </Texts>
+                        <Actions>
+                            <Action name="Socken" id="1.1.1.socken"/>
+                            <Action name="Holzschwert" id="1.1.1.woodenSword"/>
+                            <Action name="Schlüssel" id="1.1.1.key"/>
+                            <Action name="Zurück" id="1.1.1.back"/>
+                        </Actions>
+                    </Head>
+                </SubScene>
+            </SubScenes>
         </Scene>
-        <Scene id="2">
+        <Scene id="1.2">
             <Head>
                 <Texts>
                     <Text id="1">Gut gemacht. Du bist jetzt kein Anfänger mehr.</Text>
-                    <Text id="1">Stolz sollst Du nun den Namen "Pleb" tragen.</Text>
+                    <Text id="2">Stolz sollst Du nun den Namen "Pleb" tragen.</Text>
                 </Texts>
                 <Actions>
                     <Action name="Umschauen" id="onUmschauenClicked"/>

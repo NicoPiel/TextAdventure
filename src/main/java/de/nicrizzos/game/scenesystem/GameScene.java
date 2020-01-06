@@ -18,6 +18,7 @@ public class GameScene extends SceneContent {
             this.id = _id;
             this.description = _desc;
             sceneObjects = new ArrayList<>();
+            subScenes = new ArrayList<>();
             this.scriptPosition = 0;
       }
       
@@ -61,7 +62,9 @@ public class GameScene extends SceneContent {
       }
       
       public void addSubScene (SceneContent _subScene) {
-            subScenes.add(_subScene);
+            if (_subScene != null) {
+                  subScenes.add(_subScene);
+            }
       }
       
       public ArrayList<SceneContent> getSubScenes() {
