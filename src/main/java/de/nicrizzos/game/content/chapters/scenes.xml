@@ -67,7 +67,7 @@
                                                 <Head>
                                                       <Texts>
                                                             <Text id="1">Das ist der Schlüssel für die Truhe in meinem Schrank.</Text>
-                                                            <Text id="2">, was da wohl drinne ist?</Text>
+                                                            <Text id="2">, was da wohl drin ist?</Text>
                                                             <Text id="3">Was möchtest du tun?</Text>
                                                       </Texts>
                                                       <Actions>
@@ -82,9 +82,9 @@
                                     <Head>
                                           <Texts>
                                                 <Text id="1">Es ist ein wunderschöner Tag draußen</Text>
-                                                <Text id="2">Die Vögel singen, die Blumen blühen, an Tagen wie diesen, Kinder wie du</Text>
+                                                <Text id="2">Die Vögel singen, die Blumen blühen, an Tagen wie diesen, Kinder wie du.</Text>
                                                 <Text id="3">...</Text>
-                                                <Text id="4">Sollten in der Hölle brennen</Text>
+                                                <Text id="4">Sollten in der Hölle brennen.</Text>
                                           </Texts>
                                           <Actions>
                                                 <Action name="Zurück" action="onBackToSceneOne"/>
@@ -94,10 +94,10 @@
                               <SubScene id="3" name="Schrank">
                                     <Head>
                                           <Texts>
-                                                <Text id="1">Das ist mein Kleiderschrank voll mit Pullover und Hosen</Text>
-                                                <Text id="2">Unten steht noch eine Truhe</Text>
-                                                <Text id="3">...</Text>
-                                                <Text id="4">Sollten in der Hölle brennen</Text>
+                                                <Text id="1">Das ist mein Kleiderschrank voll mit Pullovern und Hosen.</Text>
+                                                <Text id="2">Unten steht noch eine Truhe.</Text>
+                                                <Text id="2">... was da wohl drin ist?</Text>
+                                                <Text id="3">Was möchtest du tun?</Text>
                                           </Texts>
                                           <Actions>
                                                 <Action name="Öffnen" action="onOpenClicked"/>
@@ -112,6 +112,17 @@
                         <Enemy name="Grober Goblin" hitPoints="100" damage="60" defense="30"/>
                         <Enemy name="Zickiger Zigeuner" hitPoints="140" damage="62" defense="22"/>
                   </Battle>
+                  <Scene id="2">
+                        <Head>
+                              <Texts>
+                                    <Text id="1">Gut gemacht. Du bist jetzt kein Anfänger mehr.</Text>
+                                    <Text id="1">Stolz sollst Du nun den Namen "Pleb" tragen.</Text>
+                              </Texts>
+                              <Actions>
+                                    <Action name="Umschauen" action="onUmschauenClicked"/>
+                              </Actions>
+                        </Head>
+                  </Scene>
             </Scenes>
       </Chapter>
 </Chapters>

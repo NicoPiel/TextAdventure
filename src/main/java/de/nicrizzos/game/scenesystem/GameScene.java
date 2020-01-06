@@ -1,6 +1,7 @@
 package de.nicrizzos.game.scenesystem;
 
 import de.nicrizzos.game.GameObject;
+import de.nicrizzos.game.exceptions.GameException;
 
 import java.util.ArrayList;
 
@@ -10,6 +11,7 @@ public class GameScene extends SceneContent {
       
       protected int scriptPosition;
       protected ArrayList<GameObject> sceneObjects;
+      protected ArrayList<SceneContent> subScenes;
       
       
       public GameScene (String _id, String _desc) {
@@ -40,6 +42,16 @@ public class GameScene extends SceneContent {
             return description;
       }
       
+      public SceneContent getSubScene (String _id) throws GameException {
+            for (SceneContent c : subScenes) {
+                  if (c.getIdentification().equals(_id)) {
+                        return c;
+                  }
+            }
+            
+            throw new GameException("There is no such scene.");
+      }
+      
       public String getDescription() {
             return this.description;
       }
@@ -48,8 +60,25 @@ public class GameScene extends SceneContent {
             return sceneObjects;
       }
       
+      public void addSubScene (SceneContent _subScene) {
+            subScenes.add(_subScene);
+      }
+      
+      public ArrayList<SceneContent> getSubScenes() {
+            return subScenes;
+      }
+      
       @Override
       public String toString() {
             return id;
+      }
+      
+      @Override
+      public boolean equals(Object obj) {
+            if (obj instanceof GameScene) {
+                  return (this.id.equals(((GameScene) obj).id) && this.id.equals(((GameScene) obj).description));
+            }
+            
+            return false;
       }
 }

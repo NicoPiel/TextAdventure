@@ -82,68 +82,9 @@ public class Chapter {
                         System.out.println("Scene list isn't empty.");
                         
                         if (scene.getName().equals("Scene")) {
-                              System.out.println("Constructing: " + scene.getName());
-                              String newSceneName = scene.getAttributeValue("id");
-      
-                              List<Element> descriptionElementList = scene
-                                      .getChild("Head")
-                                      .getChild("Texts")
-                                      .getChildren();
-      
-                              System.out.println("Acquired description list.");
-                              
-                              StringBuilder description = new StringBuilder();
-      
-                              for (Element e : descriptionElementList) {
-                                    description.append(e.getText());
-                                    description.append("\n");
-                              }
-      
-                              System.out.println("Built description.");
-      
-                              GameScene newScene = new GameScene(newSceneName, description.toString());
-      
-                              List<Element> actionList = scene
-                                      .getChild("Head")
-                                      .getChild("Actions")
-                                      .getChildren();
-      
-                              System.out.println("Acquired action list.");
-      
-                              if (actionList != null && !actionList.isEmpty()) {
-                                    for (Element e : actionList) {
-                                          System.out.println("Adding objects..");
-                                          
-                                          if (e != null) {
-                                                System.out.println(e.getAttributeValue("name"));
-                                                newScene.addObject(new GameObject(e.getAttributeValue("name")));
-                                                System.out.println("Added object " + e.getAttributeValue("name"));
-                                          }
-                                          else throw new GameException("Adding object failed.");
-                                    }
-                              }
-                              else System.err.println("Action list empty.");
-                              
-                              System.out.println("Done.");
-      
-                              output.addScene(newScene);
-                        }
-                        
-                        else if (scene.getName().equals("Battle")) {
-                              System.out.println("Constructing: " + scene.getName());
-                              List<Element> enemies = scene.getChildren();
-                              ArrayList<Enemy> newEnemies = new ArrayList<>();
-                              
-                              for (Element e : enemies) {
-                                    newEnemies.add(new Enemy(
-                                            e.getAttributeValue("name"),
-                                            Integer.parseInt(e.getAttributeValue("hitPoints")),
-                                            Integer.parseInt(e.getAttributeValue("damage")),
-                                            Integer.parseInt(e.getAttributeValue("defense")))
-                                    );
-                              }
-                              
-                              output.addScene(new Battle(output.getScenes().size(), newEnemies));
+                              output.addScene(constructScene(scene));
+                        } else if (scene.getName().equals("Battle")) {
+                              output.addScene(constructBattle(scene, output.getScenes().size()));
                         }
                   }
             } catch (IOException e) {
@@ -155,6 +96,77 @@ public class Chapter {
             }
             
             return output;
+      }
+      
+      private static GameScene constructScene (Element scene) throws GameException {
+            String sceneID = scene.getAttributeValue("id");
+            
+            System.out.println("Constructing: " + scene.getName() + " " + sceneID);
+            String newSceneName = scene.getAttributeValue("id");
+      
+            List<Element> descriptionElementList = scene
+                    .getChild("Head")
+                    .getChild("Texts")
+                    .getChildren();
+      
+            System.out.println("Acquired description list for scene " + sceneID);
+      
+            StringBuilder description = new StringBuilder();
+      
+            for (Element e : descriptionElementList) {
+                  description.append(e.getText());
+                  description.append("\n");
+            }
+      
+            System.out.println("Built description for scene " + sceneID);
+      
+            GameScene newScene = new GameScene(newSceneName, description.toString());
+      
+            List<Element> actionList = scene
+                    .getChild("Head")
+                    .getChild("Actions")
+                    .getChildren();
+      
+            System.out.println("Acquired action list for scene " + sceneID);
+      
+            for (Element e : actionList) {
+                  System.out.println("Adding objects to scene " + sceneID);
+            
+                  if (e != null) {
+                        System.out.println(e.getAttributeValue("name"));
+                        newScene.addObject(new GameObject(e.getAttributeValue("name")));
+                        System.out.println("Added object " + e.getAttributeValue("name"));
+                  } else throw new GameException("Adding object failed.");
+            }
+      
+            System.out.println("Building sub-scenes for scene " + sceneID);
+      
+            List<Element> subScenes = scene.getChildren("SubScene");
+      
+            for (Element e : subScenes) {
+                  newScene.addSubScene(constructScene(e));
+            }
+      
+            System.out.println("Done.");
+      
+            return newScene;
+      }
+      
+      private static Battle constructBattle(Element _battle, int _index) {
+            System.out.println("Constructing: " + _battle.getName());
+            List<Element> enemies = _battle.getChildren();
+            ArrayList<Enemy> newEnemies = new ArrayList<>();
+      
+            for (Element e : enemies) {
+                  newEnemies.add(new Enemy(
+                          e.getAttributeValue("name"),
+                          Integer.parseInt(e.getAttributeValue("hitPoints")),
+                          Integer.parseInt(e.getAttributeValue("damage")),
+                          Integer.parseInt(e.getAttributeValue("defense")))
+                  );
+            }
+            
+            return new Battle(_index, newEnemies);
       }
       
       public void setName(String name) {
