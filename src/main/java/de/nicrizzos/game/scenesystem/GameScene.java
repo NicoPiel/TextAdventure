@@ -40,10 +40,6 @@ public class GameScene extends SceneContent {
       }
       
       public SceneContent getSubScene(String _id) throws GameException {
-            if (!this.hasSubScene(_id)) {
-                  throw new GameException("There is no such scene.");
-            }
-            
             for (SceneContent c : subScenes) {
                   if (c.getIdentification().equals(_id)) {
                         return c;
@@ -75,7 +71,7 @@ public class GameScene extends SceneContent {
       }
       
       public ArrayList<GameObject> getSceneObjects() {
-            return sceneObjects;
+            return this.sceneObjects;
       }
       
       public void addSubScene(SceneContent _subScene) {

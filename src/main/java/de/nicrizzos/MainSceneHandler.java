@@ -175,7 +175,7 @@ public class MainSceneHandler {
             
             currentChapter = Chapters.getChapters().get(0);
             
-       
+            
             this.refreshScene();
       }
       
@@ -196,20 +196,19 @@ public class MainSceneHandler {
             
             game = _game;
             player = Game.getActivePlayer();
-      
+            
             //TODO: refactoring und immer das richtige kapitel holen
             currentChapter = Chapters.getChapters().get(0);
             if (_chapterIndex > 0) {
                   currentChapter.setChapterIndex(_chapterIndex);
                   player.setCurrentHealth(player.getHealth());
                   player.setCurrentMana(player.getMana());
-            }
-            else {
+            } else {
                   currentChapter.setChapterIndex(-1);
             }
             
             //continueThroughChapter(null);
-
+            
             this.refreshScene();
       }
       
@@ -256,9 +255,9 @@ public class MainSceneHandler {
                         this.loadScene("1.1.2");
                   }
             }
-      
+            
             refreshScene();
-      
+            
       }
       
       /**
@@ -295,6 +294,7 @@ public class MainSceneHandler {
       
       /**
        * Prototype function to copy a game state to a different scene.
+       *
        * @param _game The game which needs to be copied.
        */
       public void importGame(Game _game) {
@@ -305,14 +305,9 @@ public class MainSceneHandler {
       }
       
       private void loadScene(String _id) {
-            try {
-                  SceneContent newSubScene = currentChapter.getCurrentScene().getSubScene(_id);
-                  currentChapter.setCurrentScene(newSubScene);
-            }
-            catch (GameException ex) {
-                  System.err.println(ex.getMessage());
-            }
-            
+            SceneContent newSubScene = currentChapter.getSceneByID(_id);
+            currentChapter.setCurrentScene(newSubScene);
+            System.out.println("Loaded " + newSubScene.getIdentification());
       }
       
       @FXML
@@ -320,8 +315,6 @@ public class MainSceneHandler {
             setPlayerInformation();
             checkLevelUpButtons();
             refreshActionButtons();
-            
-            
             
             ta_game.setText(currentChapter.getCurrentSceneDescription());
             

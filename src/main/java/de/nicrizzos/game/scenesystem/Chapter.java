@@ -196,8 +196,8 @@ public class Chapter {
             return new Battle(_index, newEnemies);
       }
       
-      public void setCurrentScene(SceneContent currentScene) {
-            this.currentScene = currentScene;
+      public void setCurrentScene(SceneContent _currentScene) {
+            this.currentScene = _currentScene;
       }
       
       public GameScene getCurrentScene() {
