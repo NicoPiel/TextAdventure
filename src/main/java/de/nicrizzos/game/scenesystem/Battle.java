@@ -100,8 +100,8 @@ public class Battle extends SceneContent {
       /**
        * Gets the enemy at the given position in the battle.
        * @param enemyPosition A value between 0 and 2 (inclusive).
-       * @return
-       * @throws IllegalArgumentException
+       * @return The enemy at that position.
+       * @throws IllegalArgumentException Thrown whenever the function tries to evaluate values greater than 2 or smaller than 0.
        */
       public Enemy getEnemy (int enemyPosition) throws IllegalArgumentException {
             if (enemyPosition < getNumberOfEnemies() && enemyPosition >= 0) {
@@ -110,14 +110,25 @@ public class Battle extends SceneContent {
             else throw new IllegalArgumentException("Wrong number of enemies.");
       }
       
+      /**
+       * @return The number of enemies in the battle.
+       */
       public int getNumberOfEnemies () {
             return this.enemies.size();
       }
       
+      /**
+       * Sets the player object to be used in this battle.
+       * @param _player Value
+       */
       public void setPlayer (Player _player) {
             this.player = _player;
       }
       
+      /**
+       * @return The index of this battle in the overall chapter or scene.
+       * @deprecated
+       */
       public int getChapterIndex() {
             return chapterIndex;
       }

@@ -32,13 +32,12 @@ public class GameObject {
       }
       
       /**
-       * Creates a game object by name. ID will be set equal to the name. Shouldn't use.
-       * @param _name The name for this game object.
-       * @deprecated 1.0
+       * Creates a game object by ID. Its name will be 'Empty object'.
+       * @param _id The ID for this game object.
        */
-      public GameObject (String _name) {
-            this.name = _name;
-            this.identification = this.name;
+      public GameObject (String _id) {
+            this.name = "Empty object";
+            this.identification = _id;
             this.specialAction = false;
       }
       
@@ -90,12 +89,12 @@ public class GameObject {
       
       /**
        * @param obj Object to compare with.
-       * @return True, if name and ID are equal.
+       * @return True, IDs are equal.
        */
       @Override
       public boolean equals(Object obj) {
             if (obj instanceof GameObject)
-                  return (this.name.equals(((GameObject) obj).getName())) && this.identification.equals(((GameObject) obj).getID());
+                  return this.identification.equals(((GameObject) obj).getID());
             else return false;
       }
 }

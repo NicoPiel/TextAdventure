@@ -4,7 +4,11 @@ import de.nicrizzos.game.entities.Player;
 
 import java.sql.*;
 
-
+/**
+ * Utility class for managing a database connection.
+ * @author Pascal Staadt.
+ * @version 1.3
+ */
 public class SQLiteManager {
       /**
        * The connection variable the SQLManager will be using

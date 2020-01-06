@@ -2,7 +2,8 @@ package de.nicrizzos.game.entities;
 
 /**
  * Represents the player object. It contains all the necessary fields and methods to create and maintain a player object.
- *
+ * @author Nico Piel
+ * @version 1.1
  * @see Entity
  */
 public class Player extends Entity {
@@ -17,19 +18,9 @@ public class Player extends Entity {
       private int experience;
       
       /**
-       * The experience required to reach the next level, as dictated by exp = 500 + (lvl - 1) * 500
+       * The experience required to reach the next level, as dictated by 'exp = 500 + (lvl - 1) * 500'
        */
       private int experienceRequiredForNextLevel;
-      
-      /**
-       * The player's hit points - how much damage they can take before dying.
-       */
-      private int health;
-      
-      /**
-       * The player's current health
-       */
-      private int currentHealth;
       
       /**
        * The player's mana - how many spells they can use.
@@ -42,27 +33,27 @@ public class Player extends Entity {
       private int currentMana;
       
       /**
-       * The player's strength - influences their damage with melee weaponry. Currently 7% damage bonus per point.
+       * The player's strength - influences their damage with melee weaponry. Currently, 7% damage bonus per point.
        */
       private int strength;
       
       /**
-       * The player's dexterity - influences their damage with ranged weaponry. Currently 7% damage bonus per point.
+       * The player's dexterity - influences their damage with ranged weaponry. Currently, 7% damage bonus per point.
        */
       private int dexterity;
       
       /**
-       * The player's magical prowess - influences their damage with spells and increases mana. Currently 7% damage bonus and 10 extra mana per point.
+       * The player's magical prowess - influences their damage with spells and increases mana. Currently, 7% damage bonus and 10 extra mana per point.
        */
       private int magic;
       
       /**
-       * The player's vitality - increases the player's hit points. Currently 20 hit points per point.
+       * The player's vitality - increases the player's hit points. Currently, 20 hit-points per point.
        */
       private int vitality;
       
       /**
-       * The player's defense - how much damage the player can absorb before it will affect their hit points. Currently 7% defense bonus per point.
+       * The player's defense - how much damage the player can absorb before it will affect their hit points. Currently, 7% defense bonus per point.
        */
       private int defensiveness;
       
@@ -96,7 +87,9 @@ public class Player extends Entity {
        */
       private int rhetoric;
       
-      
+      /**
+       * These can be invested in advancing skills and base stats.
+       */
       private int skillPoints;
       
       // Prototype inventory
@@ -119,7 +112,6 @@ public class Player extends Entity {
        * Whether the requirements for a level-up are met.
        */
       private boolean canLevelUp;
-      
       
       /**
        * Creates a new player object with the given name and the id "player".
@@ -222,10 +214,12 @@ public class Player extends Entity {
       
       private boolean defensive;
       
+      @Override
       public int getDamage () {
             return (int) (weaponDamage * (1 + (0.07 * getStrength())));
       }
       
+      @Override
       public int getDefense () {
             if (defensive) {
                   // Receive double defensiveness bonus
@@ -252,7 +246,6 @@ public class Player extends Entity {
       
       // -------------------- GETTERS --------------------
       
-      
       public int getLevel() {
             return this.level;
       }
@@ -271,14 +264,6 @@ public class Player extends Entity {
       
       public int getCurrentMana() {
             return this.currentMana;
-      }
-      
-      public int getHealth() {
-            return this.health;
-      }
-      
-      public int getCurrentHealth() {
-            return this.currentHealth;
       }
       
       public int getStrength() {
@@ -329,29 +314,33 @@ public class Player extends Entity {
             return skillPoints;
       }
       
-      public double getHealthPercentage () {
-            return ((double) this.getCurrentHealth()/this.getHealth());
-      }
-      
+      /**
+       * @return The ratio between the current mana and maximum mana as a floating points number.
+       */
       public double getManaPercentage () {
             return ((double) this.getCurrentMana()/this.getMana());
       }
       
+      /**
+       * @return The ratio between current experience-points and experience-points required for the next level as a floating points number.
+       */
       public double getExperiencePercentage() {
             return (double) getExperience()/getExperienceRequiredForNextLevel();
       }
       
+      /**
+       * @return True, because this is the player object.
+       */
       @Override
       public boolean isPlayer() {
             return true;
       }
       
+      /**
+       * @return True, if the number of skill-points is greater than 0.
+       */
       public boolean canLevelUp() {
             return this.canLevelUp;
-      }
-      
-      public boolean isAlive() {
-            return getCurrentHealth() > 0;
       }
       
       // -------------------- SETTERS --------------------
@@ -377,68 +366,49 @@ public class Player extends Entity {
             this.currentMana = _mana;
       }
       
-      public void setHealth(int _health) {
-            this.health = _health;
-      }
-      
-      public void setCurrentHealth(int _health) {
-            this.currentHealth = _health;
-      }
-      
       public void setStrength(int _strength) {
             this.strength = _strength;
       }
-      
       
       public void setDexterity(int _dexterity) {
             this.dexterity = _dexterity;
       }
       
-      
       public void setMagic(int _magic) {
             this.magic = _magic;
       }
-      
       
       public void setVitality(int _vitality) {
             this.vitality = _vitality;
       }
       
-      
       public void setDefensiveness(int _defensiveness) {
             this.defensiveness = _defensiveness;
       }
-      
       
       public void setLightFooted(int _lightFooted) {
             this.lightFooted = _lightFooted;
       }
       
-      
       public void setSlightOfHand(int _slightOfHand) {
             this.slightOfHand = _slightOfHand;
       }
-      
       
       public void setPerception(int _perception) {
             this.perception = _perception;
       }
       
-      
       public void setSurvivalism(int _survivalism) {
             this.survivalism = _survivalism;
       }
-      
       
       public void setKnowledge(int _knowledge) {
             this.knowledge = _knowledge;
       }
       
-      
       public void setRhetoric(int _rhetoric) {
             this.rhetoric = _rhetoric;
       }
-      
       
       public void setExperience(int _experience) {
             this.experience = _experience;
@@ -459,7 +429,6 @@ public class Player extends Entity {
       public void setCanLevelUp(boolean _canLevelUp) {
             this.canLevelUp = _canLevelUp;
       }
-      
       
       public void setSkillPoints(int _skillPoints) {
             this.skillPoints = _skillPoints;

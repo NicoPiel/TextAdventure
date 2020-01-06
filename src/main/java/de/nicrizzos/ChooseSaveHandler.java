@@ -9,12 +9,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * Handles selecting and deleting save-games.
+ * @author Pascal Staadt
+ * @version 1.0
+ */
 public class ChooseSaveHandler {
       @FXML
       private Button btn_slot1;
@@ -101,12 +105,13 @@ public class ChooseSaveHandler {
                         slot = 3;
                   }
             }
-      
+            
             System.out.println("Save " + slot + " deleted.");
             this.Init();
             
             
       }
+      
       @FXML
       void btn_save(ActionEvent e) throws IOException {
             Button button = (Button) e.getSource();
@@ -119,21 +124,21 @@ public class ChooseSaveHandler {
                         slot = 1;
                         save = new SQLiteManager(slot);
                         
-                  
+                        
                   }
                   case "btn_slot2" -> {
                         System.out.println("Slot 2 selected..");
                         slot = 2;
                         save = new SQLiteManager(slot);
                         
-            
+                        
                   }
                   case "btn_slot3" -> {
                         System.out.println("Slot 3 selected..");
                         slot = 3;
                         save = new SQLiteManager(slot);
                         
-            
+                        
                   }
             }
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -152,8 +157,7 @@ public class ChooseSaveHandler {
                         maincontroller.Init(slot, save.getPlayerName(), save, true);
                         save.stopSQL();
                   }
-            }
-            else System.out.println("Save stimmt nicht.");
+            } else System.out.println("Save stimmt nicht.");
             
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stageTheEventSourceNodeBelongs.setScene(sc);

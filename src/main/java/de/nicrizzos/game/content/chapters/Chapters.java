@@ -23,27 +23,32 @@ public class Chapters {
       
       /**
        * Call this to construct an internal structure of the 'scenes.xml'
+       * @see Chapter#constructChapterFromFile(int) 
        */
       public static void createChapters() {
             System.out.println("Creating chapters..");
+            // The path to the XML file containing the scene and chapter data.
             final String filename = "src/main/java/de/nicrizzos/game/content/chapters/scenes.xml";
             Document doc;
             
+            // The list to save those chapters in.
             chapters = new ArrayList<>();
             
             try {
+                  // Build a new XML reader.
                   doc = new SAXBuilder().build(filename);
       
+                  // Retrieve the root element, we'll work from there.
                   Element root = doc.getRootElement();
       
+                  // Get all chapters.
                   List<Element> chaptersList = root.getChildren();
                   
-                  int index = 1;
-                  
                   for (Element e : chaptersList) {
-                        Chapter chapter = Chapter.constructChapterFromFile(index);
+                        // Retrieve the <Chapter> tags and build the internal chapter structure.
+                        Chapter chapter = Chapter.constructChapterFromFile(Integer.parseInt(e.getAttributeValue("id")));
+                        // Add the chapter to the static list in this class.
                         chapters.add(chapter);
-                        index++;
                   }
                   
                   

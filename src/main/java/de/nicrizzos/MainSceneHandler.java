@@ -4,15 +4,12 @@ import de.nicrizzos.game.Game;
 import de.nicrizzos.game.GameObject;
 import de.nicrizzos.game.content.chapters.Chapters;
 import de.nicrizzos.game.entities.Player;
-import de.nicrizzos.game.exceptions.GameException;
 import de.nicrizzos.game.scenesystem.Battle;
 import de.nicrizzos.game.scenesystem.Chapter;
 import de.nicrizzos.game.scenesystem.GameScene;
 import de.nicrizzos.game.scenesystem.SceneContent;
 import de.nicrizzos.game.utils.SQLiteManager;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -31,8 +28,12 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.function.Function;
 
+/**
+ * This is where most of the stuff related to gameplay happens.
+ * @author Pascal Staadt
+ * @version 1.0
+ */
 public class MainSceneHandler {
       //region Variables
       @FXML
@@ -224,7 +225,6 @@ public class MainSceneHandler {
                   btn.setText(obj.getName());
                   btn.setPrefHeight(32);
                   btn.setPrefWidth(107);
-                  //System.out.println(obj.getID());
                   btn.setId(obj.getID());
                   btn.setOnAction(this::ScriptHandler);
                   ap_action.getChildren().add(btn);
@@ -372,6 +372,11 @@ public class MainSceneHandler {
             lbl_speech.setText(Integer.toString(player.getRhetoric()));
       }
       
+      /**
+       * Increases a stat based on the button pressed.
+       *
+       * @param e Button event.
+       */
       @FXML
       private void increaseStat(MouseEvent e) {
             
@@ -397,14 +402,23 @@ public class MainSceneHandler {
             
       }
       
+      /**
+       * DEBUG; grants 1000 exp.
+       */
       @FXML
       private void increaseExp() {
             player.addExperience(1000);
             refreshScene();
       }
       
+      /**
+       * DEBUG; creates a test battle.
+       *
+       * @param e Button event.
+       * @throws IOException Thrown, if there's something wrong with JavaFX.
+       */
       @FXML
-      private void CreateNewBattle(ActionEvent e) throws IOException {
+      private void createNewBattle(ActionEvent e) throws IOException {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("battlescreen.fxml"));
             Parent switchScene = fxmlLoader.load();
@@ -415,7 +429,14 @@ public class MainSceneHandler {
             stageTheEventSourceNodeBelongs.setScene(sc);
       }
       
-      private void CreateNewBattle(ActionEvent e, Battle _battle) throws IOException {
+      /**
+       * Creates a new battle screen using the given battle.
+       *
+       * @param e       Button event.
+       * @param _battle The Battle object to use when initiating a new scene.
+       * @throws IOException Thrown, if there's something wrong with JavaFX.
+       */
+      private void createNewBattle(ActionEvent e, Battle _battle) throws IOException {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("battlescreen.fxml"));
             Parent switchScene = fxmlLoader.load();
@@ -426,6 +447,9 @@ public class MainSceneHandler {
             stageTheEventSourceNodeBelongs.setScene(sc);
       }
       
+      /**
+       * Sets up the images used for the representation of the character's inventory.
+       */
       private void constructCharInventory() {
             setImageForInventorySlot(helmetSlot, "src/images/helmet.png");
             setImageForInventorySlot(chestplateSlot, "src/images/chestplate.jpg");
@@ -454,6 +478,11 @@ public class MainSceneHandler {
             setLevelUpButtonsVisible(false);
       }
       
+      /**
+       * Sets the small level-up buttons (in-)visible.
+       *
+       * @param visible Visible or not.
+       */
       void setLevelUpButtonsVisible(boolean visible) {
             p_def.setVisible(visible);
             p_dex.setVisible(visible);
@@ -468,6 +497,12 @@ public class MainSceneHandler {
             p_survivalism.setVisible(visible);
       }
       
+      /**
+       * Sets the image to be used for an inventory slot.
+       *
+       * @param _slot The slot that should get the image.
+       * @param _path The path to that image.
+       */
       void setImageForInventorySlot(ImageView _slot, String _path) {
             File f = new File(_path);
             Image i = new Image(f.toURI().toString());

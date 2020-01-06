@@ -124,7 +124,7 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="btn_lvlup" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#increaseExp" prefHeight="32.0" prefWidth="84.0" text="Level Up" />
-                        <Button fx:id="btn_fightme" layoutX="14.0" layoutY="56.0" mnemonicParsing="false" onAction="#CreateNewBattle" prefHeight="32.0" prefWidth="84.0" text="Battle Test" />
+                        <Button fx:id="btn_fightme" layoutX="14.0" layoutY="56.0" mnemonicParsing="false" onAction="#createNewBattle" prefHeight="32.0" prefWidth="84.0" text="Battle Test" />
                      </children></AnchorPane>
             </content>
           </Tab>

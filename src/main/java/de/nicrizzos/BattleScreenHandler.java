@@ -18,6 +18,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * This class handles battles and returns to the main screen afterwards.
+ * @author Pascal Staadt
+ * @version 1.0
+ */
 public class BattleScreenHandler {
 
       Game game;

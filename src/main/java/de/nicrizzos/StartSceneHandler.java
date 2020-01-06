@@ -10,6 +10,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Handles the main menu.
+ * @author Pascal Staadt
+ * @version 1.0
+ */
 public class StartSceneHandler {
 
       @FXML
