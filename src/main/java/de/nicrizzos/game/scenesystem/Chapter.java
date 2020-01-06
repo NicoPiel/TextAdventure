@@ -59,7 +59,7 @@ public class Chapter {
             this.scenes.add(_scene);
       }
       
-      public static Chapter constructChapterFromFile() throws GameException {
+      public static Chapter constructChapterFromFile(int _chapterID) throws GameException {
             System.out.println("Constructing scenes..");
             String filename = "src/main/java/de/nicrizzos/game/content/chapters/scenes.xml";
             Document doc;
@@ -72,10 +72,15 @@ public class Chapter {
                   doc = new SAXBuilder().build(filename);
                   System.out.println("Opening '" + filename + "'..");
                   
+                  List<Element> chapters = doc.getRootElement().getChildren("Chapter");
+                  
+                  System.out.println("Retrieved chapter list..");
+                  
+                  
+                  
                   List<Element> sceneList = doc
                           .getRootElement()
                           .getChild("Chapter")
-                          .getChild("Scenes")
                           .getChildren();
                   
                   for (Element scene : sceneList) {
