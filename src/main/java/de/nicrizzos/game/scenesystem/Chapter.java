@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Container for a number of scenes 
+ */
 public class Chapter {
       private String name;
       private int chapterIndex;

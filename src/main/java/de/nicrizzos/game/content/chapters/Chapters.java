@@ -11,10 +11,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Container for all the game's chapters (i.e. the XML structure).
+ */
 public class Chapters {
       
+      /**
+       * A list of all the chapters.
+       */
       static ArrayList<Chapter> chapters;
       
+      /**
+       * Call this to construct an internal structure of the 'scenes.xml'
+       */
       public static void createChapters() {
             System.out.println("Creating chapters..");
             final String filename = "src/main/java/de/nicrizzos/game/content/chapters/scenes.xml";
@@ -52,10 +61,18 @@ public class Chapters {
             System.out.println("Done creating chapters..");
       }
       
+      /**
+       * @return The chapter list.
+       */
       public static ArrayList<Chapter> getChapters() {
             return chapters;
       }
       
+      /**
+       * Gets you a chapter by the list's index.
+       * @param _index The index of the chapter to look for.
+       * @return A chapter object.
+       */
       public static Chapter getChapterByIndex (int _index) {
             try {
                   return getChapters().get(_index);

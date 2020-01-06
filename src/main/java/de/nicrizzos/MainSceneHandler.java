@@ -173,8 +173,7 @@ public class MainSceneHandler {
             
             System.out.println("Player created.");
             
-            currentChapter = Chapters.getChapters().get(0);
-            
+            currentChapter = game.getCurrentChapter();
             
             this.refreshScene();
       }
