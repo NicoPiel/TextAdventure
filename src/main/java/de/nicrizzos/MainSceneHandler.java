@@ -212,6 +212,9 @@ public class MainSceneHandler {
             this.refreshScene();
       }
       
+      /**
+       * Builds buttons according to the scene's object list.
+       */
       public void refreshActionButtons() {
             ap_action.getChildren().clear();
             GameScene scene = (GameScene) currentChapter.getCurrentScene();
@@ -233,6 +236,11 @@ public class MainSceneHandler {
             }
       }
       
+      /**
+       * This is where the magic happens.
+       * Takes scene objects and turns them into gameplay.
+       * @param e The relevant event.
+       */
       @FXML
       public void ScriptHandler(ActionEvent e) { //Minimum 10000 Zeilen lockra EZ
             Button button = (Button) e.getSource();
