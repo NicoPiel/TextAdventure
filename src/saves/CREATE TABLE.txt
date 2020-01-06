@@ -23,3 +23,28 @@ CREATE TABLE "player" (
 	"canLevelUp"	INTEGER,
 	PRIMARY KEY("name")
 )
+CREATE TABLE "Scene" (
+	"name"	TEXT NOT NULL,
+	"strength"	INTEGER,
+	"dexterity"	INTEGER,
+	"magic"	INTEGER,
+	"vitality"	INTEGER,
+	"defense"	INTEGER,
+	"lightFooted"	INTEGER,
+	"slightOfHand"	INTEGER,
+	"perception"	INTEGER,
+	"survivalism"	INTEGER,
+	"knowledge"	INTEGER,
+	"rhetoric"	INTEGER,
+	"level"	INTEGER,
+	"exp"	INTEGER,
+	"expNextLvl"	INTEGER,
+	"health"	INTEGER,
+	"currentHealth"	INTEGER,
+	"mana"	INTEGER,
+	"currentMana"	INTEGER,
+	"skillPoints"	INTEGER,
+	"created"	INTEGER,
+	"canLevelUp"	INTEGER,
+	PRIMARY KEY("name")
+)

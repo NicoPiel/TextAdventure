@@ -35,6 +35,47 @@
                             <Action name="Zurück" id="1.1.1.back"/>
                         </Actions>
                     </Head>
+                    <SubScenes>
+                        <SubScene id="1.1.1.1" name="Socken">
+                            <Head>
+                                <Texts>
+                                    <Text id="1">Ein paar rote, flauschige Stricksocken.</Text>
+                                    <Text id="2">Ein bisschen muffig aber noch zu ertragen.</Text>
+                                    <Text id="3">Was möchtest du tun?</Text>
+                                </Texts>
+                                <Actions>
+                                    <Action name="Mitnehmen" id="1.1.1.1.take"/>
+                                    <Action name="Zurück" id="1.1.1.1.back"/>
+                                </Actions>
+                            </Head>
+                        </SubScene>
+                        <SubScene id="1.1.1.2" name="Holzschwert">
+                            <Head>
+                                <Texts>
+                                    <Text id="1">Ein Spielzeug Holzschwert mit dem man wunderbar Ritter spielen kann.</Text>
+                                    <Text id="2">Es hat ein paar Schrammen von dem letzten Kampf mit meinem Bruder.</Text>
+                                    <Text id="3">Was möchtest du tun?</Text>
+                                </Texts>
+                                <Actions>
+                                    <Action name="Mitnehmen" id="1.1.1.2.take"/>
+                                    <Action name="Zurück" id="1.1.1.2.back"/>
+                                </Actions>
+                            </Head>
+                        </SubScene>
+                    </SubScenes>
+                </SubScene>
+                <SubScene id="1.1.2" name="Fenster">
+                    <Head>
+                        <Texts>
+                            <Text id="1">Es ist ein wunderschöner Tag draußen</Text>
+                            <Text id="2">Die Vögel singen, die Blumen blühen, an Tagen wie diesen, Kinder wie du.</Text>
+                            <Text id="3">...</Text>
+                            <Text id="4">Sollten in der Hölle brennen.</Text>
+                        </Texts>
+                        <Actions>
+                            <Action name="Zurück" id="1.1.2.back"/>
+                        </Actions>
+                    </Head>
                 </SubScene>
             </SubScenes>
         </Scene>

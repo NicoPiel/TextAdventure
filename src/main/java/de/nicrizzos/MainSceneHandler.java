@@ -175,13 +175,7 @@ public class MainSceneHandler {
             
             currentChapter = Chapters.getChapters().get(0);
             
-            try {
-                  ta_game.setText(currentChapter.startChapter());
-            }
-            catch (GameException e) {
-                  e.printStackTrace();
-            }
-            
+       
             this.refreshScene();
       }
       
@@ -220,6 +214,7 @@ public class MainSceneHandler {
       }
       
       public void refreshActionButtons() {
+            ap_action.getChildren().clear();
             GameScene scene = (GameScene) currentChapter.getCurrentScene();
             ArrayList<GameObject> objects = scene.getSceneObjects();
             int x = 20;
@@ -247,14 +242,18 @@ public class MainSceneHandler {
             switch (button.getId()) {
                   case "1.1.0.lookAround" -> {
                         System.out.println(button.getText());
-                        try {
-                              SceneContent newSubScene = currentChapter.getCurrentScene().getSubScene("1.1.1");
-                              currentChapter.setCurrentScene(newSubScene);
-                              ta_game.setText(currentChapter.getCurrentSceneDescription());
-                        }
-                        catch (GameException ex) {
-                              System.err.println(ex.getMessage());
-                        }
+                        this.loadScene("1.1.1");
+                        
+                  }
+                  case "1.1.0.window" -> {
+                        System.out.println(button.getText());
+                        this.loadScene("1.1.2");
+                  }
+                  case "1.1.1.socken" -> {
+                        this.loadScene("1.1.1.1");
+                  }
+                  case "1.1.1.1.back" -> {
+                        this.loadScene("1.1.2");
                   }
             }
       
@@ -305,11 +304,27 @@ public class MainSceneHandler {
             this.refreshScene();
       }
       
+      private void loadScene(String _id) {
+            try {
+                  SceneContent newSubScene = currentChapter.getCurrentScene().getSubScene(_id);
+                  currentChapter.setCurrentScene(newSubScene);
+            }
+            catch (GameException ex) {
+                  System.err.println(ex.getMessage());
+            }
+            
+      }
+      
       @FXML
       private void refreshScene() {
             setPlayerInformation();
             checkLevelUpButtons();
             refreshActionButtons();
+            
+            
+            
+            ta_game.setText(currentChapter.getCurrentSceneDescription());
+            
             sql.startSQL();
             sql.savePlayer(player);
             sql.stopSQL();
