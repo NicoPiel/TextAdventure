@@ -133,8 +133,14 @@ public class Chapter {
                   System.out.println("Adding objects to scene " + sceneID);
             
                   if (e != null) {
-                        System.out.println(e.getAttributeValue("name"));
-                        newScene.addObject(new GameObject(e.getAttributeValue("name")));
+                        newScene.addObject(
+                                new GameObject(
+                                        e.getAttributeValue("name"),
+                                        e.getAttributeValue("id"),
+                                        Boolean.parseBoolean(e.getAttributeValue("specialAction"))
+                                )
+                        );
+                        
                         System.out.println("Added object " + e.getAttributeValue("name"));
                   } else throw new GameException("Adding object failed.");
             }

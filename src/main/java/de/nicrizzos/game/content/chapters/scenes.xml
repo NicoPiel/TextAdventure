@@ -1,128 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Chapters>
-      <Chapter id="1" name="Prolog">
-            <Scenes>
-                  <Scene id="1">
+    <Chapter id="1" name="Prolog">
+        <Scenes>
+            <Scene id="1">
+                <Head>
+                    <Texts>
+                        <Text id="1">Du wachst eines schönen Morgens auf.</Text>
+                        <Text id="2">Du schaust dich um und stellst fest, du bist in deinem Zimmer.</Text>
+                        <Text id="3">Dein Fenster ist offen und du riechst etwas Leckeres.</Text>
+                        <Text id="4">Deine Tür ist geschlossen und es liegen allerlei Dinge in deinem Zimmer herum.</Text>
+                        <Text id="5">Was möchtest du tun?</Text> <!--If final text prepare Actions-->
+                    </Texts>
+                    <Actions>
+                        <Action name="Umschauen" action="onUmschauenClicked"/>
+                        <Action name="Fenster" action="onFensterClicked"/>
+                        <Action name="Tür" action="onTuerClicked"/>
+                        <Action name="Weiter schlafen" action="onSleepClicked"/>
+                        <Action name="Schrank" action="onSchrankClicked" locked="true"/>
+                    </Actions>
+                </Head>
+                <SubScenes>
+                    <SubScene id="1" name="Umschauen">
                         <Head>
-                               <Texts>
-                                    <Text id="1">Du wachst eines schönen Morgens auf.</Text>
-                                    <Text id="2">Du schaust dich um und stellst fest, du bist in deinem Zimmer.</Text>
-                                    <Text id="3">Dein Fenster ist offen und du riechst etwas Leckeres.</Text>
-                                    <Text id="4">Deine Tür ist geschlossen und es liegen allerlei Dinge in deinem Zimmer herum.</Text>
-                                    <Text id="5">Was möchtest du tun?</Text> <!--If final text prepare Actions-->
-                              </Texts>
-                              <Actions>
-                                    <Action name="Umschauen" action="onUmschauenClicked"/>
-                                    <Action name="Fenster" action="onFensterClicked"/>
-                                    <Action name="Tür" action="onTuerClicked"/>
-                                    <Action name="Weiter schlafen" action="onSleepClicked"/>
-                                    <Action name="Schrank" action="onSchrankClicked" locked="true"/>
-                              </Actions>
+                            <Texts>
+                                <Text id="1">Du siehst ein paar Dinge am Boden liegen.</Text>
+                                <Text id="2">Darunter auch ein paar Socken, ein Holzschwert.</Text>
+                                <Text id="3">und ein Schlüssel für deine Truhe im Schrank.</Text>
+                                <Text id="4">Was möchtest du tun?</Text>
+                            </Texts>
+                            <Actions>
+                                <Action name="Socken" action="onSockenClicked"/>
+                                <Action name="Holzschwert" action="onHolzSchwertClicked"/>
+                                <Action name="Schlüssel" action="onSchluesselClicked"/>
+                                <Action name="Zurück" action="onSleepClicked"/>
+                            </Actions>
                         </Head>
                         <SubScenes>
-                              <SubScene id="1" name="Umschauen">
-                                    <Head>
-                                          <Texts> 
-                                                <Text id="1">Du siehst ein paar Dinge am Boden liegen.</Text>
-                                                <Text id="2">Darunter auch ein paar Socken, ein Holzschwert.</Text>
-                                                <Text id="3">und ein Schlüssel für deine Truhe im Schrank.</Text>
-                                                <Text id="4">Was möchtest du tun?</Text>    
-                                          </Texts>   
-                                          <Actions>
-                                                <Action name="Socken" action="onSockenClicked"/>
-                                                <Action name="Holzschwert" action="onHolzSchwertClicked"/>
-                                                <Action name="Schlüssel" action="onSchluesselClicked"/>
-                                                <Action name="Zurück" action="onSleepClicked"/>
-                                          </Actions>
-                                    </Head>
-                                    <SubScenes>
-                                          <SubScene id="1" name="Socken">
-                                                <Head>
-                                                      <Texts>
-                                                            <Text id="1">Ein paar rote, flauschige Stricksocken. </Text>
-                                                            <Text id="2">Ein bisschen muffig aber noch zu ertragen.</Text>
-                                                            <Text id="3">Was möchtest du tun?</Text>
-                                                      </Texts>
-                                                      <Actions>
-                                                            <Action name="Mitnehmen" action="onMitnehmenClicked"/>
-                                                            <Action name="Zurück" action="onZurueckClicked"/>
-                                                      </Actions>
-                                                </Head>
-                                          </SubScene>
-                                          <SubScene id="2" name="Holzschwert">
-                                                <Head>
-                                                      <Texts>
-                                                            <Text id="1">Ein Spielzeug Holzschwert mit dem man wunderbar Ritter spielen kann.</Text>
-                                                            <Text id="2">Es hat ein paar Schrammen von dem letzten Kampf mit meinem Bruder.</Text>
-                                                            <Text id="3">Was möchtest du tun?</Text>
-                                                      </Texts>
-                                                      <Actions>
-                                                            <Action name="Mitnehmen" action="onMitnehmenClicked"/>
-                                                            <Action name="Zurück" action="onZurueckClicked"/>
-                                                      </Actions>
-                                                </Head>
-                                          </SubScene>
-                                          <SubScene id="3" name="Schlüssel">
-                                                <Head>
-                                                      <Texts>
-                                                            <Text id="1">Das ist der Schlüssel für die Truhe in meinem Schrank.</Text>
-                                                            <Text id="2">, was da wohl drin ist?</Text>
-                                                            <Text id="3">Was möchtest du tun?</Text>
-                                                      </Texts>
-                                                      <Actions>
-                                                            <Action name="Mitnehmen" action="onMitnehmenClicked"/>
-                                                            <Action name="Zurück" action="onZurueckClicked"/>
-                                                      </Actions>
-                                                </Head>
-                                          </SubScene>
-                                    </SubScenes>
-                              </SubScene>
-                              <SubScene id="2" name="Fenster">
-                                    <Head>
-                                          <Texts>
-                                                <Text id="1">Es ist ein wunderschöner Tag draußen</Text>
-                                                <Text id="2">Die Vögel singen, die Blumen blühen, an Tagen wie diesen, Kinder wie du.</Text>
-                                                <Text id="3">...</Text>
-                                                <Text id="4">Sollten in der Hölle brennen.</Text>
-                                          </Texts>
-                                          <Actions>
-                                                <Action name="Zurück" action="onBackToSceneOne"/>
-                                          </Actions>
-                                    </Head>
-                              </SubScene>
-                              <SubScene id="3" name="Schrank">
-                                    <Head>
-                                          <Texts>
-                                                <Text id="1">Das ist mein Kleiderschrank voll mit Pullovern und Hosen.</Text>
-                                                <Text id="2">Unten steht noch eine Truhe.</Text>
-                                                <Text id="2">... was da wohl drin ist?</Text>
-                                                <Text id="3">Was möchtest du tun?</Text>
-                                          </Texts>
-                                          <Actions>
-                                                <Action name="Öffnen" action="onOpenClicked"/>
-                                                <Action name="Zurück" action="onBackToSceneOne"/>
-                                          </Actions>
-                                    </Head>
-                              </SubScene>
+                            <SubScene id="1" name="Socken">
+                                <Head>
+                                    <Texts>
+                                        <Text id="1">Ein paar rote, flauschige Stricksocken. </Text>
+                                        <Text id="2">Ein bisschen muffig aber noch zu ertragen.</Text>
+                                        <Text id="3">Was möchtest du tun?</Text>
+                                    </Texts>
+                                    <Actions>
+                                        <Action name="Mitnehmen" action="onMitnehmenClicked"/>
+                                        <Action name="Zurück" action="onZurueckClicked"/>
+                                    </Actions>
+                                </Head>
+                            </SubScene>
+                            <SubScene id="2" name="Holzschwert">
+                                <Head>
+                                    <Texts>
+                                        <Text id="1">Ein Spielzeug Holzschwert mit dem man wunderbar Ritter spielen kann.</Text>
+                                        <Text id="2">Es hat ein paar Schrammen von dem letzten Kampf mit meinem Bruder.</Text>
+                                        <Text id="3">Was möchtest du tun?</Text>
+                                    </Texts>
+                                    <Actions>
+                                        <Action name="Mitnehmen" action="onMitnehmenClicked"/>
+                                        <Action name="Zurück" action="onZurueckClicked"/>
+                                    </Actions>
+                                </Head>
+                            </SubScene>
+                            <SubScene id="3" name="Schlüssel">
+                                <Head>
+                                    <Texts>
+                                        <Text id="1">Das ist der Schlüssel für die Truhe in meinem Schrank.</Text>
+                                        <Text id="2">, was da wohl drin ist?</Text>
+                                        <Text id="3">Was möchtest du tun?</Text>
+                                    </Texts>
+                                    <Actions>
+                                        <Action name="Mitnehmen" action="onMitnehmenClicked"/>
+                                        <Action name="Zurück" action="onZurueckClicked"/>
+                                    </Actions>
+                                </Head>
+                            </SubScene>
                         </SubScenes>
-                  </Scene>
-                  <Battle>
-                        <Enemy name="Schmutziger Schleim" hitPoints="30" damage="50" defense="5"/>
-                        <Enemy name="Grober Goblin" hitPoints="60" damage="60" defense="30"/>
-                        <Enemy name="Zickiger Zigeuner" hitPoints="70" damage="60" defense="22"/>
-                  </Battle>
-                  <Scene id="2">
+                    </SubScene>
+                    <SubScene id="2" name="Fenster">
                         <Head>
-                              <Texts>
-                                    <Text id="1">Gut gemacht. Du bist jetzt kein Anfänger mehr.</Text>
-                                    <Text id="1">Stolz sollst Du nun den Namen "Pleb" tragen.</Text>
-                              </Texts>
-                              <Actions>
-                                    <Action name="Umschauen" action="onUmschauenClicked"/>
-                              </Actions>
+                            <Texts>
+                                <Text id="1">Es ist ein wunderschöner Tag draußen</Text>
+                                <Text id="2">Die Vögel singen, die Blumen blühen, an Tagen wie diesen, Kinder wie du.</Text>
+                                <Text id="3">...</Text>
+                                <Text id="4">Sollten in der Hölle brennen.</Text>
+                            </Texts>
+                            <Actions>
+                                <Action name="Zurück" action="onBackToSceneOne"/>
+                            </Actions>
                         </Head>
-                  </Scene>
-            </Scenes>
-      </Chapter>
+                    </SubScene>
+                    <SubScene id="3" name="Schrank">
+                        <Head>
+                            <Texts>
+                                <Text id="1">Das ist mein Kleiderschrank voll mit Pullovern und Hosen.</Text>
+                                <Text id="2">Unten steht noch eine Truhe.</Text>
+                                <Text id="2">... was da wohl drin ist?</Text>
+                                <Text id="3">Was möchtest du tun?</Text>
+                            </Texts>
+                            <Actions>
+                                <Action name="Öffnen" action="onOpenClicked"/>
+                                <Action name="Zurück" action="onBackToSceneOne"/>
+                            </Actions>
+                        </Head>
+                    </SubScene>
+                </SubScenes>
+            </Scene>
+            <Battle>
+                <Enemy name="Schmutziger Schleim" hitPoints="30" damage="50" defense="5"/>
+                <Enemy name="Grober Goblin" hitPoints="60" damage="60" defense="30"/>
+                <Enemy name="Zickiger Zigeuner" hitPoints="70" damage="60" defense="22"/>
+            </Battle>
+            <Scene id="2">
+                <Head>
+                    <Texts>
+                        <Text id="1">Gut gemacht. Du bist jetzt kein Anfänger mehr.</Text>
+                        <Text id="1">Stolz sollst Du nun den Namen "Pleb" tragen.</Text>
+                    </Texts>
+                    <Actions>
+                        <Action name="Umschauen" action="onUmschauenClicked"/>
+                    </Actions>
+                </Head>
+            </Scene>
+        </Scenes>
+    </Chapter>
 </Chapters>
