@@ -23,7 +23,6 @@
             <Font size="18.0" />
          </font>
       </TextArea>
-      <Label layoutX="14.0" layoutY="557.0" prefHeight="32.0" prefWidth="76.0" text="Aktionen" />
       <ProgressBar fx:id="pgb_life" layoutX="800.0" layoutY="580.0" prefWidth="200.0" progress="1.0" />
       <Pane layoutX="800.0" layoutY="285.0" prefHeight="233.0" prefWidth="200.0">
          <children>
@@ -78,14 +77,6 @@
       <Label layoutX="800.0" layoutY="613.0" text="Mana:" />
       <Label fx:id="lbl_life" layoutX="853.0" layoutY="557.0" text="141 / 141" />
       <Label fx:id="lbl_mana" layoutX="863.0" layoutY="613.0" text="99/99" />
-      <Button layoutX="14.0" layoutY="590.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Reden" />
-      <Button layoutX="14.0" layoutY="630.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Gehen" />
-      <Button fx:id="btn_fight" layoutX="14.0" layoutY="670.0" mnemonicParsing="false" onAction="#CreateNewBattle" prefHeight="32.0" prefWidth="70.0" text="Kämpfen" />
-      <Button layoutX="527.0" layoutY="590.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Dialog 1" />
-      <Button layoutX="527.0" layoutY="630.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Dialog 2" />
-      <Button layoutX="527.0" layoutY="710.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Dialog 4" />
-      <Button layoutX="527.0" layoutY="670.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Dialog 3" />
-      <Button layoutX="14.0" layoutY="710.0" mnemonicParsing="false" onAction="#increaseExp" prefHeight="32.0" prefWidth="70.0" text="Level Up" />
       <ProgressBar fx:id="pgb_exp" layoutX="800.0" layoutY="688.0" prefWidth="200.0" progress="0.0" />
       <Label layoutX="800.0" layoutY="667.0" text="Erfahrung:" />
       <Label fx:id="lbl_exp" layoutX="865.0" layoutY="667.0" text="Label" />
@@ -136,5 +127,11 @@
         </tabs>
       </TabPane>
       <Button fx:id="btn_continue" layoutX="678.0" layoutY="502.0" mnemonicParsing="false" onAction="#continueThroughChapter" prefHeight="32.0" prefWidth="70.0" text="Weiter" />
+      <AnchorPane fx:id="ap_action" layoutX="14.0" layoutY="557.0" prefHeight="200.0" prefWidth="750.0">
+         <children>
+            <Button layoutX="14.0" layoutY="32.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Reden" />
+            <Label layoutX="20.0" prefHeight="32.0" prefWidth="76.0" text="Aktionen" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

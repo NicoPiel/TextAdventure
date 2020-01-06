@@ -11,27 +11,35 @@ import de.nicrizzos.game.scenesystem.GameScene;
 import de.nicrizzos.game.scenesystem.SceneContent;
 import de.nicrizzos.game.utils.SQLiteManager;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.function.Function;
 
 public class MainSceneHandler {
       //region Variables
       @FXML
       private TextArea ta_game;
+      
+      @FXML
+      private AnchorPane ap_action;
       
       @FXML
       private ProgressBar pgb_life;
@@ -215,23 +223,22 @@ public class MainSceneHandler {
             GameScene scene = (GameScene) currentChapter.getScenes().get(0);
             ArrayList<GameObject> objects = scene.getSceneScript();
             int x = 14;
-            int y = 590;
+            int y = 32;
             for (GameObject obj : objects) {
+                  Button btn = new Button();
+                  btn.setLayoutX(x);
+                  btn.setLayoutY(y);
+                  btn.setText(obj.getName());
+                  btn.setOnAction(event -> ScriptHandler(event));
                   
                   
-                  
-                  obj.getName();
-                  
-                  
+                  x += 82;
             }
-      
-      
-      
-      
-      
-      
-      
-      
+      }
+      @FXML
+      public void ScriptHandler(ActionEvent e) { //Minimum 10000 Zeilen lockra EZ
+            Button button = (Button) e.getSource();
+            System.out.println(button.getText());
       
       
       
@@ -286,6 +293,7 @@ public class MainSceneHandler {
       private void refreshScene() {
             setPlayerInformation();
             checkLevelUpButtons();
+            refreshActionButtons();
             sql.startSQL();
             sql.savePlayer(player);
             sql.stopSQL();
