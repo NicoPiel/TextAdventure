@@ -208,6 +208,27 @@ public class Chapter {
             return null;
       }
       
+      public GameScene getSceneByID (String _id) {
+            for (SceneContent scn : scenes) {
+                  if (scn instanceof GameScene) {
+                        if (scn.getIdentification().equals(_id)) {
+                              return (GameScene) scn;
+                        }
+                        else {
+                              try {
+                                    return (GameScene) ((GameScene) scn).getSubScene(_id);
+                              }
+                              catch (GameException e) {
+                                    System.err.println("Something went wrong with the sub-scenes.");
+                                    e.printStackTrace();
+                              }
+                        }
+                  }
+            }
+            
+            return null;
+      }
+      
       public Battle getCurrentBattle() {
             if (currentScene instanceof Battle) {
                   return (Battle) currentScene;

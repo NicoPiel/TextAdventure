@@ -40,15 +40,19 @@ public class GameScene extends SceneContent {
       }
       
       public SceneContent getSubScene(String _id) throws GameException {
-            if (this.hasSubScene(_id)) {
-                  for (SceneContent c : subScenes) {
-                        if (c.getIdentification().equals(_id)) {
-                              return c;
-                        }
+            if (!this.hasSubScene(_id)) {
+                  throw new GameException("There is no such scene.");
+            }
+            
+            for (SceneContent c : subScenes) {
+                  if (c.getIdentification().equals(_id)) {
+                        return c;
+                  } else if (c instanceof GameScene) {
+                        return ((GameScene) c).getSubScene(_id);
                   }
             }
             
-            throw new GameException("There is no such scene.");
+            return null;
       }
       
       public boolean hasSubScene(String _id) {
@@ -60,8 +64,7 @@ public class GameScene extends SceneContent {
                         if (c.getIdentification().equals(_id)) {
                               return true;
                         }
-                  }
-                  else System.err.println("c is null.");
+                  } else System.err.println("c is null.");
             }
             
             return false;
