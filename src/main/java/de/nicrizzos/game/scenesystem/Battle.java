@@ -35,6 +35,11 @@ public class Battle extends SceneContent {
             this.chapterIndex = _chapterIndex;
       }
       
+      public Battle (int _chapterIndex, ArrayList<Enemy> _enemies) {
+            this.enemies = _enemies;
+            this.chapterIndex = _chapterIndex;
+      }
+      
       /**
        * Allows enemies to perform actions; currently only lets them attack.
        */

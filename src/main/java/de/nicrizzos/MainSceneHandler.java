@@ -221,7 +221,7 @@ public class MainSceneHandler {
       
       public void refreshActionButtons() {
             GameScene scene = (GameScene) currentChapter.getScenes().get(0);
-            ArrayList<GameObject> objects = scene.getSceneScript();
+            ArrayList<GameObject> objects = scene.getSceneObjects();
             int x = 14;
             int y = 32;
             for (GameObject obj : objects) {
@@ -286,8 +286,6 @@ public class MainSceneHandler {
             constructCharInventory();
             this.refreshScene();
       }
-      
-      
       
       @FXML
       private void refreshScene() {

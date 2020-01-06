@@ -2,6 +2,7 @@ package de.nicrizzos.game.scenesystem;
 
 import de.nicrizzos.game.Game;
 import de.nicrizzos.game.GameObject;
+import de.nicrizzos.game.entities.Enemy;
 import de.nicrizzos.game.exceptions.*;
 import org.jdom2.*;
 import org.jdom2.input.SAXBuilder;
@@ -19,20 +20,20 @@ public class Chapter {
       
       public Chapter() {
             this.name = "ERROR_CHAPTER_NO_NAME";
-            SceneContent[] _scenes = new SceneContent[] {
+            SceneContent[] _scenes = new SceneContent[]{
                     new GameScene("ERROR_CHAPTER_NO_NAME", "ERROR_CHAPTER_NO_NAME")
             };
             this.scenes = new ArrayList<>(Arrays.asList(_scenes));
             chapterIndex = 0;
       }
       
-      public Chapter (String _name, SceneContent[] _scenes) {
+      public Chapter(String _name, SceneContent[] _scenes) {
             this.name = _name;
             this.scenes = new ArrayList<>(Arrays.asList(_scenes));
             chapterIndex = 0;
       }
       
-      public Chapter (String _name, int _chapterIndex, SceneContent[] _scenes) {
+      public Chapter(String _name, int _chapterIndex, SceneContent[] _scenes) {
             this.name = _name;
             this.chapterIndex = _chapterIndex;
             this.scenes = new ArrayList<>(Arrays.asList(_scenes));
@@ -51,63 +52,104 @@ public class Chapter {
             
             if (chapterIndex < scenes.size()) {
                   return scenes.get(chapterIndex);
-            }
-            
-            else return null;
+            } else return null;
       }
       
       public void addScene(SceneContent _scene) {
             this.scenes.add(_scene);
       }
       
-      public static Chapter constructChapterFromFile() {
+      public static Chapter constructChapterFromFile() throws GameException {
             System.out.println("Constructing scenes..");
             String filename = "src/main/java/de/nicrizzos/game/content/chapters/scenes.xml";
             Document doc;
             Chapter output = new Chapter();
+            
+            // Removes error scene
             output.scenes.remove(0);
             
             try {
                   doc = new SAXBuilder().build(filename);
+                  System.out.println("Opening '" + filename + "'..");
                   
-                  Element newSceneElement = doc.getRootElement()
+                  List<Element> sceneList = doc
+                          .getRootElement()
                           .getChild("Chapter")
                           .getChild("Scenes")
-                          .getChild("Scene");
-                  
-                  
-                  String newSceneName = newSceneElement.getAttributeValue("id");
-                  
-                  List<Element> descriptionElementList = newSceneElement
-                                  .getChild("Head")
-                                  .getChild("Texts")
-                                  .getChildren();
-                  
-                  StringBuilder description = new StringBuilder();
-                  
-                  for (Element e : descriptionElementList) {
-                        description.append(e.getText());
-                        description.append("\n");
-                  }
-                  
-                  GameScene newScene = new GameScene(newSceneName, description.toString());
-                  
-                  List<Element> actionList = newSceneElement
-                          .getChild("Head")
-                          .getChild("Actions")
                           .getChildren();
                   
-                  for (Element e : actionList) {
-                        newScene.addObject(new GameObject(e.getAttributeValue("name")));
+                  for (Element scene : sceneList) {
+                        System.out.println("Scene list isn't empty.");
+                        
+                        if (scene.getName().equals("Scene")) {
+                              System.out.println("Constructing: " + scene.getName());
+                              String newSceneName = scene.getAttributeValue("id");
+      
+                              List<Element> descriptionElementList = scene
+                                      .getChild("Head")
+                                      .getChild("Texts")
+                                      .getChildren();
+      
+                              System.out.println("Acquired description list.");
+                              
+                              StringBuilder description = new StringBuilder();
+      
+                              for (Element e : descriptionElementList) {
+                                    description.append(e.getText());
+                                    description.append("\n");
+                              }
+      
+                              System.out.println("Built description.");
+      
+                              GameScene newScene = new GameScene(newSceneName, description.toString());
+      
+                              List<Element> actionList = scene
+                                      .getChild("Head")
+                                      .getChild("Actions")
+                                      .getChildren();
+      
+                              System.out.println("Acquired action list.");
+      
+                              if (actionList != null && !actionList.isEmpty()) {
+                                    for (Element e : actionList) {
+                                          System.out.println("Adding objects..");
+                                          
+                                          if (e != null) {
+                                                System.out.println(e.getAttributeValue("name"));
+                                                newScene.addObject(new GameObject(e.getAttributeValue("name")));
+                                                System.out.println("Added object " + e.getAttributeValue("name"));
+                                          }
+                                          else throw new GameException("Adding object failed.");
+                                    }
+                              }
+                              else System.err.println("Action list empty.");
+                              
+                              System.out.println("Done.");
+      
+                              output.addScene(newScene);
+                        }
+                        
+                        else if (scene.getName().equals("Battle")) {
+                              System.out.println("Constructing: " + scene.getName());
+                              List<Element> enemies = scene.getChildren();
+                              ArrayList<Enemy> newEnemies = new ArrayList<>();
+                              
+                              for (Element e : enemies) {
+                                    newEnemies.add(new Enemy(
+                                            e.getAttributeValue("name"),
+                                            Integer.parseInt(e.getAttributeValue("hitPoints")),
+                                            Integer.parseInt(e.getAttributeValue("damage")),
+                                            Integer.parseInt(e.getAttributeValue("defense")))
+                                    );
+                              }
+                              
+                              output.addScene(new Battle(output.getScenes().size(), newEnemies));
+                        }
                   }
-                  
-                  output.addScene(newScene);
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                   System.err.println("There was a problem opening the file '" + filename + "'.");
                   e.printStackTrace();
-            }
-            catch (JDOMException e) {
+            } catch (JDOMException e) {
                   System.err.println("JDOM ran into a problem.");
                   e.printStackTrace();
             }
