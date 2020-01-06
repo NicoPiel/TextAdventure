@@ -40,11 +40,18 @@ public class GameScene extends SceneContent {
       }
       
       public SceneContent getSubScene(String _id) throws GameException {
-            for (SceneContent c : subScenes) {
-                  if (c.getIdentification().equals(_id)) {
-                        return c;
-                  } else if (c instanceof GameScene) {
-                        return ((GameScene) c).getSubScene(_id);
+            if (!this.hasSubScene(_id)) {
+                  for (SceneContent c : subScenes) {
+                        if (c instanceof GameScene) {
+                              return ((GameScene) c).getSubScene(_id);
+                        }
+                  }
+            }
+            else {
+                  for (SceneContent c : subScenes) {
+                        if (c.getIdentification().equals(_id)) {
+                              return c;
+                        }
                   }
             }
             
