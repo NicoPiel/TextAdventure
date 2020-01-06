@@ -31,7 +31,7 @@ public class SQLiteManager {
       public void startSQL() {
             try {
                   Class.forName("org.sqlite.JDBC"); //this accesses the Driver in JDBC.
-                  System.out.println("jdbc driver successfully accessed.");
+                  //System.out.println("jdbc driver successfully accessed.");
             } catch (ClassNotFoundException e) {
                   e.printStackTrace();
                   System.err.println("jdbc driver unavailable!");
@@ -42,7 +42,7 @@ public class SQLiteManager {
                   // With the method getConnection() from DriverManager, we're trying to set
                   // the connection's url, username, password to the variables we made earlier and
                   // trying to get a connection at the same time. JDBC allows us to do this.
-                  System.out.println("SQL connection opened.");
+                  //System.out.println("SQL connection opened.");
             } catch (SQLException e) {
                   e.printStackTrace();
                   System.err.println("Could not open MySQL connection.");
@@ -57,7 +57,7 @@ public class SQLiteManager {
                   if (connection != null && !connection.isClosed()) {
                         // Checking if the connection is null to avoid receiving a null-pointer
                         connection.close(); // Closing the connection.
-                        System.out.println("SQL connection closed.");
+                        //System.out.println("SQL connection closed.");
                   }
             } catch (Exception e) {
                   e.printStackTrace();
@@ -122,7 +122,6 @@ public class SQLiteManager {
             try {
                   ResultSet result = executeWithResult(sql);
                   if (result.next()) {
-                        System.out.println("true");
                         return true;
                   }
             } catch (SQLException e) {
@@ -141,7 +140,6 @@ public class SQLiteManager {
             try {
                   ResultSet result = executeWithResult(sql);
                   if (result.next()) {
-                        System.out.println(result.getString("name"));
                         return result.getString("name");
                   }
             } catch (SQLException e) {

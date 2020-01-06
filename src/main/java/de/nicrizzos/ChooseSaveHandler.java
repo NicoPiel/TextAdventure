@@ -30,8 +30,6 @@ public class ChooseSaveHandler {
       private Button btn_delete3;
       
       public void Init() {
-            
-            
             this.checkButtons();
       }
       
@@ -74,29 +72,37 @@ public class ChooseSaveHandler {
       @FXML
       public void btn_delete(ActionEvent e) {
             Button button = (Button) e.getSource();
-            System.out.println(button.getId());
+            int slot = 0;
+            
+            
             switch (button.getId()) {
                   case "btn_delete1" -> {
                         SQLiteManager save1 = new SQLiteManager(1);
                         save1.startSQL();
                         save1.deleteSave();
                         save1.stopSQL();
+                        
+                        slot = 1;
                   }
                   case "btn_delete2" -> {
                         SQLiteManager save2 = new SQLiteManager(2);
                         save2.startSQL();
                         save2.deleteSave();
                         save2.stopSQL();
+                        
+                        slot = 2;
                   }
                   case "btn_delete3" -> {
                         SQLiteManager save3 = new SQLiteManager(3);
                         save3.startSQL();
                         save3.deleteSave();
                         save3.stopSQL();
+                        
+                        slot = 3;
                   }
-                  
-                  
             }
+      
+            System.out.println("Save " + slot + " deleted.");
             this.Init();
             
             
@@ -163,6 +169,5 @@ public class ChooseSaveHandler {
                   return result.get();
             }
             return null;
-            
       }
 }

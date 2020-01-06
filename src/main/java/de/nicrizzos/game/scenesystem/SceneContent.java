@@ -8,6 +8,6 @@ public abstract class SceneContent {
       }
       
       public String getIdentification() {
-            return identification;
+            return this.identification;
       }
 }

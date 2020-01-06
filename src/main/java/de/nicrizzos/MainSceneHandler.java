@@ -171,12 +171,12 @@ public class MainSceneHandler {
             sql.savePlayer(player);
             sql.stopSQL();
             
+            System.out.println("Player created.");
+            
             currentChapter = Chapters.getChapters().get(0);
             
             try {
                   ta_game.setText(currentChapter.startChapter());
-                  
-                  
             }
             catch (GameException e) {
                   e.printStackTrace();
@@ -220,7 +220,7 @@ public class MainSceneHandler {
       }
       
       public void refreshActionButtons() {
-            GameScene scene = (GameScene) currentChapter.getScenes().get(0);
+            GameScene scene = (GameScene) currentChapter.getCurrentScene();
             ArrayList<GameObject> objects = scene.getSceneObjects();
             int x = 20;
             int y = 32;
@@ -231,7 +231,7 @@ public class MainSceneHandler {
                   btn.setText(obj.getName());
                   btn.setPrefHeight(32);
                   btn.setPrefWidth(107);
-                  System.out.println(obj.getID());
+                  //System.out.println(obj.getID());
                   btn.setId(obj.getID());
                   btn.setOnAction(this::ScriptHandler);
                   ap_action.getChildren().add(btn);
@@ -239,17 +239,26 @@ public class MainSceneHandler {
                   x += 116;
             }
       }
+      
       @FXML
       public void ScriptHandler(ActionEvent e) { //Minimum 10000 Zeilen lockra EZ
             Button button = (Button) e.getSource();
-            System.out.println(button.getId());
+            //System.out.println(button.getId());
             switch (button.getId()) {
-                  case "1.1.0.lookAround"-> {
+                  case "1.1.0.lookAround" -> {
                         System.out.println(button.getText());
+                        try {
+                              SceneContent newSubScene = currentChapter.getCurrentScene().getSubScene("1.1.1");
+                              currentChapter.setCurrentScene(newSubScene);
+                              ta_game.setText(currentChapter.getCurrentSceneDescription());
+                        }
+                        catch (GameException ex) {
+                              System.err.println(ex.getMessage());
+                        }
                   }
             }
       
-      
+            refreshScene();
       
       }
       
@@ -360,7 +369,7 @@ public class MainSceneHandler {
       private void increaseStat(MouseEvent e) {
             
             ImageView image = (ImageView) e.getSource();
-            System.out.println(image.getId());
+            
             switch (image.getId()) {
                   case "p_str" -> player.increaseStat("strength");
                   case "p_dex" -> player.increaseStat("dexterity");
@@ -374,6 +383,9 @@ public class MainSceneHandler {
                   case "p_knowledge" -> player.increaseStat("knowledge");
                   case "p_rhetoric" -> player.increaseStat("rhetoric");
             }
+            
+            System.out.println("Increased " + image.getId());
+            
             refreshScene();
             
       }

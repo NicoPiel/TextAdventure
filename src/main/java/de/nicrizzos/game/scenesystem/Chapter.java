@@ -15,6 +15,7 @@ import java.util.List;
 public class Chapter {
       private String name;
       private int chapterIndex;
+      private SceneContent currentScene;
       
       ArrayList<SceneContent> scenes;
       
@@ -47,10 +48,15 @@ public class Chapter {
             throw new GameException("Chapter is empty, could not find starting scene.");
       }
       
+      public String getCurrentSceneDescription() {
+            return getCurrentScene().getDescription();
+      }
+      
       public SceneContent continueChapter() {
             chapterIndex++;
             
             if (chapterIndex < scenes.size()) {
+                  setCurrentScene(scenes.get(chapterIndex));
                   return scenes.get(chapterIndex);
             } else return null;
       }
@@ -107,6 +113,8 @@ public class Chapter {
                   e.printStackTrace();
             }
             
+            output.setCurrentScene(output.getScenes().get(0));
+            
             return output;
       }
       
@@ -145,11 +153,11 @@ public class Chapter {
                                 )
                         );
                         
-                        System.out.println("Added object " + e.getAttributeValue("name"));
+                        //System.out.println("Added object " + e.getAttributeValue("name"));
                   } else throw new GameException("Adding object failed.");
             }
       
-            System.out.println("Building sub-scenes for scene " + sceneID);
+            //System.out.println("Building sub-scenes for scene " + sceneID);
       
             Element subScenesElement = scene.getChild("SubScenes");
             
@@ -166,7 +174,7 @@ public class Chapter {
                   }
             }
       
-            System.out.println("Done.");
+            System.out.println("Scene " + sceneID + " done.");
       
             return newScene;
       }
@@ -186,6 +194,26 @@ public class Chapter {
             }
             
             return new Battle(_index, newEnemies);
+      }
+      
+      public void setCurrentScene(SceneContent currentScene) {
+            this.currentScene = currentScene;
+      }
+      
+      public GameScene getCurrentScene() {
+            if (currentScene instanceof GameScene) {
+                  return (GameScene) currentScene;
+            }
+            
+            return null;
+      }
+      
+      public Battle getCurrentBattle() {
+            if (currentScene instanceof Battle) {
+                  return (Battle) currentScene;
+            }
+            
+            return null;
       }
       
       public void setName(String name) {
