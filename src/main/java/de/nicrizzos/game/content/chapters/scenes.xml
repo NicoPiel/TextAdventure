@@ -94,7 +94,8 @@
                             <Text id="2">Was möchtest du tun</Text>
                         </Texts>
                         <Actions>
-                            <Action name="Öffnen" id="1.1.3.1"/>
+                            <Action name="Öffnen" id="1.1.3.1.open"/>
+                            <Action name="Zurück" id="1.1.3.1.back"/>
                         </Actions>
                     </Head>
                 </SubScene>

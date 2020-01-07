@@ -23,7 +23,7 @@ public class SQLiteManager {
       
       /**
        * Use this to create an SQLManager for the respective save slot.
-       * @param _slot
+       * @param _slot Value
        */
       public SQLiteManager(int _slot) {
             slot = _slot;
@@ -160,6 +160,9 @@ public class SQLiteManager {
       public void deleteSave() {
             String sql = "DELETE FROM player WHERE true;";
             this.executeUpdate(sql);
+            
+            sql = "DELETE FROM currentScene WHERE true;";
+            this.executeUpdate(sql);
       }
       
       /**
@@ -169,8 +172,6 @@ public class SQLiteManager {
       public void save(Player _player, String _sceneID) {
             this.savePlayer(_player);
             this.saveCurrentScene(_sceneID);
-            
-            
       }
       public void setScene(String _id) {
             String sql = "INSERT INTO currentScene(id) VALUES ('" + _id + "')";
@@ -179,7 +180,7 @@ public class SQLiteManager {
       
       public void saveCurrentScene(String _id) {
             String sql = "UPDATE currentScene SET id='"+_id+"';";
-            
+            executeUpdate(sql);
       }
       public void savePlayer(Player _player) {
             String sql =

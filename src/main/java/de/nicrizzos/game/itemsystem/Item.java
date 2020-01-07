@@ -5,6 +5,7 @@ import java.util.Random;
 public abstract class Item {
       protected String name;
       protected String uniqueID;
+      protected String description;
       protected int itemLevel;
       
       public Item () {

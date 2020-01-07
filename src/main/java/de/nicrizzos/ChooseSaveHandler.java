@@ -170,11 +170,11 @@ public class ChooseSaveHandler {
                   }
             } else System.out.println("Save stimmt nicht.");
             
-            try {
+            /*try {
                   Thread.sleep(3000);
             } catch (InterruptedException ex) {
                   ex.printStackTrace();
-            }
+            }*/
             
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stageTheEventSourceNodeBelongs.setScene(sc);
