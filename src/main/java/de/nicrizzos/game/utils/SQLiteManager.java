@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Utility class for managing a database connection.
@@ -32,7 +33,7 @@ public class SQLiteManager {
        */
       public SQLiteManager(int _slot) {
             slot = _slot;
-            //createDatabasesIfNotExist();
+            createDatabasesIfNotExist();
       }
       
       /**
@@ -281,12 +282,13 @@ public class SQLiteManager {
             return 0;
       }
       
-      /*public void createDatabasesIfNotExist() {
+      public void createDatabasesIfNotExist() {
+            startSQL();
+            
             try {
                   String fileData = new String(Files.readAllBytes(Paths.get("src/saves/CREATE_TABLE.txt")));
-                  System.out.println(fileData);
       
-                  ArrayList<String> sqlQueries = (ArrayList<String>) Arrays.asList(fileData.split(";"));
+                  String[] sqlQueries = fileData.trim().split(";");
                   
                   for (String sql : sqlQueries) {
                         executeUpdate(sql);
@@ -295,5 +297,7 @@ public class SQLiteManager {
             catch (IOException e) {
                   e.printStackTrace();
             }
-      }*/
+            
+            stopSQL();
+      }
 }
