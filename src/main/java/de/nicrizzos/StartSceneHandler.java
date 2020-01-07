@@ -30,4 +30,15 @@ public class StartSceneHandler {
             stageTheEventSourceNodeBelongs.setScene(sc);
 
       }
+      @FXML
+      public void onStartSceneBuilderStartButtonClick(ActionEvent e) throws IOException {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("choosesave.fxml"));
+            Parent switchscene = fxmlLoader.load();
+            Scene sc = new Scene(switchscene);
+            ChooseSaveHandler csh = fxmlLoader.getController();
+            csh.Init();
+            Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)e.getSource()).getScene().getWindow();
+            stageTheEventSourceNodeBelongs.setScene(sc);
+      }
 }

@@ -245,21 +245,30 @@ public class MainSceneHandler {
       public void ScriptHandler(ActionEvent e) { //Minimum 10000 Zeilen lockra EZ
             Button button = (Button) e.getSource();
             //System.out.println(button.getId());
+            
             switch (button.getId()) {
                   case "1.1.0.lookAround" -> {
                         System.out.println(button.getText());
                         this.loadScene("1.1.1");
-                        
                   }
                   case "1.1.0.window" -> {
                         System.out.println(button.getText());
                         this.loadScene("1.1.2");
                   }
+                  case "1.1.0.door" ->{
+                        this.loadScene("1.1.3");
+                  }
+                  case "1.1.0.keepSleeping"-> {
+                  
+                  }
                   case "1.1.1.socken" -> {
                         this.loadScene("1.1.1.1");
                   }
                   case "1.1.1.1.back" -> {
-                        this.loadScene("1.1.2");
+                        this.loadScene("1.1.1");
+                  }
+                  case "1.1.2.back" -> {
+                        this.loadScene("1.1");
                   }
             }
             

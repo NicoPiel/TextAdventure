@@ -8,5 +8,6 @@
    <children>
       <Button fx:id="btn_gamestart" layoutX="148.0" layoutY="94.0" mnemonicParsing="false" onAction="#onGameStartButtonClick" prefHeight="212.0" prefWidth="305.0" text="Game Start" />
       <Label layoutX="14.0" layoutY="369.0" text="Fickt euch" />
+      <Button layoutX="148.0" layoutY="44.0" mnemonicParsing="false" onAction="#onStartSceneBuilderStartButtonClick" prefHeight="25.0" prefWidth="143.0" text="Load Scene Creator" />
    </children>
 </AnchorPane>
