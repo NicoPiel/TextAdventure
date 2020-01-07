@@ -25,5 +25,6 @@ CREATE TABLE "player" (
 )
 CREATE TABLE "currentScene" (
 	"id" TEXT NOT NULL,
+	"chapterID" TEXT NOT NULL,
 	PRIMARY KEY("id")
 )

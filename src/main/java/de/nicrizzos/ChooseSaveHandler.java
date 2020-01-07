@@ -165,8 +165,9 @@ public class ChooseSaveHandler {
                         mainScreen.Init(slot, LoadingScreenHandler.newGame(name, save), save);
                   } else {
                         showLoadingScreen();
-                        mainScreen.Init(slot, LoadingScreenHandler.loadGame(save), save, true);
                         save.stopSQL();
+                        mainScreen.Init(slot, null, save, true);
+                        
                   }
             } else System.out.println("Save stimmt nicht.");
             

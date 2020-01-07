@@ -4,6 +4,7 @@ import de.nicrizzos.game.Game;
 import de.nicrizzos.game.GameObject;
 import de.nicrizzos.game.content.chapters.Chapters;
 import de.nicrizzos.game.entities.Player;
+import de.nicrizzos.game.exceptions.GameException;
 import de.nicrizzos.game.scenesystem.Battle;
 import de.nicrizzos.game.scenesystem.Chapter;
 import de.nicrizzos.game.scenesystem.GameScene;
@@ -165,9 +166,9 @@ public class MainSceneHandler {
             sql = _sql;
             constructCharInventory();
             
-            currentChapter = game.getCurrentChapter();
+            loadChapter("1");
             sql.startSQL();
-            sql.setScene(game.getCurrentChapter().getCurrentScene().getIdentification());
+            sql.setScene(game.getCurrentChapter().getCurrentScene().getIdentification(), currentChapter.getID());
             sql.stopSQL();
             this.refreshScene();
       }
@@ -175,9 +176,18 @@ public class MainSceneHandler {
       public void Init(int _slot, Game _game, SQLiteManager _sql, boolean exist) {
             constructCharInventory();
             sql = _sql;
-            game = _game;
+            sql.startSQL();
+            game = new Game(sql.getPlayerName());
+            sql.stopSQL();
             player = Game.getActivePlayer();
             constructPlayer();
+      
+            sql.startSQL();
+            this.loadChapter(sql.getCurrentChapter());
+            this.loadScene(sql.getCurrentScene());
+            sql.stopSQL();
+            
+            
             
             this.refreshScene();
       }
@@ -313,6 +323,14 @@ public class MainSceneHandler {
             currentChapter.setCurrentScene(newSubScene);
             System.out.println("Loaded " + newSubScene.getIdentification());
       }
+      private void loadChapter(String _id) {
+            try {
+                  currentChapter = Chapters.getChapterByID(_id);
+            }catch (GameException ex){
+                  ex.printStackTrace();
+            }
+            
+      }
       
       @FXML
       private void refreshScene() {
@@ -323,7 +341,7 @@ public class MainSceneHandler {
             ta_game.setText(currentChapter.getCurrentSceneDescription());
             
             sql.startSQL();
-            sql.save(player, game.getCurrentChapter().getCurrentScene().getIdentification());
+            sql.save(player, currentChapter.getCurrentScene().getIdentification() ,currentChapter.getID());
             sql.stopSQL();
       }
       

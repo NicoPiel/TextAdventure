@@ -175,12 +175,48 @@ public class SQLiteManager {
        * Saves the player's current stats to the database.
        * @param _player The player whose stats to use.
        */
-      public void save(Player _player, String _sceneID) {
+      public void save(Player _player, String _sceneID, String _chapterID) {
+            this.saveChapter(_chapterID);
             this.savePlayer(_player);
             this.saveCurrentScene(_sceneID);
       }
-      public void setScene(String _id) {
-            String sql = "INSERT INTO currentScene(id) VALUES ('" + _id + "')";
+      
+      public String getCurrentChapter(){
+            String sql = "SELECT ChapterID FROM currentScene;";
+            try {
+                  ResultSet result = executeWithResult(sql);
+                  if (result.next()) {
+                        return result.getString("ChapterID");
+                  }
+            } catch (SQLException e) {
+                  e.printStackTrace();
+                  return null;
+            }
+            return null;
+      }
+      
+      
+      public String getCurrentScene(){
+            String sql = "SELECT id FROM currentScene;";
+            try {
+                  ResultSet result = executeWithResult(sql);
+                  if (result.next()) {
+                        return result.getString("id");
+                  }
+            } catch (SQLException e) {
+                  e.printStackTrace();
+                  return null;
+            }
+            return null;
+      }
+      
+      
+      public void setScene(String _id, String _chapterid) {
+            String sql = "INSERT INTO currentScene(ChapterID, id) VALUES ( '"+ _chapterid + "' , ' " + _id + "')";
+            executeUpdate(sql);
+      }
+      public void saveChapter(String _id) {
+            String sql = "UPDATE currentScene SET chapterid='"+_id+"';";
             executeUpdate(sql);
       }
       
