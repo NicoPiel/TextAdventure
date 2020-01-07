@@ -28,6 +28,8 @@ public class Chapter {
        */
       private String name;
       
+      private String ID;
+      
       /**
        * The index of the current scene or how far along the chapter the game is.
        */
@@ -51,34 +53,6 @@ public class Chapter {
             SceneContent[] _scenes = new SceneContent[]{
                     new GameScene("ERROR_CHAPTER_EMPTY", "ERROR_CHAPTER_EMPTY")
             };
-            this.scenes = new ArrayList<>(Arrays.asList(_scenes));
-            chapterIndex = 0;
-      }
-      
-      /**
-       * Constructs a chapter by name and with a list of scenes.
-       *
-       * @param _name   The chapter's name.
-       * @param _scenes The list of scenes the chapter should contain.
-       * @deprecated
-       */
-      public Chapter(String _name, SceneContent[] _scenes) {
-            this.name = _name;
-            this.scenes = new ArrayList<>(Arrays.asList(_scenes));
-            chapterIndex = 0;
-      }
-      
-      /**
-       * Constructs a chapter by name with a list of scenes, and the index the chapter should start.
-       *
-       * @param _name         The chapter's name.
-       * @param _scenes       The list of scenes the chapter should contain.
-       * @param _chapterIndex The index the chapter should start at.
-       * @deprecated
-       */
-      public Chapter(String _name, SceneContent[] _scenes, int _chapterIndex) {
-            this.name = _name;
-            this.chapterIndex = _chapterIndex;
             this.scenes = new ArrayList<>(Arrays.asList(_scenes));
             chapterIndex = 0;
       }
@@ -122,7 +96,7 @@ public class Chapter {
        * @return A finished chapter object.
        * @throws GameException Thrown
        */
-      public static Chapter constructChapterFromFile(int _chapterID) throws GameException {
+      public static Chapter constructChapterFromFile(String _chapterID) throws GameException {
             System.out.println("Constructing scenes..");
             // The path to the 'scenes.xml' file.
             final String filename = "src/main/java/de/nicrizzos/game/content/chapters/scenes.xml";
@@ -130,7 +104,6 @@ public class Chapter {
             Document doc;
             // The empty chapter the will now be filled with content.
             Chapter output = new Chapter();
-            String newChapterName = "";
             
             // This removes the error scene that an empty chapter contains by default.
             output.scenes.remove(0);
@@ -150,9 +123,10 @@ public class Chapter {
                   // Search for the chapter with the given ID.
                   if (chapters != null && !chapters.isEmpty()) {
                         for (Element e : chapters) {
-                              if (Integer.parseInt(e.getAttributeValue("id")) == _chapterID) {
+                              if (e.getAttributeValue("id").equals(_chapterID)) {
                                     sceneList = e.getChildren();
-                                    newChapterName = e.getAttributeValue("name");
+                                    output.setName(e.getAttributeValue("name"));
+                                    output.setID(e.getAttributeValue("id"));
                               }
                         }
                         
@@ -175,8 +149,6 @@ public class Chapter {
                   System.err.println("JDOM ran into a problem.");
                   e.printStackTrace();
             }
-            
-            output.setName(newChapterName);
             output.setCurrentScene(output.getScenes().get(0));
             
             return output;
@@ -385,6 +357,14 @@ public class Chapter {
        */
       public int getChapterIndex() {
             return this.chapterIndex;
+      }
+      
+      public void setID(String ID) {
+            this.ID = ID;
+      }
+      
+      public String getID() {
+            return ID;
       }
       
       /**

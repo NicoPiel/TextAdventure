@@ -46,7 +46,7 @@ public class Chapters {
                   
                   for (Element e : chaptersList) {
                         // Retrieve the <Chapter> tags and build the internal chapter structure.
-                        Chapter chapter = Chapter.constructChapterFromFile(Integer.parseInt(e.getAttributeValue("id")));
+                        Chapter chapter = Chapter.constructChapterFromFile(e.getAttributeValue("id"));
                         // Add the chapter to the static list in this class.
                         chapters.add(chapter);
                   }
@@ -75,21 +75,16 @@ public class Chapters {
       
       /**
        * Gets you a chapter by the list's index.
-       * @param _index The index of the chapter to look for.
+       * @param _id The ID of the chapter to look for.
        * @return A chapter object.
        */
-      public static Chapter getChapterByIndex (int _index) {
-            try {
-                  return getChapters().get(_index);
-            }
-            catch (NullPointerException e) {
-                  System.err.println("The chapter list might be empty.");
-                  e.printStackTrace();
-            }
-            catch (IndexOutOfBoundsException e) {
-                  e.printStackTrace();
+      public static Chapter getChapterByID (String _id) throws GameException {
+            for (Chapter c : chapters) {
+                  if (c.getID().equals(_id)) {
+                        return c;
+                  }
             }
             
-            return null;
+            throw new GameException("No such chapter found.");
       }
 }
