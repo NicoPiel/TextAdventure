@@ -2,7 +2,12 @@ package de.nicrizzos.game.utils;
 
 import de.nicrizzos.game.entities.Player;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Utility class for managing a database connection.
@@ -27,6 +32,7 @@ public class SQLiteManager {
        */
       public SQLiteManager(int _slot) {
             slot = _slot;
+            //createDatabasesIfNotExist();
       }
       
       /**
@@ -239,5 +245,19 @@ public class SQLiteManager {
             return 0;
       }
       
+      /*public void createDatabasesIfNotExist() {
+            try {
+                  String fileData = new String(Files.readAllBytes(Paths.get("src/saves/CREATE_TABLE.txt")));
+                  System.out.println(fileData);
       
+                  ArrayList<String> sqlQueries = (ArrayList<String>) Arrays.asList(fileData.split(";"));
+                  
+                  for (String sql : sqlQueries) {
+                        executeUpdate(sql);
+                  }
+            }
+            catch (IOException e) {
+                  e.printStackTrace();
+            }
+      }*/
 }

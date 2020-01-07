@@ -23,7 +23,7 @@ public class Chapters {
       
       /**
        * Call this to construct an internal structure of the 'scenes.xml'
-       * @see Chapter#constructChapterFromFile(int)
+       * @see Chapter#constructChapterFromFile(String)
        */
       public static void createChapters() {
             System.out.println("Creating chapters..");
@@ -79,11 +79,14 @@ public class Chapters {
        * @return A chapter object.
        */
       public static Chapter getChapterByID (String _id) throws GameException {
-            for (Chapter c : chapters) {
-                  if (c.getID().equals(_id)) {
-                        return c;
+            if (chapters != null && !chapters.isEmpty()) {
+                  for (Chapter c : chapters) {
+                        if (c.getID().equals(_id)) {
+                              return c;
+                        }
                   }
             }
+            else throw new GameException("Chapters haven't been initialised yet.");
             
             throw new GameException("No such chapter found.");
       }
