@@ -21,16 +21,16 @@ public class Game {
       private Chapter currentChapter;
       
       public Game (String _name) {
+            createGame(_name);
+      }
+      
+      private void createGame (String _name) {
             try {
                   Chapters.createChapters();
                   Items.createItems();
-            }
-            catch (GameException e) {
-                  System.err.println(e.getMessage());
-            }
-            currentChapter = Chapters.getChapters().get(0);
-            try {
                   player.createPlayer(_name);
+                  
+                  currentChapter = Chapters.getChapters().get(0);
             }
             catch (GameException e) {
                   System.err.println(e.getMessage());

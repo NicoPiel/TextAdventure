@@ -8,18 +8,24 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Optional;
 
 /**
- * Handles selecting and deleting save-games.
- * @author Pascal Staadt
+ * Handles loading everything
+ *
+ * @author Nico Piel
  * @version 1.0
  */
 public class ChooseSaveHandler {
+      @FXML
+      private AnchorPane ap_save;
       @FXML
       private Button btn_slot1;
       @FXML
@@ -141,27 +147,37 @@ public class ChooseSaveHandler {
                         
                   }
             }
+            
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("mainscene.fxml"));
             Parent switchscene = fxmlLoader.load();
             Scene sc = new Scene(switchscene);
-            MainSceneHandler maincontroller = fxmlLoader.getController();
+            MainSceneHandler mainScreen = fxmlLoader.getController();
+            
+            
             if (save != null) {
                   save.startSQL();
                   if (!save.checkIfPlayerExists()) {
                         String name = askForName();
                         save.setPlayer(name);
                         save.stopSQL();
-                        maincontroller.Init(slot, name, save);
+                        showLoadingScreen();
+                        mainScreen.Init(slot, LoadingScreenHandler.newGame(name, save), save);
                   } else {
-                        maincontroller.Init(slot, save.getPlayerName(), save, true);
+                        showLoadingScreen();
+                        mainScreen.Init(slot, LoadingScreenHandler.loadGame(save), save, true);
                         save.stopSQL();
                   }
             } else System.out.println("Save stimmt nicht.");
             
+            try {
+                  Thread.sleep(3000);
+            } catch (InterruptedException ex) {
+                  ex.printStackTrace();
+            }
+            
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stageTheEventSourceNodeBelongs.setScene(sc);
-            
       }
       
       public String askForName() {
@@ -173,5 +189,20 @@ public class ChooseSaveHandler {
                   return result.get();
             }
             return null;
+      }
+      
+      private void showLoadingScreen() {
+            btn_slot1.setVisible(false);
+            btn_slot2.setVisible(false);
+            btn_slot3.setVisible(false);
+            btn_delete1.setVisible(false);
+            btn_delete2.setVisible(false);
+            btn_delete3.setVisible(false);
+            
+            Label label = new Label("Loading..");
+            label.setFont(new Font(25));
+            label.setLayoutX(230);
+            label.setLayoutY(170);
+            ap_save.getChildren().add(label);
       }
 }

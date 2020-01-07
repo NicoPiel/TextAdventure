@@ -159,27 +159,21 @@ public class MainSceneHandler {
       private Chapter currentChapter;
       //endregion
       
-      public void Init(int _slot, String _name, SQLiteManager _sql) {
-            game = new Game(_name);
+      public void Init(int _slot, Game _game, SQLiteManager _sql) {
+            game = _game;
             player = Game.getActivePlayer();
             sql = _sql;
             constructCharInventory();
-            
-            sql.startSQL();
-            sql.savePlayer(player);
-            sql.stopSQL();
-            
-            System.out.println("Player created.");
             
             currentChapter = game.getCurrentChapter();
             
             this.refreshScene();
       }
       
-      public void Init(int _slot, String _name, SQLiteManager _sql, boolean exist) {
+      public void Init(int _slot, Game _game, SQLiteManager _sql, boolean exist) {
             constructCharInventory();
             sql = _sql;
-            game = new Game(_name);
+            game = _game;
             player = Game.getActivePlayer();
             constructPlayer();
             
