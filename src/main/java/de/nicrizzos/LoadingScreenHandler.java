@@ -21,6 +21,6 @@ public class LoadingScreenHandler {
       }
       
       public static void saveGame(SQLiteManager _sql) {
-            
+      
       }
 }

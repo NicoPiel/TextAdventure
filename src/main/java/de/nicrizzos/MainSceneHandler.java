@@ -238,12 +238,13 @@ public class MainSceneHandler {
             //System.out.println(button.getId());
             
             switch (button.getId()) {
-                  case "1.1.0.lookAround" -> {
-                        System.out.println(button.getText());
+                  case "1.1.1.back", "1.1.2.back", "1.1.3.1.back" -> {
+                        this.loadScene("1.1");
+                  }
+                  case "1.1.0.lookAround", "1.1.1.1.back" -> {
                         this.loadScene("1.1.1");
                   }
                   case "1.1.0.window" -> {
-                        System.out.println(button.getText());
                         this.loadScene("1.1.2");
                   }
                   case "1.1.0.door" ->{
@@ -254,12 +255,6 @@ public class MainSceneHandler {
                   }
                   case "1.1.1.socken" -> {
                         this.loadScene("1.1.1.1");
-                  }
-                  case "1.1.1.1.back" -> {
-                        this.loadScene("1.1.1");
-                  }
-                  case "1.1.2.back" -> {
-                        this.loadScene("1.1");
                   }
             }
             
