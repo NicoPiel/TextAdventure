@@ -166,6 +166,21 @@ public class SQLiteManager {
        * Saves the player's current stats to the database.
        * @param _player The player whose stats to use.
        */
+      public void save(Player _player, String _sceneID) {
+            this.savePlayer(_player);
+            this.saveCurrentScene(_sceneID);
+            
+            
+      }
+      public void setScene(String _id) {
+            String sql = "INSERT INTO currentScene(id) VALUES ('" + _id + "')";
+            executeUpdate(sql);
+      }
+      
+      public void saveCurrentScene(String _id) {
+            String sql = "UPDATE currentScene SET id='"+_id+"';";
+            
+      }
       public void savePlayer(Player _player) {
             String sql =
                     "UPDATE player SET " +

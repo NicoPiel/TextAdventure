@@ -166,7 +166,7 @@ public class MainSceneHandler {
             constructCharInventory();
             
             currentChapter = game.getCurrentChapter();
-            
+            sql.setScene(game.getCurrentChapter().getCurrentScene().getIdentification());
             this.refreshScene();
       }
       
@@ -326,7 +326,7 @@ public class MainSceneHandler {
             ta_game.setText(currentChapter.getCurrentSceneDescription());
             
             sql.startSQL();
-            sql.savePlayer(player);
+            sql.save(player, game.getCurrentChapter().getCurrentScene().getIdentification());
             sql.stopSQL();
       }
       
