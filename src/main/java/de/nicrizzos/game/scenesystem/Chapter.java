@@ -8,6 +8,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
+import javax.xml.xpath.XPathFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -129,6 +130,7 @@ public class Chapter {
             Document doc;
             // The empty chapter the will now be filled with content.
             Chapter output = new Chapter();
+            String newChapterName = "";
             
             // This removes the error scene that an empty chapter contains by default.
             output.scenes.remove(0);
@@ -150,6 +152,7 @@ public class Chapter {
                         for (Element e : chapters) {
                               if (Integer.parseInt(e.getAttributeValue("id")) == _chapterID) {
                                     sceneList = e.getChildren();
+                                    newChapterName = e.getAttributeValue("name");
                               }
                         }
                         
@@ -173,6 +176,7 @@ public class Chapter {
                   e.printStackTrace();
             }
             
+            output.setName(newChapterName);
             output.setCurrentScene(output.getScenes().get(0));
             
             return output;
