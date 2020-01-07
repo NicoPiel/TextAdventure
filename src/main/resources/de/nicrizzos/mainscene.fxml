@@ -89,27 +89,27 @@
                         <Pane prefHeight="233.0" prefWidth="220.0">
                            <children>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="90.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-                              <ImageView fx:id="helmetSlot" fitHeight="35.0" fitWidth="35.0" layoutX="93.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="helmetSlot" fitHeight="35.0" fitWidth="35.0" layoutX="93.0" layoutY="43.0" onMouseEntered="#inventoryOnMouseEnter" pickOnBounds="true" preserveRatio="true">
             </ImageView>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="90.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-                              <ImageView fx:id="chestplateSlot" fitHeight="35.0" fitWidth="35.0" layoutX="93.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="chestplateSlot" fitHeight="35.0" fitWidth="35.0" layoutX="93.0" layoutY="88.0" onMouseEntered="#inventoryOnMouseEnter" pickOnBounds="true" preserveRatio="true" />
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="90.0" layoutY="130.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-                              <ImageView fx:id="pantsSlot" fitHeight="35.0" fitWidth="35.0" layoutX="93.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="pantsSlot" fitHeight="35.0" fitWidth="35.0" layoutX="93.0" layoutY="133.0" onMouseEntered="#inventoryOnMouseEnter" pickOnBounds="true" preserveRatio="true">
             </ImageView>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="90.0" layoutY="175.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-                              <ImageView fx:id="shoeSlot" fitHeight="35.0" fitWidth="35.0" layoutX="93.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="bootsSlot" fitHeight="35.0" fitWidth="35.0" layoutX="93.0" layoutY="178.0" onMouseEntered="#inventoryOnMouseEnter" pickOnBounds="true" preserveRatio="true">
             </ImageView>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="135.0" layoutY="65.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-                              <ImageView fx:id="gloveSlot" fitHeight="35.0" fitWidth="35.0" layoutX="138.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="gauntletSlot" fitHeight="35.0" fitWidth="35.0" layoutX="138.0" layoutY="68.0" onMouseEntered="#inventoryOnMouseEnter" pickOnBounds="true" preserveRatio="true">
             </ImageView>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="135.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-                              <ImageView fx:id="swordSlot" fitHeight="35.0" fitWidth="35.0" layoutX="138.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="weaponSlot" fitHeight="35.0" fitWidth="35.0" layoutX="138.0" layoutY="113.0" onMouseEntered="#inventoryOnMouseEnter" pickOnBounds="true" preserveRatio="true">
             </ImageView>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="45.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-                              <ImageView fx:id="shieldSlot" fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="shieldSlot" fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="113.0" onMouseEntered="#inventoryOnMouseEnter" pickOnBounds="true" preserveRatio="true">
             </ImageView>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="45.0" layoutY="65.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-                              <ImageView fx:id="ringSlot" fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="ringSlot" fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="68.0" onMouseEntered="#inventoryOnMouseEnter" pickOnBounds="true" preserveRatio="true">
             </ImageView>
                               <Label fx:id="lbl_level" layoutX="90.0" layoutY="18.0" text="Level : " />
                               <Label fx:id="lbl_playerName" layoutX="94.0" text="Label" />

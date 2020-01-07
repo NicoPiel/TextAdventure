@@ -23,7 +23,7 @@ public class Chapters {
       
       /**
        * Call this to construct an internal structure of the 'scenes.xml'
-       * @see Chapter#constructChapterFromFile(int) 
+       * @see Chapter#constructChapterFromFile(int)
        */
       public static void createChapters() {
             System.out.println("Creating chapters..");

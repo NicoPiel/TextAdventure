@@ -4,15 +4,11 @@ public class Armor extends Item {
       private int rawDefense;
       private String slot;
       
-      public Armor(String _name, String _ID) {
+      public Armor(String _name, String _ID, String _slot, int _rawDefense, int _itemLevel) {
             this.name = _name;
             this.uniqueID = _ID;
-            this.itemLevel = 1;
-      }
-      
-      public Armor(String _name, String _ID, int _itemLevel) {
-            this.name = _name;
-            this.uniqueID = _ID;
+            this.slot = _slot;
+            this.rawDefense = _rawDefense;
             this.itemLevel = _itemLevel;
       }
       
@@ -34,6 +30,15 @@ public class Armor extends Item {
       
       public String getSlot() {
             return slot;
+      }
+      
+      @Override
+      public boolean equals(Object obj) {
+            if (obj instanceof Armor) {
+                  return this.uniqueID.equals(((Item) obj).getUniqueID());
+            }
+            
+            return false;
       }
 }
       

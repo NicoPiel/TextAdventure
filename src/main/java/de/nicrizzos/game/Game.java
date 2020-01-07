@@ -1,7 +1,9 @@
 package de.nicrizzos.game;
 
 import de.nicrizzos.game.content.chapters.Chapters;
+import de.nicrizzos.game.content.items.Items;
 import de.nicrizzos.game.entities.Player;
+import de.nicrizzos.game.exceptions.GameException;
 import de.nicrizzos.game.scenesystem.Chapter;
 
 /**
@@ -19,9 +21,20 @@ public class Game {
       private Chapter currentChapter;
       
       public Game (String _name) {
-            Chapters.createChapters();
+            try {
+                  Chapters.createChapters();
+                  Items.createItems();
+            }
+            catch (GameException e) {
+                  System.err.println(e.getMessage());
+            }
             currentChapter = Chapters.getChapters().get(0);
-            player.createPlayer(_name);
+            try {
+                  player.createPlayer(_name);
+            }
+            catch (GameException e) {
+                  System.err.println(e.getMessage());
+            }
       }
       
       /**

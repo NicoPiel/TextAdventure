@@ -40,4 +40,18 @@ public abstract class Item {
       public void setItemLevel(int itemLevel) {
             this.itemLevel = itemLevel;
       }
+      
+      @Override
+      public String toString() {
+            return this.name;
+      }
+      
+      @Override
+      public boolean equals(Object obj) {
+            if (obj instanceof Item) {
+                  return this.uniqueID.equals(((Item) obj).getUniqueID());
+            }
+            
+            return false;
+      }
 }

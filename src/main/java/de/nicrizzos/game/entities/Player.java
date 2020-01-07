@@ -1,5 +1,12 @@
 package de.nicrizzos.game.entities;
 
+import de.nicrizzos.game.exceptions.GameException;
+import de.nicrizzos.game.itemsystem.Armor;
+import de.nicrizzos.game.itemsystem.Item;
+import de.nicrizzos.game.itemsystem.Weapon;
+
+import java.util.ArrayList;
+
 /**
  * Represents the player object. It contains all the necessary fields and methods to create and maintain a player object.
  * @author Nico Piel
@@ -94,6 +101,8 @@ public class Player extends Entity {
       
       // Prototype inventory
       
+      ArrayList<Item> inventory;
+      
       private int weaponDamage;
       private int shieldDef;
       private int helmetDef;
@@ -126,16 +135,17 @@ public class Player extends Entity {
       /**
        * Use this to first set the player's stats. Cannot be called a second time.
        */
-      public void createPlayer(String _name) {
+      public void createPlayer(String _name) throws GameException {
             if (!created) {
-                  // Test equipment
-                  weaponDamage = 50;
-                  shieldDef = 10;
-                  helmetDef = 5;
-                  chestDef = 20;
-                  pantsDef = 10;
-                  bootsDef = 5;
-                  gauntletsDef = 5;
+                  inventory = new ArrayList<>();
+                  
+                  weaponDamage = 0;
+                  shieldDef = 0;
+                  helmetDef = 0;
+                  chestDef = 0;
+                  pantsDef = 0;
+                  bootsDef = 0;
+                  gauntletsDef = 0;
                   
                   // Player stats init
                   setPlayerName(_name);
@@ -158,7 +168,7 @@ public class Player extends Entity {
                   setExperienceRequiredForNextLevel();
                   this.created = true;
             } else {
-                  System.err.println("Player already created.");
+                  throw new GameException("Player already created. Something went horribly wrong.");
             }
       }
       
@@ -210,13 +220,90 @@ public class Player extends Entity {
             if (skillPoints == 0) setCanLevelUp(false);
       }
       
+      // -------------------- INVENTORY --------------------
+      
+      private Weapon weapon;
+      private Armor helmet;
+      private Armor chest;
+      private Armor pants;
+      private Armor boots;
+      private Armor gauntlets;
+      
+      
+      public void equipItem (Item item) throws GameException {
+            if (item instanceof Weapon) {
+                  this.weapon = (Weapon) item;
+            }
+            else if (item instanceof Armor) {
+                  switch (((Armor) item).getSlot().toLowerCase()) {
+                        case "helmet" -> {
+                              this.helmet = (Armor) item;
+                        }
+                        case "chest" -> {
+                              this.chest = (Armor) item;
+                        }
+                        case "pants" -> {
+                              this.pants = (Armor) item;
+                        }
+                        case "boots" -> {
+                              this.boots = (Armor) item;
+                        }
+                        case "gauntlets" -> {
+                              this.gauntlets = (Armor) item;
+                        }
+                        default -> {
+                              throw new GameException("An armor item seems to have an incorrect slot.");
+                        }
+                  }
+            }
+            
+            setEquipmentStats();
+      }
+      
+      private void setEquipmentStats() {
+            if (weapon != null) weaponDamage = weapon.getDamageValue();
+            if (helmet != null) helmetDef = helmet.getDefenseValue();
+            if (chest != null) chestDef = chest.getDefenseValue();
+            if (pants != null) pantsDef = pants.getDefenseValue();
+            if (boots != null) bootsDef = boots.getDefenseValue();
+            if (gauntlets != null) gauntletsDef = gauntlets.getDefenseValue();
+      }
+      
+      public void addToInventory (Item item) {
+            this.inventory.add(item);
+      }
+      
+      public Weapon getWeapon() {
+            return weapon;
+      }
+      
+      public Armor getHelmet() {
+            return helmet;
+      }
+      
+      public Armor getChest() {
+            return chest;
+      }
+      
+      public Armor getPants() {
+            return pants;
+      }
+      
+      public Armor getBoots() {
+            return boots;
+      }
+      
+      public Armor getGauntlets() {
+            return gauntlets;
+      }
+      
       // -------------------- GAMEPLAY --------------------
       
       private boolean defensive;
       
       @Override
       public int getDamage () {
-            return (int) (weaponDamage * (1 + (0.07 * getStrength())));
+            return (int) (1 + weaponDamage * (1 + (0.07 * getStrength())));
       }
       
       @Override

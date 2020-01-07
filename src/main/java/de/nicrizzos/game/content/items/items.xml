@@ -1,3 +1,8 @@
 <Items>
+    <Weapon name="Test Sword" id="WP_SWORD_TEST" rawDamage="10" itemLevel="1">
 
+    </Weapon>
+    <Armor name="Test Chestplate" id="AR_CHEST" slot="chest" rawDefense="10" itemLevel="1">
+
+    </Armor>
 </Items>

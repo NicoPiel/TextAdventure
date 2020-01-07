@@ -15,10 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -109,16 +106,16 @@ public class MainSceneHandler {
       private ImageView pantsSlot;
       
       @FXML
-      private ImageView shoeSlot;
+      private ImageView bootsSlot;
       
       @FXML
-      private ImageView gloveSlot;
+      private ImageView gauntletSlot;
       
       @FXML
       private ImageView shieldSlot;
       
       @FXML
-      private ImageView swordSlot;
+      private ImageView weaponSlot;
       
       @FXML
       private ImageView ringSlot;
@@ -339,24 +336,6 @@ public class MainSceneHandler {
             sql.stopSQL();
       }
       
-      /*@FXML
-      private void continueThroughChapter(ActionEvent e) {
-            SceneContent newScene = currentChapter.continueChapter();
-      
-            if (newScene instanceof GameScene) {
-                  ta_game.setText(((GameScene) newScene).getDescription());
-            } else if (newScene instanceof Battle) {
-                  try {
-                        Battle battle = (Battle) newScene;
-                        battle.setPlayer(player);
-                        CreateNewBattle(e, battle);
-                  }
-                  catch (IOException ex) {
-                        ex.printStackTrace();
-                  }
-            }
-      }*/
-      
       private void checkLevelUpButtons() {
             if (player.canLevelUp()) {
                   setLevelUpButtonsVisible(true);
@@ -471,11 +450,11 @@ public class MainSceneHandler {
             setImageForInventorySlot(helmetSlot, "src/images/helmet.png");
             setImageForInventorySlot(chestplateSlot, "src/images/chestplate.jpg");
             setImageForInventorySlot(pantsSlot, "src/images/pants.png");
-            setImageForInventorySlot(shoeSlot, "src/images/boots.png");
-            setImageForInventorySlot(gloveSlot, "src/images/hands.png");
+            setImageForInventorySlot(bootsSlot, "src/images/boots.png");
+            setImageForInventorySlot(gauntletSlot, "src/images/hands.png");
             setImageForInventorySlot(ringSlot, "src/images/ring.png");
             setImageForInventorySlot(shieldSlot, "src/images/shield.png");
-            setImageForInventorySlot(swordSlot, "src/images/sword.png");
+            setImageForInventorySlot(weaponSlot, "src/images/sword.png");
             
             
             File f = new File("src/images/plus.png");
@@ -524,5 +503,28 @@ public class MainSceneHandler {
             File f = new File(_path);
             Image i = new Image(f.toURI().toString());
             _slot.setImage(i);
+      }
+      
+      @FXML
+      public void inventoryOnMouseEnter(MouseEvent e) {
+            if (e.getSource().equals(helmetSlot)) {
+                  if (player.getHelmet() != null) Tooltip.install(helmetSlot, new Tooltip(player.getHelmet().toString()));
+                  else Tooltip.install(helmetSlot, new Tooltip("Empty"));
+            } else if (e.getSource().equals(chestplateSlot)) {
+                  if (player.getChest() != null) Tooltip.install(chestplateSlot, new Tooltip(player.getChest().toString()));
+                  else Tooltip.install(chestplateSlot, new Tooltip("Empty"));
+            } else if (e.getSource().equals(pantsSlot)) {
+                  if (player.getPants() != null) Tooltip.install(pantsSlot, new Tooltip(player.getPants().toString()));
+                  else Tooltip.install(pantsSlot, new Tooltip("Empty"));
+            } else if (e.getSource().equals(bootsSlot)) {
+                  if (player.getBoots() != null) Tooltip.install(bootsSlot, new Tooltip(player.getBoots().toString()));
+                  else Tooltip.install(bootsSlot, new Tooltip("Empty"));
+            } else if (e.getSource().equals(gauntletSlot)) {
+                  if (player.getGauntlets() != null) Tooltip.install(gauntletSlot, new Tooltip(player.getGauntlets().toString()));
+                  else Tooltip.install(gauntletSlot, new Tooltip("Empty"));
+            } else if (e.getSource().equals(weaponSlot)) {
+                  if (player.getWeapon() != null) Tooltip.install(weaponSlot, new Tooltip(player.getWeapon().toString()));
+                  else Tooltip.install(weaponSlot, new Tooltip("Empty"));
+            }
       }
 }
