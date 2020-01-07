@@ -112,4 +112,17 @@
             </Head>
         </Scene>
     </Chapter>
+    <Chapter id="2" name="Pacolol">
+        <Scene id="2.1">
+            <Head>
+                <Texts>
+                    <Text id="1">Gut gemacht. Du bist jetzt kein Spast mehr.</Text>
+                    <Text id="2">Stolz sollst Du nun den Namen "Spast von Nazareth" tragen.</Text>
+                </Texts>
+                <Actions>
+                    <Action name="Umschauen" id="onUmschauenClicked"/>
+                </Actions>
+            </Head>
+        </Scene>
+    </Chapter>
 </Chapters>
