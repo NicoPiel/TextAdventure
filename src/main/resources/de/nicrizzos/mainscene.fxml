@@ -6,6 +6,8 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -70,6 +72,7 @@
             </ImageView>
             <ImageView fx:id="p_rhetoric" fitHeight="14.0" fitWidth="14.0" layoutX="164.0" layoutY="162.0" onMouseClicked="#increaseStat" pickOnBounds="true" preserveRatio="true">
             </ImageView>
+            <Button fx:id="btn_openInv" layoutX="8.0" layoutY="186.0" mnemonicParsing="false" onAction="#inventoryDisplayController" prefHeight="41.0" prefWidth="120.0" text="Inventar" />
          </children>
       </Pane>
       <ProgressBar fx:id="pgb_mana" layoutX="800.0" layoutY="634.0" prefWidth="200.0" progress="1.0" />
@@ -133,6 +136,19 @@
       <AnchorPane fx:id="ap_action" layoutX="14.0" layoutY="557.0" prefHeight="200.0" prefWidth="750.0">
          <children>
             <Label layoutX="20.0" prefHeight="32.0" prefWidth="76.0" text="Aktionen" />
+         </children>
+      </AnchorPane>
+      <Button layoutX="-147.0" layoutY="236.0" mnemonicParsing="false" text="Button" />
+      <AnchorPane fx:id="ap_inventory" layoutX="26.0" layoutY="31.0" prefHeight="706.0" prefWidth="761.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dde1e4" height="679.0" layoutX="16.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="732.0" />
+            <Button fx:id="btn_closeInv" layoutX="611.0" layoutY="651.0" mnemonicParsing="false" onAction="#inventoryDisplayController" text="Inventar Schließen" />
+            <TableView layoutX="26.0" layoutY="24.0" prefHeight="609.0" prefWidth="709.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Items" />
+                <TableColumn prefWidth="75.0" text="Aktionen" />
+              </columns>
+            </TableView>
          </children>
       </AnchorPane>
    </children>
