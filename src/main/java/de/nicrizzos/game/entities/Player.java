@@ -230,26 +230,26 @@ public class Player extends Entity {
       private Armor gauntlets;
       
       
-      public void equipItem (Item item) throws GameException {
-            if (item instanceof Weapon) {
-                  this.weapon = (Weapon) item;
+      public void equipItem (Item _item) throws GameException {
+            if (_item instanceof Weapon) {
+                  this.weapon = (Weapon) _item;
             }
-            else if (item instanceof Armor) {
-                  switch (((Armor) item).getSlot().toLowerCase()) {
+            else if (_item instanceof Armor) {
+                  switch (((Armor) _item).getSlot().toLowerCase()) {
                         case "helmet" -> {
-                              this.helmet = (Armor) item;
+                              this.helmet = (Armor) _item;
                         }
                         case "chest" -> {
-                              this.chest = (Armor) item;
+                              this.chest = (Armor) _item;
                         }
                         case "pants" -> {
-                              this.pants = (Armor) item;
+                              this.pants = (Armor) _item;
                         }
                         case "boots" -> {
-                              this.boots = (Armor) item;
+                              this.boots = (Armor) _item;
                         }
                         case "gauntlets" -> {
-                              this.gauntlets = (Armor) item;
+                              this.gauntlets = (Armor) _item;
                         }
                         default -> {
                               throw new GameException("An armor item seems to have an incorrect slot.");
@@ -269,8 +269,14 @@ public class Player extends Entity {
             if (gauntlets != null) gauntletsDef = gauntlets.getDefenseValue();
       }
       
-      public void addToInventory (Item item) {
-            this.inventory.add(item);
+      public void addToInventory (Item _item) {
+            this.inventory.add(_item);
+            System.out.println("Added " + _item.getName() + " to inventory.");
+      }
+      
+      public void removeFromInventory (Item _item) {
+            this.inventory.remove(_item);
+            System.out.println("Removed " + _item.getName() + " from inventory.");
       }
       
       public Weapon getWeapon() {

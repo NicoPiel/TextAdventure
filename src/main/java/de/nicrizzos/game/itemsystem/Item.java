@@ -22,6 +22,12 @@ public abstract class Item {
             this.uniqueID = _ID;
       }
       
+      public Item (String _ID, String _name, String _desc) {
+            this.name = _name;
+            this.uniqueID = _ID;
+            this.description = _desc;
+      }
+      
       public void setName(String name) {
             this.name = name;
       }
@@ -32,6 +38,14 @@ public abstract class Item {
       
       public String getUniqueID() {
             return uniqueID;
+      }
+      
+      public void setDescription(String description) {
+            this.description = description;
+      }
+      
+      public String getDescription() {
+            return description;
       }
       
       public int getItemLevel() {

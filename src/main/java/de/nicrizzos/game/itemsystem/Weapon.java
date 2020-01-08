@@ -3,9 +3,8 @@ package de.nicrizzos.game.itemsystem;
 public class Weapon extends Item {
       private int rawDamage;
       
-      public Weapon (String _name, String _ID, int _rawDamage, int _itemLevel) {
-            this.name = _name;
-            this.uniqueID = _ID;
+      public Weapon (String _name, String _ID, String _desc, int _rawDamage, int _itemLevel) {
+            super(_name, _ID, _desc);
             this.rawDamage = _rawDamage;
             this.itemLevel = _itemLevel;
       }

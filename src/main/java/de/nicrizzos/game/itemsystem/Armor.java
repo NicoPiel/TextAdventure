@@ -4,9 +4,8 @@ public class Armor extends Item {
       private int rawDefense;
       private String slot;
       
-      public Armor(String _name, String _ID, String _slot, int _rawDefense, int _itemLevel) {
-            this.name = _name;
-            this.uniqueID = _ID;
+      public Armor(String _name, String _ID, String _desc, String _slot, int _rawDefense, int _itemLevel) {
+            super(_name, _ID, _desc);
             this.slot = _slot;
             this.rawDefense = _rawDefense;
             this.itemLevel = _itemLevel;

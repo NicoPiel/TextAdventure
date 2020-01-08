@@ -3,6 +3,7 @@ package de.nicrizzos.game.utils;
 import de.nicrizzos.game.entities.Player;
 
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.*;
@@ -283,10 +284,23 @@ public class SQLiteManager {
       }
       
       public void createDatabasesIfNotExist() {
+            final String savePath = "src/saves/";
+            
             startSQL();
             
             try {
-                  String fileData = new String(Files.readAllBytes(Paths.get("src/saves/CREATE_TABLE.txt")));
+                  try {
+                        Files.createFile(Paths.get(savePath + "save1.db"));
+                        Files.createFile(Paths.get(savePath + "save2.db"));
+                        Files.createFile(Paths.get(savePath + "save3.db"));
+                        
+                        System.out.println("Save files created.");
+                  }
+                  catch (FileAlreadyExistsException e) {
+                        System.out.println("Save files have already been created.");
+                  }
+                  
+                  String fileData = new String(Files.readAllBytes(Paths.get(savePath + "CREATE_TABLE.txt")));
       
                   String[] sqlQueries = fileData.trim().split(";");
                   

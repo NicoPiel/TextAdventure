@@ -1,4 +1,11 @@
 <Items>
-    <Weapon name="Test Sword" id="WP_SWORD_TEST" rawDamage="10" itemLevel="1">Ein rostiges Schwert.</Weapon>
-    <Armor name="Test Chestplate" id="AR_CHEST" slot="chest" rawDefense="10" itemLevel="1">Eine ziemlich alte Rüstung.</Armor>
+    <QuestItems>
+        <QuestItem name="Kleiner Schlüssel" id="WP_SWORD_TEST">Ein kleiner Schlüssel.</QuestItem>
+    </QuestItems>
+    <Weapons>
+        <Weapon name="Rostiges Schwert" id="WP_SWORD_TEST" rawDamage="10" itemLevel="1">Ein rostiges Schwert.</Weapon>
+    </Weapons>
+    <Armors>
+        <Armor name="Lädierte Rüstung" id="AR_CHEST" slot="chest" rawDefense="10" itemLevel="1">Eine ziemlich alte Rüstung.</Armor>
+    </Armors>
 </Items>

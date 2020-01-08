@@ -1,5 +1,5 @@
 # Game stuff
-src/saves/
+src/saves/*.db
 
 
 # Compiled class file
