@@ -3,14 +3,19 @@ package de.nicrizzos;
 import de.nicrizzos.game.Game;
 import de.nicrizzos.game.GameObject;
 import de.nicrizzos.game.content.chapters.Chapters;
+import de.nicrizzos.game.content.items.Items;
 import de.nicrizzos.game.entities.Player;
 import de.nicrizzos.game.exceptions.GameException;
+import de.nicrizzos.game.itemsystem.Item;
 import de.nicrizzos.game.scenesystem.Battle;
 import de.nicrizzos.game.scenesystem.Chapter;
 import de.nicrizzos.game.scenesystem.GameScene;
 import de.nicrizzos.game.scenesystem.SceneContent;
 import de.nicrizzos.game.utils.SQLiteManager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -39,6 +44,11 @@ public class MainSceneHandler {
       
       @FXML
       private AnchorPane ap_action;
+      
+      @FXML
+      private AnchorPane ap_inventory;
+      @FXML
+      private ListView<String> lw_inventory;
       
       @FXML
       private ProgressBar pgb_life;
@@ -158,6 +168,7 @@ public class MainSceneHandler {
       private Player player;
       private SQLiteManager sql;
       private Chapter currentChapter;
+      public static final ObservableList<String> inventorylist = FXCollections.observableArrayList();
       //endregion
       
       public void Init(int _slot, Game _game, SQLiteManager _sql) {
@@ -181,7 +192,10 @@ public class MainSceneHandler {
             sql.stopSQL();
             player = Game.getActivePlayer();
             constructPlayer();
-      
+            inventorylist.addAll("Sickdelan","Amenakoim","Penis");
+            
+            
+            
             sql.startSQL();
             this.loadChapter(sql.getCurrentChapter());
             this.loadScene(sql.getCurrentScene());
@@ -237,6 +251,32 @@ public class MainSceneHandler {
                   
                   x += 116;
             }
+      }
+      @FXML
+      public void inventoryClickListener(Event e) {
+            if(lw_inventory.getSelectionModel().getSelectedItem() != null) {
+                  System.out.println(lw_inventory.getSelectionModel().getSelectedItem());
+            }
+      
+      }
+      
+      
+      @FXML
+      public void inventoryDisplayController(ActionEvent e) {
+            Button button = (Button) e.getSource();
+            switch(button.getId()) {
+                  case "btn_closeInv" -> {
+                        ap_inventory.setVisible(false);
+                  
+                  }
+                  case "btn_openInv" -> {
+                        lw_inventory.setItems(inventorylist);
+                        ap_inventory.setVisible(true);
+                  
+                  }
+            }
+            
+            
       }
       
       /**
