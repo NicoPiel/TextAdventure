@@ -13,7 +13,7 @@ public class Game {
       /**
        * Player object that cannot be modified.
        */
-      final static Player player = new Player("Nameless");
+      final Player player = new Player("Nameless");
       
       /**
        * Contains the game's current
@@ -40,7 +40,7 @@ public class Game {
       /**
        * @return The active player in the game.
        */
-      public static Player getActivePlayer() {
+      public Player getActivePlayer() {
             return player;
       }
       

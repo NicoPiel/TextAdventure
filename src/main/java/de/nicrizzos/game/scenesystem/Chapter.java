@@ -8,7 +8,6 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
-import javax.xml.xpath.XPathFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -280,7 +279,7 @@ public class Chapter {
                   // Battles shouldn't have sub-scenes, so this would produce a NullPointer.
                   if (scn instanceof GameScene) {
                         // End the search, if scene was found.
-                        if (scn.getIdentification().equals(_id)) {
+                        if (scn.getID().equals(_id)) {
                               return (GameScene) scn;
                         }
                         // Recursively check all sub-scenes.

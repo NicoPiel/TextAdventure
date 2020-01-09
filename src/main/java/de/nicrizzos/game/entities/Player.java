@@ -134,6 +134,8 @@ public class Player extends Entity {
       
       /**
        * Use this to first set the player's stats. Cannot be called a second time.
+       * @param _name The new player's name.
+       * @throws GameException Thrown, if there somehow already is a player object.
        */
       public void createPlayer(String _name) throws GameException {
             if (!created) {

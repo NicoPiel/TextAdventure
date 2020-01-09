@@ -24,6 +24,11 @@ public class SQLiteManager {
       protected java.sql.Connection connection;
       
       /**
+       * Path to savegames as a string.
+       */
+      final String savePath = "src/saves/";
+      
+      /**
        * The save slot that should be written to.
        */
       private int slot;
@@ -50,7 +55,7 @@ public class SQLiteManager {
                   return;
             }
             try {
-                  connection = DriverManager.getConnection("jdbc:sqlite:src/saves/save" + slot + ".db");
+                  connection = DriverManager.getConnection("jdbc:sqlite:" + savePath + "/save" + slot + ".save");
                   // With the method getConnection() from DriverManager, we're trying to set
                   // the connection's url, username, password to the variables we made earlier and
                   // trying to get a connection at the same time. JDBC allows us to do this.
@@ -163,7 +168,7 @@ public class SQLiteManager {
       }
       
       /**
-       * Dummy method, will later delete saves.
+       * Deletes database entries in a save file.
        */
       public void deleteSave() {
             String sql = "DELETE FROM player WHERE true;";
@@ -176,13 +181,20 @@ public class SQLiteManager {
       /**
        * Saves the player's current stats to the database.
        * @param _player The player whose stats to use.
+       * @param _sceneID Should be the current scene's ID.
+       * @param _chapterID Should be the current chapter's ID.
        */
       public void save(Player _player, String _sceneID, String _chapterID) {
+            startSQL();
             this.saveChapter(_chapterID);
             this.savePlayer(_player);
             this.saveCurrentScene(_sceneID);
+            stopSQL();
       }
       
+      /**
+       * @return Returns the current chapter saved in the database.
+       */
       public String getCurrentChapter(){
             String sql = "SELECT ChapterID FROM currentScene;";
             try {
@@ -197,7 +209,9 @@ public class SQLiteManager {
             return null;
       }
       
-      
+      /**
+       * @return Returns the latest scene saved in the database.
+       */
       public String getCurrentScene(){
             String sql = "SELECT id FROM currentScene;";
             try {
@@ -212,11 +226,20 @@ public class SQLiteManager {
             return null;
       }
       
-      
+      /**
+       * Saves the current scene for the first time; shouldn't be used more than once.
+       * @param _id The scene's ID.
+       * @param _chapterid The chapter's ID.
+       */
       public void setScene(String _id, String _chapterid) {
             String sql = "INSERT INTO currentScene(ChapterID, id) VALUES ( '"+ _chapterid + "' , ' " + _id + "')";
             executeUpdate(sql);
       }
+      
+      /**
+       *
+       * @param _id
+       */
       public void saveChapter(String _id) {
             String sql = "UPDATE currentScene SET chapterid='"+_id+"';";
             executeUpdate(sql);
@@ -284,15 +307,13 @@ public class SQLiteManager {
       }
       
       public void createDatabasesIfNotExist() {
-            final String savePath = "src/saves/";
-            
             startSQL();
             
             try {
                   try {
-                        Files.createFile(Paths.get(savePath + "save1.db"));
-                        Files.createFile(Paths.get(savePath + "save2.db"));
-                        Files.createFile(Paths.get(savePath + "save3.db"));
+                        for (int i = 1; i <= 3; i++) {
+                              Files.createFile(Paths.get(savePath + "save" + i +".save"));
+                        }
                         
                         System.out.println("Save files created.");
                   }

@@ -62,12 +62,13 @@ public class BattleScreenHandler {
       private ProgressBar pgb_enemy2health;
       @FXML
       private ProgressBar pgb_enemy3health;
+      
       private SQLiteManager sql;
 
       public void Init(Game _game, SQLiteManager _sql){
-            game =_game;
+            game = _game;
             sql = _sql;
-            player = Game.getActivePlayer();
+            player = _game.getActivePlayer();
             battle = new Battle (player, new Enemy[] {
                     new Enemy ("Schleim", 60, 50, 5),
                     new Enemy("Goblin", 100, 60, 30),
@@ -77,9 +78,9 @@ public class BattleScreenHandler {
       }
       
       public void Init(Game _game, SQLiteManager _sql, Battle _battle){
-            game =_game;
+            game = _game;
             sql = _sql;
-            player = Game.getActivePlayer();
+            player = _game.getActivePlayer();
             battle = _battle;
             refreshScreen();
       }
@@ -174,7 +175,7 @@ public class BattleScreenHandler {
             else {
                   System.out.println("All enemies have been defeated.");
                   
-                  battle.getReward(Game.getActivePlayer());
+                  battle.getReward(game.getActivePlayer());
 
                   FXMLLoader fxmlLoader = new FXMLLoader();
                   fxmlLoader.setLocation(getClass().getResource("mainscene.fxml"));
@@ -186,7 +187,7 @@ public class BattleScreenHandler {
                   }
                   Scene sc = new Scene(switchScene);
                   MainSceneHandler main = fxmlLoader.getController();
-                  main.InitFromBattle(game, sql, battle.getChapterIndex());
+                  //main.InitFromBattle(game, sql, battle.getChapterIndex());
                   sql.stopSQL();
                   Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)e.getSource()).getScene().getWindow();
                   stageTheEventSourceNodeBelongs.setScene(sc);
@@ -205,7 +206,7 @@ public class BattleScreenHandler {
                   }
                   Scene sc = new Scene(switchScene);
                   MainSceneHandler main = fxmlLoader.getController();
-                  main.InitFromBattle(game, sql, battle.getChapterIndex() - 2);
+                  //main.InitFromBattle(game, sql, battle.getChapterIndex() - 2);
                   Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)e.getSource()).getScene().getWindow();
                   stageTheEventSourceNodeBelongs.setScene(sc);
             }

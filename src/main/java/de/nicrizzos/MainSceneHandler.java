@@ -3,10 +3,9 @@ package de.nicrizzos;
 import de.nicrizzos.game.Game;
 import de.nicrizzos.game.GameObject;
 import de.nicrizzos.game.content.chapters.Chapters;
-import de.nicrizzos.game.content.items.Items;
 import de.nicrizzos.game.entities.Player;
 import de.nicrizzos.game.exceptions.GameException;
-import de.nicrizzos.game.itemsystem.Item;
+import de.nicrizzos.game.savesystem.SaveSystem;
 import de.nicrizzos.game.scenesystem.Battle;
 import de.nicrizzos.game.scenesystem.Chapter;
 import de.nicrizzos.game.scenesystem.GameScene;
@@ -38,6 +37,8 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class MainSceneHandler {
+      final String imagePath = "src/images/";
+      
       //region Variables
       @FXML
       private TextArea ta_game;
@@ -168,18 +169,18 @@ public class MainSceneHandler {
       private Player player;
       private SQLiteManager sql;
       private Chapter currentChapter;
-      public static final ObservableList<String> inventorylist = FXCollections.observableArrayList();
+      public static final ObservableList<String> inventoryList = FXCollections.observableArrayList();
       //endregion
       
       public void Init(int _slot, Game _game, SQLiteManager _sql) {
             game = _game;
-            player = Game.getActivePlayer();
+            player = _game.getActivePlayer();
             sql = _sql;
             constructCharInventory();
             
             loadChapter("1");
             sql.startSQL();
-            sql.setScene(game.getCurrentChapter().getCurrentScene().getIdentification(), currentChapter.getID());
+            sql.setScene(game.getCurrentChapter().getCurrentScene().getID(), currentChapter.getID());
             sql.stopSQL();
             this.refreshScene();
       }
@@ -187,44 +188,26 @@ public class MainSceneHandler {
       public void Init(int _slot, Game _game, SQLiteManager _sql, boolean exist) {
             constructCharInventory();
             sql = _sql;
+            
             sql.startSQL();
-            game = new Game(sql.getPlayerName());
+            game = _game;
             sql.stopSQL();
-            player = Game.getActivePlayer();
+            
+            player = _game.getActivePlayer();
+            
+            currentChapter = game.getCurrentChapter();
+            
             constructPlayer();
-            inventorylist.addAll("Sickdelan","Amenakoim","Penis");
             
+            inventoryList.addAll("Sickdelan", "Amenakoim", "Penis");
             
-            
+            /*
             sql.startSQL();
             this.loadChapter(sql.getCurrentChapter());
             this.loadScene(sql.getCurrentScene());
             sql.stopSQL();
+            */
             
-            
-            
-            this.refreshScene();
-      }
-      
-      public void InitFromBattle(Game _game, SQLiteManager _sql, int _chapterIndex) {
-            constructCharInventory();
-            
-            sql = _sql;
-            
-            game = _game;
-            player = Game.getActivePlayer();
-            
-            //TODO: refactoring und immer das richtige kapitel holen
-            currentChapter = Chapters.getChapters().get(0);
-            if (_chapterIndex > 0) {
-                  currentChapter.setChapterIndex(_chapterIndex);
-                  player.setCurrentHealth(player.getHealth());
-                  player.setCurrentMana(player.getMana());
-            } else {
-                  currentChapter.setChapterIndex(-1);
-            }
-            
-            //continueThroughChapter(null);
             
             this.refreshScene();
       }
@@ -234,7 +217,7 @@ public class MainSceneHandler {
        */
       public void refreshActionButtons() {
             ap_action.getChildren().clear();
-            GameScene scene = (GameScene) currentChapter.getCurrentScene();
+            GameScene scene = currentChapter.getCurrentScene();
             ArrayList<GameObject> objects = scene.getSceneObjects();
             int x = 20;
             int y = 32;
@@ -252,14 +235,17 @@ public class MainSceneHandler {
                   x += 116;
             }
       }
+      
+      /**
+       * Listens for clicks in the inventory list view.
+       * @param e Event
+       */
       @FXML
       public void inventoryClickListener(Event e) {
             if(lw_inventory.getSelectionModel().getSelectedItem() != null) {
                   System.out.println(lw_inventory.getSelectionModel().getSelectedItem());
             }
-      
       }
-      
       
       @FXML
       public void inventoryDisplayController(ActionEvent e) {
@@ -267,12 +253,10 @@ public class MainSceneHandler {
             switch(button.getId()) {
                   case "btn_closeInv" -> {
                         ap_inventory.setVisible(false);
-                  
                   }
                   case "btn_openInv" -> {
-                        lw_inventory.setItems(inventorylist);
+                        lw_inventory.setItems(inventoryList);
                         ap_inventory.setVisible(true);
-                  
                   }
             }
             
@@ -347,22 +331,19 @@ public class MainSceneHandler {
       }
       
       /**
-       * Prototype function to copy a game state to a different scene.
-       *
-       * @param _game The game which needs to be copied.
+       * Loads the scene with the specified ID.
+       * @param _id Scene's ID.
        */
-      public void importGame(Game _game) {
-            game = _game;
-            player = Game.getActivePlayer();
-            constructCharInventory();
-            this.refreshScene();
-      }
-      
       private void loadScene(String _id) {
             SceneContent newSubScene = currentChapter.getSceneByID(_id);
             currentChapter.setCurrentScene(newSubScene);
-            System.out.println("Loaded " + newSubScene.getIdentification());
+            System.out.println("Loaded " + newSubScene.getID());
       }
+      
+      /**
+       * Sets the current chapter to be the specified chapter.
+       * @param _id Chapter's ID.
+       */
       private void loadChapter(String _id) {
             try {
                   currentChapter = Chapters.getChapterByID(_id);
@@ -379,10 +360,8 @@ public class MainSceneHandler {
             refreshActionButtons();
             
             ta_game.setText(currentChapter.getCurrentSceneDescription());
-            
-            sql.startSQL();
-            sql.save(player, currentChapter.getCurrentScene().getIdentification() ,currentChapter.getID());
-            sql.stopSQL();
+      
+            SaveSystem.saveGame(game, sql);
       }
       
       private void checkLevelUpButtons() {
@@ -496,17 +475,17 @@ public class MainSceneHandler {
        * Sets up the images used for the representation of the character's inventory.
        */
       private void constructCharInventory() {
-            setImageForInventorySlot(helmetSlot, "src/images/helmet.png");
-            setImageForInventorySlot(chestplateSlot, "src/images/chestplate.jpg");
-            setImageForInventorySlot(pantsSlot, "src/images/pants.png");
-            setImageForInventorySlot(bootsSlot, "src/images/boots.png");
-            setImageForInventorySlot(gauntletSlot, "src/images/hands.png");
-            setImageForInventorySlot(ringSlot, "src/images/ring.png");
-            setImageForInventorySlot(shieldSlot, "src/images/shield.png");
-            setImageForInventorySlot(weaponSlot, "src/images/sword.png");
+            setImageForInventorySlot(helmetSlot, imagePath + "helmet.png");
+            setImageForInventorySlot(chestplateSlot, imagePath + "chestplate.jpg");
+            setImageForInventorySlot(pantsSlot, imagePath + "pants.png");
+            setImageForInventorySlot(bootsSlot, imagePath + "boots.png");
+            setImageForInventorySlot(gauntletSlot, imagePath + "hands.png");
+            setImageForInventorySlot(ringSlot, imagePath + "ring.png");
+            setImageForInventorySlot(shieldSlot, imagePath + "shield.png");
+            setImageForInventorySlot(weaponSlot, imagePath + "sword.png");
             
             
-            File f = new File("src/images/plus.png");
+            File f = new File(imagePath + "plus.png");
             Image i = new Image(f.toURI().toString());
             p_def.setImage(i);
             p_dex.setImage(i);
@@ -554,6 +533,10 @@ public class MainSceneHandler {
             _slot.setImage(i);
       }
       
+      /**
+       * Displays tooltips when hovering over inventory items.
+       * @param e Event.
+       */
       @FXML
       public void inventoryOnMouseEnter(MouseEvent e) {
             if (e.getSource().equals(helmetSlot)) {

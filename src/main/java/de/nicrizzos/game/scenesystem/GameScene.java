@@ -34,7 +34,7 @@ public class GameScene extends SceneContent {
        * @param _desc Visual description of the scene.
        */
       public GameScene(String _id, String _desc) {
-            this.identification = _id;
+            this.ID = _id;
             this.description = _desc;
             sceneObjects = new ArrayList<>();
             subScenes = new ArrayList<>();
@@ -80,7 +80,7 @@ public class GameScene extends SceneContent {
             }
             else {
                   for (SceneContent c : subScenes) {
-                        if (c.getIdentification().equals(_id)) {
+                        if (c.getID().equals(_id)) {
                               return c;
                         }
                   }
@@ -100,7 +100,7 @@ public class GameScene extends SceneContent {
             }
             for (SceneContent c : subScenes) {
                   if (c != null) {
-                        if (c.getIdentification().equals(_id)) {
+                        if (c.getID().equals(_id)) {
                               return true;
                         }
                   } else System.err.println("c is null.");
@@ -142,7 +142,7 @@ public class GameScene extends SceneContent {
       
       @Override
       public String toString() {
-            return identification;
+            return ID;
       }
       
       /**
@@ -152,7 +152,7 @@ public class GameScene extends SceneContent {
       @Override
       public boolean equals(Object obj) {
             if (obj instanceof GameScene) {
-                  if (this.identification.equals(((GameScene) obj).identification) && !this.description.equals(((GameScene) obj).getDescription())) {
+                  if (this.ID.equals(((GameScene) obj).ID) && !this.description.equals(((GameScene) obj).getDescription())) {
                         try {
                               throw new GameException("There are scenes with the same ID, but different content.");
                         } catch (GameException e) {
@@ -160,7 +160,7 @@ public class GameScene extends SceneContent {
                         }
                   }
                   
-                  return this.identification.equals(((GameScene) obj).getDescription());
+                  return this.ID.equals(((GameScene) obj).getDescription());
             }
             
             return false;

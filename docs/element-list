@@ -1,0 +1,11 @@
+module:de.nicrizzos
+de.nicrizzos
+de.nicrizzos.game
+de.nicrizzos.game.content.chapters
+de.nicrizzos.game.content.items
+de.nicrizzos.game.dialoguesystem
+de.nicrizzos.game.entities
+de.nicrizzos.game.exceptions
+de.nicrizzos.game.itemsystem
+de.nicrizzos.game.scenesystem
+de.nicrizzos.game.utils

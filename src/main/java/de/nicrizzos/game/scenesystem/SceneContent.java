@@ -7,20 +7,20 @@ public abstract class SceneContent {
       /**
        * Unique ID given to this object.
        */
-      protected String identification;
+      protected String ID;
       
       /**
        * Sets the scene's ID; don't use this outside of construction.
-       * @param identification The new ID.
+       * @param ID The new ID.
        */
-      public void setIdentification(String identification) {
-            this.identification = identification;
+      public void setID(String ID) {
+            this.ID = ID;
       }
       
       /**
        * @return The scene's unique ID.
        */
-      public String getIdentification() {
-            return this.identification;
+      public String getID() {
+            return this.ID;
       }
 }

@@ -84,6 +84,7 @@ public class Battle extends SceneContent {
       
       /**
        * Returns the rewards that should be passed onto the player. Currently, calculates XP values based on the enemies' stats.
+       * @param _player Add rewards to this player object.
        */
       public void getReward(Player _player) {
             int xp = 0;

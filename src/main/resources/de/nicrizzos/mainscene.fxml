@@ -137,7 +137,7 @@
             <Label layoutX="20.0" prefHeight="32.0" prefWidth="76.0" text="Aktionen" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="ap_inventory" layoutX="26.0" layoutY="31.0" prefHeight="706.0" prefWidth="761.0">
+      <AnchorPane fx:id="ap_inventory" layoutX="26.0" layoutY="31.0" prefHeight="706.0" prefWidth="761.0" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dde1e4" height="679.0" layoutX="16.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="732.0" />
             <Button fx:id="btn_closeInv" layoutX="611.0" layoutY="651.0" mnemonicParsing="false" onAction="#inventoryDisplayController" text="Inventar Schließen" />

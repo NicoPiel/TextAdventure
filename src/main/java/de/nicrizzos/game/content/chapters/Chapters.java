@@ -77,6 +77,7 @@ public class Chapters {
        * Gets you a chapter by the list's index.
        * @param _id The ID of the chapter to look for.
        * @return A chapter object.
+       * @throws GameException Thrown, if something goes wrong while searching the chapters.
        */
       public static Chapter getChapterByID (String _id) throws GameException {
             if (chapters != null && !chapters.isEmpty()) {

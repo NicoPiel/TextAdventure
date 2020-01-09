@@ -1,5 +1,6 @@
 package de.nicrizzos;
 
+import de.nicrizzos.game.savesystem.SaveSystem;
 import de.nicrizzos.game.utils.SQLiteManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -162,11 +163,11 @@ public class ChooseSaveHandler {
                         save.setPlayer(name);
                         save.stopSQL();
                         showLoadingScreen();
-                        mainScreen.Init(slot, LoadingScreenHandler.newGame(name, save), save);
+                        mainScreen.Init(slot, SaveSystem.newGame(name, save), save);
                   } else {
                         showLoadingScreen();
                         save.stopSQL();
-                        mainScreen.Init(slot, null, save, true);
+                        mainScreen.Init(slot, SaveSystem.loadGame(save), save, true);
                         
                   }
             } else System.out.println("Save stimmt nicht.");
@@ -186,10 +187,7 @@ public class ChooseSaveHandler {
             dialog.setHeaderText("Nenne uns deinen Namen");
             dialog.setContentText("Name:");
             Optional<String> result = dialog.showAndWait();
-            if (result.isPresent()) {
-                  return result.get();
-            }
-            return null;
+            return result.orElse(null);
       }
       
       private void showLoadingScreen() {
